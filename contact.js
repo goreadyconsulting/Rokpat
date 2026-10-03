@@ -3,68 +3,124 @@
   const stage = document.getElementById('contact-stage');
   const followers = stage ? [...stage.querySelectorAll('.contact-follower')] : [];
   const finePointer = window.matchMedia('(pointer:fine)').matches;
-  const canAnimatePointer = stage && followers.length && finePointer && !reduceMotion;
 
-  if (canAnimatePointer) {
-    const rect = stage.getBoundingClientRect();
-    const startX = rect.width * .5;
-    const startY = rect.height * .5;
-    const state = followers.map((el, index) => ({
-      el,
-      x:startX,
-      y:startY,
-      tx:startX,
-      ty:startY,
-      ease:Math.max(.045, .18 - index * .022),
-      ox:[-120,110,-180,165,-80,200][index] || 0,
-      oy:[-90,-135,115,105,175,-10][index] || 0,
-      rot:[-8,7,-5,9,-7,5][index] || 0
-    }));
+  if (stage && followers.length) {
+    followers.forEach((el, index) => {
+      el.classList.toggle('is-active', index === 0);
+    });
 
-    let pointerX = startX;
-    let pointerY = startY;
-    let frame = 0;
-    let idleTimer = 0;
-
-    const animate = () => {
+    if (finePointer && !reduceMotion) {
       const bounds = stage.getBoundingClientRect();
-      state.forEach((item,index) => {
-        const depth = 1 - index * .075;
-        item.tx = pointerX + item.ox * depth;
-        item.ty = pointerY + item.oy * depth;
-        item.x += (item.tx - item.x) * item.ease;
-        item.y += (item.ty - item.y) * item.ease;
+      let activeIndex = 0;
+      let x = bounds.width * .5;
+      let y = bounds.height * .5;
+      let tx = x;
+      let ty = y;
+      let lastSwapX = x;
+      let lastSwapY = y;
+      let lastPointerX = x;
+      let lastPointerY = y;
+      let rotation = -4;
+      let idleTimer = 0;
+      let raf = 0;
 
-        const px = item.x - item.el.offsetWidth / 2;
-        const py = item.y - item.el.offsetHeight / 2;
-        const drift = Math.sin(frame * .018 + index) * 3;
-        item.el.style.transform =
-          `translate3d(${px}px,${py}px,0) rotate(${item.rot + drift}deg)`;
+      const activeEl = () => followers[activeIndex];
+
+      const switchImage = () => {
+        followers[activeIndex].classList.remove('is-active');
+        activeIndex = (activeIndex + 1) % followers.length;
+        const next = followers[activeIndex];
+        next.classList.add('is-active');
+        next.style.transform = `translate3d(${x - next.offsetWidth / 2}px,${y - next.offsetHeight / 2}px,0) rotate(${rotation}deg)`;
+      };
+
+      const animate = () => {
+        x += (tx - x) * .14;
+        y += (ty - y) * .14;
+
+        const el = activeEl();
+        if (el) {
+          const px = x - el.offsetWidth / 2;
+          const py = y - el.offsetHeight / 2;
+          el.style.transform = `translate3d(${px}px,${py}px,0) rotate(${rotation}deg)`;
+        }
+
+        raf = requestAnimationFrame(animate);
+      };
+
+      stage.addEventListener('pointerenter', event => {
+        const r = stage.getBoundingClientRect();
+        tx = event.clientX - r.left;
+        ty = event.clientY - r.top;
+        x = tx;
+        y = ty;
+        lastSwapX = tx;
+        lastSwapY = ty;
+        lastPointerX = tx;
+        lastPointerY = ty;
+        stage.classList.add('is-pointer-active');
       });
-      frame += 1;
-      requestAnimationFrame(animate);
-    };
 
-    stage.addEventListener('pointerenter', () => {
-      stage.classList.add('is-pointer-active');
-    });
+      stage.addEventListener('pointermove', event => {
+        const r = stage.getBoundingClientRect();
+        tx = event.clientX - r.left;
+        ty = event.clientY - r.top;
 
-    stage.addEventListener('pointermove', event => {
-      const bounds = stage.getBoundingClientRect();
-      pointerX = event.clientX - bounds.left;
-      pointerY = event.clientY - bounds.top;
-      stage.classList.add('is-pointer-active');
-      window.clearTimeout(idleTimer);
-      idleTimer = window.setTimeout(() => {
+        const dx = tx - lastPointerX;
+        const dy = ty - lastPointerY;
+        rotation = Math.max(-8, Math.min(8, dx * .12 + dy * .035));
+
+        const travel = Math.hypot(tx - lastSwapX, ty - lastSwapY);
+        if (travel > 155) {
+          switchImage();
+          lastSwapX = tx;
+          lastSwapY = ty;
+        }
+
+        lastPointerX = tx;
+        lastPointerY = ty;
+
+        stage.classList.add('is-pointer-active');
+        window.clearTimeout(idleTimer);
+        idleTimer = window.setTimeout(() => {
+          stage.classList.remove('is-pointer-active');
+        }, 1400);
+      }, { passive:true });
+
+      stage.addEventListener('pointerleave', () => {
         stage.classList.remove('is-pointer-active');
-      }, 1700);
-    }, { passive:true });
+      });
 
-    stage.addEventListener('pointerleave', () => {
-      stage.classList.remove('is-pointer-active');
-    });
+      animate();
+      window.addEventListener('pagehide', () => cancelAnimationFrame(raf), { once:true });
+    } else {
+      const positions = [
+        ['18%','21%'], ['77%','19%'], ['76%','72%'],
+        ['22%','73%'], ['50%','18%'], ['52%','76%']
+      ];
+      let activeIndex = 0;
 
-    animate();
+      const placeActive = () => {
+        followers.forEach((el, index) => {
+          const active = index === activeIndex;
+          el.classList.toggle('is-active', active);
+          if (active) {
+            const [left, top] = positions[index % positions.length];
+            el.style.left = left;
+            el.style.top = top;
+          }
+        });
+      };
+
+      placeActive();
+
+      if (!reduceMotion) {
+        window.setInterval(() => {
+          activeIndex = (activeIndex + 1) % followers.length;
+          placeActive();
+        }, 3200);
+      }
+    }
   }
 
   const contactForm = document.getElementById('contact-form');
