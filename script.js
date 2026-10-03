@@ -218,6 +218,119 @@
     mobileProjects.forEach(card => inlineObserver.observe(card));
   }
 
+
+  // Spatial parallax: hero layers and the sticky selected-work stage move at different speeds.
+  const heroGrid = document.querySelector('.hero-grid');
+  const heroImages = heroGrid ? [...heroGrid.querySelectorAll('.hero-card img')] : [];
+  const heroTitle = document.querySelector('.hero-identity h1');
+  const heroLocation = document.querySelector('.hero-identity .location');
+  const heroRole = document.querySelector('.hero-identity .role');
+  const workBrowser = document.getElementById('work-browser');
+  const workStage = document.getElementById('work-stage');
+  const workList = document.getElementById('work-list');
+  const workPreview = document.querySelector('.work-preview');
+  const mobileMedia = [...document.querySelectorAll('.mobile-media')];
+
+  const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+  let parallaxTicking = false;
+
+  const updateParallax = () => {
+    parallaxTicking = false;
+    if (reduceMotion) return;
+
+    if (heroGrid) {
+      const rect = heroGrid.getBoundingClientRect();
+      const progress = clamp((-rect.top + (header?.offsetHeight || 0)) / Math.max(rect.height, 1), 0, 1);
+      heroImages.forEach((img, index) => {
+        const speeds = [-34, -52, -70, -44];
+        img.style.setProperty('--scroll-y', `${progress * (speeds[index] ?? -48)}px`);
+      });
+      heroTitle?.style.setProperty('--hero-title-y', `${progress * -58}px`);
+      heroLocation?.style.setProperty('--hero-location-y', `${progress * 22}px`);
+      heroRole?.style.setProperty('--hero-role-y', `${progress * -22}px`);
+    }
+
+    if (workBrowser && workStage && workList && window.innerWidth >= 768) {
+      const rect = workBrowser.getBoundingClientRect();
+      const headerHeight = header?.offsetHeight || 0;
+      const scrollDistance = Math.max(workBrowser.offsetHeight - workStage.offsetHeight, 1);
+      const progress = clamp((headerHeight - rect.top) / scrollDistance, 0, 1);
+      const visibleRows = workRows.filter(row => !row.classList.contains('is-filtered'));
+
+      if (visibleRows.length) {
+        const first = visibleRows[0];
+        const last = visibleRows[visibleRows.length - 1];
+        const firstCenter = first.offsetTop + first.offsetHeight / 2;
+        const lastCenter = last.offsetTop + last.offsetHeight / 2;
+        const travel = Math.max(lastCenter - firstCenter, 0);
+        const listShift = (0.5 - progress) * travel;
+        workList.style.setProperty('--work-list-y', `${listShift}px`);
+
+        const activeIndex = Math.round(progress * (visibleRows.length - 1));
+        const nextActive = visibleRows[activeIndex];
+        if (nextActive && nextActive !== activeWorkRow) activatePreview(nextActive, true);
+      }
+
+      const backgroundShift = (progress - 0.5) * -64;
+      workPreview?.style.setProperty('--work-scroll-y', `${backgroundShift}px`);
+    }
+
+    if (window.innerWidth < 768) {
+      mobileMedia.forEach(media => {
+        const rect = media.getBoundingClientRect();
+        const center = rect.top + rect.height / 2;
+        const delta = (center - window.innerHeight / 2) / Math.max(window.innerHeight, 1);
+        media.style.setProperty('--mobile-parallax-y', `${clamp(delta * -30, -22, 22)}px`);
+      });
+    }
+  };
+
+  const requestParallax = () => {
+    if (parallaxTicking) return;
+    parallaxTicking = true;
+    requestAnimationFrame(updateParallax);
+  };
+
+  if (!reduceMotion) {
+    window.addEventListener('scroll', requestParallax, { passive: true });
+    window.addEventListener('resize', requestParallax, { passive: true });
+
+    heroGrid?.addEventListener('pointermove', event => {
+      if (!finePointer.matches) return;
+      const rect = heroGrid.getBoundingClientRect();
+      const nx = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
+      const ny = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
+      heroImages.forEach((img, index) => {
+        const depth = [8, 15, 22, 28][index] ?? 12;
+        img.style.setProperty('--mouse-x', `${nx * depth}px`);
+        img.style.setProperty('--mouse-y', `${ny * depth * 0.55}px`);
+      });
+    });
+
+    heroGrid?.addEventListener('pointerleave', () => {
+      heroImages.forEach(img => {
+        img.style.setProperty('--mouse-x', '0px');
+        img.style.setProperty('--mouse-y', '0px');
+      });
+    });
+
+    workStage?.addEventListener('pointermove', event => {
+      if (!finePointer.matches || !workPreview) return;
+      const rect = workStage.getBoundingClientRect();
+      const nx = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
+      const ny = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
+      workPreview.style.setProperty('--work-mouse-x', `${nx * 18}px`);
+      workPreview.style.setProperty('--work-mouse-y', `${ny * 10}px`);
+    });
+
+    workStage?.addEventListener('pointerleave', () => {
+      workPreview?.style.setProperty('--work-mouse-x', '0px');
+      workPreview?.style.setProperty('--work-mouse-y', '0px');
+    });
+
+    requestParallax();
+  }
+
   const testimonials = [...document.querySelectorAll('.testimonial')];
   const prev = document.querySelector('[data-testimonial-prev]');
   const next = document.querySelector('[data-testimonial-next]');
