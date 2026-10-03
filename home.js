@@ -157,11 +157,8 @@
     mobileProjects.forEach(card => inlineObserver.observe(card));
   }
 
-  const heroGrid = document.querySelector('.hero-grid');
-  const heroImages = heroGrid ? [...heroGrid.querySelectorAll('.hero-card img')] : [];
-  const heroTitle = document.querySelector('.hero-identity h1');
-  const heroLocation = document.querySelector('.hero-identity .location');
-  const heroRole = document.querySelector('.hero-identity .role');
+  const heroScene = document.querySelector('.hero-scene');
+  const heroDepthElements = heroScene ? [...heroScene.querySelectorAll('[data-depth]')] : [];
   const workBrowser = document.getElementById('work-browser');
   const workStage = document.getElementById('work-stage');
   const workList = document.getElementById('work-list');
@@ -175,16 +172,15 @@
     parallaxTicking = false;
     if (reduceMotion) return;
 
-    if (heroGrid) {
-      const rect = heroGrid.getBoundingClientRect();
+    if (heroScene) {
+      const rect = heroScene.getBoundingClientRect();
       const progress = clamp((-rect.top + (header?.offsetHeight || 0)) / Math.max(rect.height, 1), 0, 1);
-      heroImages.forEach((img, index) => {
-        const speeds = [-34, -52, -70, -44];
-        img.style.setProperty('--scroll-y', `${progress * (speeds[index] ?? -48)}px`);
+
+      heroDepthElements.forEach(el => {
+        const depth = Number(el.dataset.depth || 1);
+        const direction = el.classList.contains('hero-orbit-b') ? 1 : -1;
+        el.style.setProperty('--depth-scroll', `${progress * 46 * depth * direction}px`);
       });
-      heroTitle?.style.setProperty('--hero-title-y', `${progress * -58}px`);
-      heroLocation?.style.setProperty('--hero-location-y', `${progress * 22}px`);
-      heroRole?.style.setProperty('--hero-role-y', `${progress * -22}px`);
     }
 
     if (workBrowser && workStage && workList && window.innerWidth >= 768) {
@@ -230,22 +226,23 @@
     window.addEventListener('scroll', requestParallax, { passive: true });
     window.addEventListener('resize', requestParallax, { passive: true });
 
-    heroGrid?.addEventListener('pointermove', event => {
+    heroScene?.addEventListener('pointermove', event => {
       if (!finePointer.matches) return;
-      const rect = heroGrid.getBoundingClientRect();
+      const rect = heroScene.getBoundingClientRect();
       const nx = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
       const ny = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
-      heroImages.forEach((img, index) => {
-        const depth = [8, 15, 22, 28][index] ?? 12;
-        img.style.setProperty('--mouse-x', `${nx * depth}px`);
-        img.style.setProperty('--mouse-y', `${ny * depth * 0.55}px`);
+
+      heroDepthElements.forEach(el => {
+        const depth = Number(el.dataset.depth || 1);
+        el.style.setProperty('--depth-x', `${nx * 14 * depth}px`);
+        el.style.setProperty('--depth-y', `${ny * 8 * depth}px`);
       });
     });
 
-    heroGrid?.addEventListener('pointerleave', () => {
-      heroImages.forEach(img => {
-        img.style.setProperty('--mouse-x', '0px');
-        img.style.setProperty('--mouse-y', '0px');
+    heroScene?.addEventListener('pointerleave', () => {
+      heroDepthElements.forEach(el => {
+        el.style.setProperty('--depth-x', '0px');
+        el.style.setProperty('--depth-y', '0px');
       });
     });
 
