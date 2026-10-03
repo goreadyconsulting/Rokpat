@@ -11,8 +11,9 @@
   <link rel="preconnect" href="https://www.youtube-nocookie.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="home.css" />
 </head>
-<body>
+<body class="home-page">
   <header class="site-header">
     <a class="brand" href="#top">ROK PAT</a>
     <nav class="nav" aria-label="Primary navigation">
@@ -36,35 +37,39 @@
   </div>
 
   <main id="top">
-    <section class="hero shell">
-      <div class="hero-grid">
-        <div class="hero-identity reveal">
-          <p class="location">Birmingham, UK</p>
-          <h1>ROK<br>PAT</h1>
-          <p class="role">CGI ARTIST / VIDEO PRODUCER / DIRECTOR</p>
-        </div>
+    <section class="hero hero-scene" id="hero">
+      <div class="hero-grain" aria-hidden="true"></div>
 
-        <button class="hero-card hero-main reveal" type="button" data-video="c2HpIfrBOyA" data-title="Yi Jing - Season 2">
-          <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840_webp/5ac592246228197.69bffee991458.png" alt="Yi Jing Season 2 title sequence by Rok Pat" />
-          <span class="hero-card-meta"><strong>Yi Jing - Season 2</strong><small>Title Sequence / UE5 / 2026</small></span>
-          <span class="hero-play">Play</span>
-        </button>
-
-        <button class="hero-card hero-small hero-a reveal" type="button" data-video="FqLjdEXpmxo" data-title="Emerald Seed">
-          <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/42f88c246227077.69bff6d96616e.jpg" alt="Emerald Seed short film by Rok Pat" />
-          <span class="hero-card-meta"><strong>Emerald Seed</strong><small>Film / 2026</small></span>
-        </button>
-
-        <button class="hero-card hero-small hero-b reveal" type="button" data-video="7uKzViVoVRI" data-title="SUDANIM">
-          <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840_webp/b1664a187313013.65859e4f5539f.jpg" alt="SUDANIM CGI showcase by Rok Pat" />
-          <span class="hero-card-meta"><strong>SUDANIM</strong><small>CGI / UE5 / 2023</small></span>
-        </button>
-
-        <button class="hero-card hero-small hero-c reveal" type="button" data-video="lWnz9aUGY4c" data-title="Soft as Cotton Candy">
-          <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840_webp/501725246227417.69bff93f886c3.png" alt="Soft as Cotton Candy music video by Rok Pat" />
-          <span class="hero-card-meta"><strong>Soft as Cotton Candy</strong><small>Music Video / 2026</small></span>
-        </button>
+      <div class="hero-copy">
+        <p class="location" data-depth="0.45">Birmingham, UK</p>
+        <h1 aria-label="Rok Pat">
+          <span data-depth="1.2">ROK</span>
+          <span data-depth="0.9">PAT</span>
+        </h1>
+        <p class="role" data-depth="0.55">CGI ARTIST / VIDEO PRODUCER / DIRECTOR</p>
       </div>
+
+      <figure class="hero-portrait reveal" data-depth="1.55">
+        <img src="assets/rok-pat-portrait.webp" alt="Rok Pat" />
+      </figure>
+
+      <button class="hero-orbit hero-orbit-a reveal" type="button" data-video="c2HpIfrBOyA" data-title="Yi Jing - Season 2" data-depth="2.0">
+        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840_webp/5ac592246228197.69bffee991458.png" alt="Yi Jing Season 2" />
+        <span>Yi Jing / 2026</span>
+      </button>
+
+      <button class="hero-orbit hero-orbit-b reveal" type="button" data-video="FqLjdEXpmxo" data-title="Emerald Seed" data-depth="1.7">
+        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/42f88c246227077.69bff6d96616e.jpg" alt="Emerald Seed" />
+        <span>Emerald Seed / 2026</span>
+      </button>
+
+      <button class="hero-orbit hero-orbit-c reveal" type="button" data-video="7uKzViVoVRI" data-title="SUDANIM" data-depth="1.35">
+        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840_webp/b1664a187313013.65859e4f5539f.jpg" alt="SUDANIM" />
+        <span>SUDANIM / 2023</span>
+      </button>
+
+      <a class="hero-scroll" href="#work">Scroll ↓</a>
+      <div class="hero-index" aria-hidden="true">FILM / CGI / REALTIME / DESIGN</div>
     </section>
 
     <section class="work section" id="work">
