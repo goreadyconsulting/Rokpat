@@ -8,6 +8,7 @@
   <title>Rok Pat</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://www.youtube-nocookie.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -66,8 +67,8 @@
       </div>
     </section>
 
-    <section class="work shell section" id="work">
-      <div class="section-head reveal">
+    <section class="work section" id="work">
+      <div class="shell section-head work-head reveal">
         <h2>Selected Work</h2>
         <div class="work-tools">
           <div class="filters" aria-label="Filter work">
@@ -80,31 +81,114 @@
         </div>
       </div>
 
-      <div class="work-grid" id="work-grid">
-        <button class="project project-a reveal" type="button" data-category="cgi realtime" data-video="c2HpIfrBOyA" data-title="Yi Jing - Season 2">
-          <div class="project-image"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840_webp/5ac592246228197.69bffee991458.png" alt="Yi Jing Season 2 title sequence" loading="lazy" /></div>
-          <div class="project-info"><h3>Yi Jing - Season 2</h3><span>Title Sequence / Unreal Engine 5</span><span>2026</span></div>
-        </button>
+      <div class="work-browser reveal" id="work-browser">
+        <div class="work-preview" aria-hidden="true">
+          <img id="work-preview-poster" src="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840_webp/5ac592246228197.69bffee991458.png" alt="" />
+          <iframe id="work-preview-video" title="Selected work preview" allow="autoplay; encrypted-media; picture-in-picture" tabindex="-1"></iframe>
+          <div class="work-preview-shade"></div>
+        </div>
 
-        <button class="project project-b reveal" type="button" data-category="film cgi realtime" data-video="FqLjdEXpmxo" data-title="Emerald Seed">
-          <div class="project-image"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/42f88c246227077.69bff6d96616e.jpg" alt="Emerald Seed short film" loading="lazy" /></div>
-          <div class="project-info"><h3>Emerald Seed</h3><span>Direction / Animation</span><span>2026</span></div>
-        </button>
+        <div class="work-list shell" id="work-list">
+          <button class="work-row is-active" type="button"
+            data-work-row data-category="cgi realtime"
+            data-video="c2HpIfrBOyA"
+            data-title="Yi Jing - Season 2"
+            data-meta="Title Sequence / Unreal Engine 5"
+            data-year="2026"
+            data-poster="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840_webp/5ac592246228197.69bffee991458.png">
+            <span class="work-row-title">Yi Jing - Season 2</span><span>Title Sequence / UE5</span><span>2026</span>
+          </button>
 
-        <button class="project project-c reveal" type="button" data-category="film cgi realtime" data-video="lWnz9aUGY4c" data-title="Soft as Cotton Candy">
-          <div class="project-image"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840_webp/501725246227417.69bff93f886c3.png" alt="Soft as Cotton Candy music video" loading="lazy" /></div>
-          <div class="project-info"><h3>Soft as Cotton Candy</h3><span>Music Video / UE5</span><span>2026</span></div>
-        </button>
+          <button class="work-row" type="button"
+            data-work-row data-category="film cgi realtime"
+            data-video="FqLjdEXpmxo"
+            data-title="Emerald Seed"
+            data-meta="Short Film / Direction / Animation"
+            data-year="2026"
+            data-poster="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/42f88c246227077.69bff6d96616e.jpg">
+            <span class="work-row-title">Emerald Seed</span><span>Short Film / Direction</span><span>2026</span>
+          </button>
 
-        <button class="project project-d reveal" type="button" data-category="cgi realtime" data-video="7uKzViVoVRI" data-title="SUDANIM">
-          <div class="project-image"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840_webp/b1664a187313013.65859e4f5539f.jpg" alt="SUDANIM CGI showcase" loading="lazy" /></div>
-          <div class="project-info"><h3>SUDANIM</h3><span>CGI / Unreal Engine 5</span><span>2023</span></div>
-        </button>
+          <button class="work-row" type="button"
+            data-work-row data-category="film cgi realtime"
+            data-video="lWnz9aUGY4c"
+            data-title="Soft as Cotton Candy"
+            data-meta="Music Video / Unreal Engine 5"
+            data-year="2026"
+            data-poster="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840_webp/501725246227417.69bff93f886c3.png">
+            <span class="work-row-title">Soft as Cotton Candy</span><span>Music Video / UE5</span><span>2026</span>
+          </button>
 
-        <button class="project project-e reveal" type="button" data-category="film cgi" data-video="ToPW_bGKfCU" data-title="Mood Swings">
-          <div class="project-image"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/af4b68115808051.6055465f1c642.jpg" alt="Mood Swings CGI music video" loading="lazy" /></div>
-          <div class="project-info"><h3>Mood Swings</h3><span>CGI Music Video / VFX</span><span>2021</span></div>
-        </button>
+          <button class="work-row" type="button"
+            data-work-row data-category="cgi realtime"
+            data-video="7uKzViVoVRI"
+            data-title="SUDANIM"
+            data-meta="CGI Showcase / Unreal Engine 5"
+            data-year="2023"
+            data-poster="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840_webp/b1664a187313013.65859e4f5539f.jpg">
+            <span class="work-row-title">SUDANIM</span><span>CGI / Unreal Engine 5</span><span>2023</span>
+          </button>
+
+          <button class="work-row" type="button"
+            data-work-row data-category="film cgi"
+            data-video="ToPW_bGKfCU"
+            data-title="Mood Swings"
+            data-meta="CGI Music Video / VFX"
+            data-year="2021"
+            data-poster="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/af4b68115808051.6055465f1c642.jpg">
+            <span class="work-row-title">Mood Swings</span><span>CGI Music Video / VFX</span><span>2021</span>
+          </button>
+        </div>
+
+        <div class="work-preview-meta shell">
+          <div>
+            <strong id="work-preview-title">Yi Jing - Season 2</strong>
+            <span id="work-preview-meta">Title Sequence / Unreal Engine 5 / 2026</span>
+          </div>
+          <button type="button" class="preview-play" id="preview-play">Play film</button>
+        </div>
+      </div>
+
+      <div class="mobile-work shell" id="mobile-work">
+        <article class="mobile-work-card" data-mobile-project data-category="cgi realtime" data-video="c2HpIfrBOyA" data-title="Yi Jing - Season 2">
+          <div class="mobile-media">
+            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840_webp/5ac592246228197.69bffee991458.png" alt="Yi Jing Season 2 title sequence" loading="lazy" />
+            <button class="mobile-inline-play" type="button" aria-label="Play Yi Jing Season 2">Play</button>
+          </div>
+          <div class="mobile-work-meta"><h3>Yi Jing - Season 2</h3><span>Title Sequence / Unreal Engine 5</span><span>2026</span></div>
+        </article>
+
+        <article class="mobile-work-card" data-mobile-project data-category="film cgi realtime" data-video="FqLjdEXpmxo" data-title="Emerald Seed">
+          <div class="mobile-media">
+            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/42f88c246227077.69bff6d96616e.jpg" alt="Emerald Seed short film" loading="lazy" />
+            <button class="mobile-inline-play" type="button" aria-label="Play Emerald Seed">Play</button>
+          </div>
+          <div class="mobile-work-meta"><h3>Emerald Seed</h3><span>Short Film / Direction</span><span>2026</span></div>
+        </article>
+
+        <article class="mobile-work-card" data-mobile-project data-category="film cgi realtime" data-video="lWnz9aUGY4c" data-title="Soft as Cotton Candy">
+          <div class="mobile-media">
+            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840_webp/501725246227417.69bff93f886c3.png" alt="Soft as Cotton Candy music video" loading="lazy" />
+            <button class="mobile-inline-play" type="button" aria-label="Play Soft as Cotton Candy">Play</button>
+          </div>
+          <div class="mobile-work-meta"><h3>Soft as Cotton Candy</h3><span>Music Video / Unreal Engine 5</span><span>2026</span></div>
+        </article>
+
+        <article class="mobile-work-card" data-mobile-project data-category="cgi realtime" data-video="7uKzViVoVRI" data-title="SUDANIM">
+          <div class="mobile-media">
+            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840_webp/b1664a187313013.65859e4f5539f.jpg" alt="SUDANIM CGI showcase" loading="lazy" />
+            <button class="mobile-inline-play" type="button" aria-label="Play SUDANIM">Play</button>
+          </div>
+          <div class="mobile-work-meta"><h3>SUDANIM</h3><span>CGI / Unreal Engine 5</span><span>2023</span></div>
+        </article>
+
+        <article class="mobile-work-card" data-mobile-project data-category="film cgi" data-video="ToPW_bGKfCU" data-title="Mood Swings">
+          <div class="mobile-media">
+            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/af4b68115808051.6055465f1c642.jpg" alt="Mood Swings CGI music video" loading="lazy" />
+            <button class="mobile-inline-play" type="button" aria-label="Play Mood Swings">Play</button>
+          </div>
+          <div class="mobile-work-meta"><h3>Mood Swings</h3><span>CGI Music Video / VFX</span><span>2021</span></div>
+        </article>
       </div>
     </section>
 
