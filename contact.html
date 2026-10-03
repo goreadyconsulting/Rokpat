@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="contact.css" />
 </head>
 <body class="contact-page">
   <header class="site-header">
@@ -34,49 +35,77 @@
     <a href="contact.html">Contact</a>
   </div>
 
-  <main class="contact-main shell">
-    <h1 class="contact-title reveal">CONTACT</h1>
-
-    <div class="contact-side">
-      <div class="contact-details reveal">
-        <div class="contact-row"><span>Email</span><a href="mailto:rokpat.dm@gmail.com">rokpat.dm@gmail.com</a></div>
-        <div class="contact-row"><span>Instagram</span><a href="https://www.instagram.com/rokpat.vc/" target="_blank" rel="noreferrer">@rokpat.vc ↗</a></div>
-        <div class="contact-row"><span>Behance</span><a href="https://www.behance.net/rokpat" target="_blank" rel="noreferrer">Rok Pat ↗</a></div>
-        <div class="contact-row"><span>YouTube</span><a href="https://www.youtube.com/c/RokPat" target="_blank" rel="noreferrer">Rok Pat ↗</a></div>
-        <div class="contact-row"><span>Based</span><p>Birmingham, UK</p></div>
+  <main class="contact-experience">
+    <section class="contact-stage" id="contact-stage">
+      <div class="contact-followers" aria-hidden="true">
+        <figure class="contact-follower"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840_webp/5ac592246228197.69bffee991458.png" alt="" /></figure>
+        <figure class="contact-follower"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/42f88c246227077.69bff6d96616e.jpg" alt="" /></figure>
+        <figure class="contact-follower"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840_webp/501725246227417.69bff93f886c3.png" alt="" /></figure>
+        <figure class="contact-follower"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840_webp/b1664a187313013.65859e4f5539f.jpg" alt="" /></figure>
+        <figure class="contact-follower"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/af4b68115808051.6055465f1c642.jpg" alt="" /></figure>
+        <figure class="contact-follower"><img src="assets/rok-pat-portrait.webp" alt="" /></figure>
       </div>
 
-      <form class="contact-form reveal" id="contact-form">
-        <div class="form-field">
-          <label for="name">Name</label>
-          <input id="name" name="name" type="text" autocomplete="name" required />
+      <div class="contact-center">
+        <p class="contact-label">Contact</p>
+        <h1 class="contact-display">ROK PAT</h1>
+        <a class="contact-email" href="mailto:rokpat.dm@gmail.com">rokpat.dm@gmail.com</a>
+        <div class="contact-socials">
+          <a href="https://www.instagram.com/rokpat.vc/" target="_blank" rel="noreferrer">Instagram ↗</a>
+          <a href="https://www.behance.net/rokpat" target="_blank" rel="noreferrer">Behance ↗</a>
+          <a href="https://www.youtube.com/c/RokPat" target="_blank" rel="noreferrer">YouTube ↗</a>
         </div>
-        <div class="form-field">
-          <label for="email">Email</label>
-          <input id="email" name="email" type="email" autocomplete="email" required />
+        <p class="contact-location">Birmingham, UK</p>
+      </div>
+
+      <a class="contact-scroll-cue" href="#project-enquiry">Project enquiry ↓</a>
+    </section>
+
+    <section class="contact-enquiry" id="project-enquiry">
+      <div class="shell contact-enquiry-grid">
+        <div class="contact-enquiry-copy reveal">
+          <h2>Project<br>enquiry</h2>
+          <p>Video Production / Direction / CGI / VFX / Unreal Engine / Visual Design</p>
         </div>
-        <div class="form-field full">
-          <label for="project-type">Project type</label>
-          <select id="project-type" name="projectType">
-            <option value="">Select</option>
-            <option>Video Production</option>
-            <option>Direction</option>
-            <option>CGI / VFX</option>
-            <option>Unreal Engine</option>
-            <option>Visual Design</option>
-            <option>Other</option>
-          </select>
-        </div>
-        <div class="form-field full">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" required></textarea>
-        </div>
-        <button class="form-submit" type="submit">Send enquiry</button>
-      </form>
-    </div>
+
+        <form class="contact-form reveal" id="contact-form">
+          <div class="form-field">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" autocomplete="name" required />
+          </div>
+          <div class="form-field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" required />
+          </div>
+          <div class="form-field full">
+            <label for="project-type">Project type</label>
+            <select id="project-type" name="projectType">
+              <option value="">Select</option>
+              <option>Video Production</option>
+              <option>Direction</option>
+              <option>CGI / VFX</option>
+              <option>Unreal Engine</option>
+              <option>Visual Design</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-field full">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+          <button class="form-submit" type="submit">Send enquiry</button>
+        </form>
+      </div>
+    </section>
   </main>
 
-  <a class="contact-back" href="index.html">← Home</a>
-  <script src="script.js"></script>
+  <footer class="contact-footer shell">
+    <span>Rokas Patapas</span>
+    <span>Birmingham, UK</span>
+    <a href="index.html">Home ↗</a>
+  </footer>
+
+  <script src="site.js"></script>
+  <script src="contact.js"></script>
 </body>
 </html>
