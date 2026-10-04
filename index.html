@@ -12,6 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="home.css" />
+  <link rel="stylesheet" href="services.css" />
 </head>
 <body class="home-page">
   <header class="site-header">
@@ -200,13 +201,67 @@
     </section>
 
     <section class="services shell section" id="services">
-      <div class="section-head reveal"><h2>Services</h2></div>
-      <div class="service-grid">
-        <article class="service-card reveal"><h3>Video Production</h3><p>Concept development, production, edit and delivery.</p></article>
-        <article class="service-card reveal"><h3>Direction</h3><p>Music videos, branded films and visual narratives.</p></article>
-        <article class="service-card reveal"><h3>CGI / VFX</h3><p>3D, compositing, motion and visual effects.</p></article>
-        <article class="service-card reveal"><h3>Unreal Engine</h3><p>Realtime cinematics, environments and virtual production.</p></article>
-        <article class="service-card reveal"><h3>Visual Design</h3><p>Creative direction, graphic design and visual development.</p></article>
+      <div class="section-head reveal">
+        <h2>Services</h2>
+      </div>
+
+      <div class="service-panels reveal" id="service-panels">
+        <article class="service-panel is-active" tabindex="0" aria-expanded="true"
+          data-service-panel data-video-id="gBQ-uRUiBM0">
+          <img class="service-poster" src="https://i.ytimg.com/vi/gBQ-uRUiBM0/maxresdefault.jpg" alt="" loading="lazy" />
+          <div class="service-video-slot" aria-hidden="true"></div>
+          <div class="service-shade"></div>
+          <h3 class="service-vertical">Direction &amp; Video Production</h3>
+          <div class="service-body">
+            <h3>Direction &amp; Video Production</h3>
+            <p>Concept, direction, production, editing and delivery for music videos, commercials and branded films.</p>
+            <button type="button" class="service-watch" data-video="gBQ-uRUiBM0" data-title="Direction & Video Production">Watch example ↗</button>
+          </div>
+        </article>
+
+        <article class="service-panel" tabindex="0" aria-expanded="false"
+          data-service-panel data-video-id="pv89x63GpbM">
+          <img class="service-poster" src="https://i.ytimg.com/vi/pv89x63GpbM/maxresdefault.jpg" alt="" loading="lazy" />
+          <div class="service-video-slot" aria-hidden="true"></div>
+          <div class="service-shade"></div>
+          <h3 class="service-vertical">CGI &amp; 3D Animation</h3>
+          <div class="service-body">
+            <h3>CGI &amp; 3D Animation</h3>
+            <p>Cinematic scenes, environments and characters built for visually-led films, campaigns and digital work.</p>
+            <button type="button" class="service-watch" data-video="pv89x63GpbM" data-title="CGI & 3D Animation">Watch example ↗</button>
+          </div>
+        </article>
+
+        <article class="service-panel" tabindex="0" aria-expanded="false"
+          data-service-panel data-video-id="pEqlJTzops0">
+          <img class="service-poster" src="https://i.ytimg.com/vi/pEqlJTzops0/maxresdefault.jpg" alt="" loading="lazy" />
+          <div class="service-video-slot" aria-hidden="true"></div>
+          <div class="service-shade"></div>
+          <h3 class="service-vertical">VFX &amp; Compositing</h3>
+          <div class="service-body">
+            <h3>VFX &amp; Compositing</h3>
+            <p>3D, compositing, motion and visual effects that bring live-action and CGI material into one visual language.</p>
+            <button type="button" class="service-watch" data-video="pEqlJTzops0" data-title="VFX & Compositing">Watch example ↗</button>
+          </div>
+        </article>
+
+        <article class="service-panel" tabindex="0" aria-expanded="false"
+          data-service-panel data-video-id="W4hGv2V01LQ">
+          <img class="service-poster" src="https://i.ytimg.com/vi/W4hGv2V01LQ/maxresdefault.jpg" alt="" loading="lazy" />
+          <div class="service-video-slot" aria-hidden="true"></div>
+          <div class="service-shade"></div>
+          <h3 class="service-vertical">Concept, Storyboards &amp; Design</h3>
+          <div class="service-body">
+            <h3>Concept, Storyboards &amp; Design</h3>
+            <p>Creative direction, storyboards, concept development and design that shape the project before the final frame.</p>
+            <button type="button" class="service-watch" data-video="W4hGv2V01LQ" data-title="Concept, Storyboards & Design">Watch example ↗</button>
+          </div>
+        </article>
+      </div>
+
+      <div class="services-cta reveal">
+        <p>Have something in mind?</p>
+        <a href="contact.html">Let’s create together ↗</a>
       </div>
     </section>
 
@@ -298,5 +353,6 @@
 
   <script src="site.js"></script>
   <script src="home.js"></script>
+  <script src="services.js"></script>
 </body>
 </html>
