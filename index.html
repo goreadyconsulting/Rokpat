@@ -9,21 +9,25 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://www.youtube-nocookie.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="home.css" />
   <link rel="stylesheet" href="services.css" />
 </head>
 <body class="home-page">
-  <header class="site-header">
-    <a class="brand" href="#top">ROK PAT</a>
-    <nav class="nav" aria-label="Primary navigation">
-      <a href="#work">Work</a>
-      <a href="#services">Services</a>
-      <a href="#clients">Clients &amp; Collaborations</a>
-      <a href="#testimonials">Testimonials</a>
-      <a href="#about">About</a>
-      <a href="contact.html">Contact</a>
+  <header class="site-header home-header">
+    <nav class="home-nav" aria-label="Primary navigation">
+      <div class="home-nav-group">
+        <a href="#work">Work</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+      </div>
+      <a class="home-mark" href="#top" aria-label="Rok Pat home">RP</a>
+      <div class="home-nav-group home-nav-right">
+        <a href="#clients">Clients</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="contact.html">Contact</a>
+      </div>
     </nav>
     <button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
   </header>
@@ -39,38 +43,24 @@
 
   <main id="top">
     <section class="hero hero-scene" id="hero">
+      <figure class="hero-backdrop" data-depth="0.32" aria-hidden="true">
+        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840_webp/1605a5246228197.69bffee990fdd.png" alt="" />
+      </figure>
+      <div class="hero-vignette" aria-hidden="true"></div>
       <div class="hero-grain" aria-hidden="true"></div>
 
-      <div class="hero-copy">
-        <p class="location" data-depth="0.45">Birmingham, UK</p>
-        <h1 aria-label="Rok Pat">
-          <span data-depth="1.2">ROK</span>
-          <span data-depth="0.9">PAT</span>
-        </h1>
-        <p class="role" data-depth="0.55">CGI ARTIST / VIDEO PRODUCER / DIRECTOR</p>
+      <h1 class="hero-name" aria-label="Rok Pat">
+        <span class="hero-name-left" data-depth="0.75">ROK</span>
+        <span class="hero-name-right" data-depth="0.58">PAT</span>
+      </h1>
+
+      <div class="hero-intro" data-depth="0.35">
+        <p>CGI artist, filmmaker and director based in Birmingham, UK, working across cinematic production, real-time environments and visual design.</p>
+        <a href="#about">Read more</a>
       </div>
 
-      <figure class="hero-portrait" data-depth="1.55">
-        <img src="assets/rok-pat-portrait.webp" alt="Rok Pat" />
-      </figure>
-
-      <button class="hero-orbit hero-orbit-a" type="button" data-video="c2HpIfrBOyA" data-title="Yi Jing - Season 2" data-depth="2.0">
-        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840_webp/5ac592246228197.69bffee991458.png" alt="Yi Jing Season 2" />
-        <span>Yi Jing / 2026</span>
-      </button>
-
-      <button class="hero-orbit hero-orbit-b" type="button" data-video="FqLjdEXpmxo" data-title="Emerald Seed" data-depth="1.7">
-        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/42f88c246227077.69bff6d96616e.jpg" alt="Emerald Seed" />
-        <span>Emerald Seed / 2026</span>
-      </button>
-
-      <button class="hero-orbit hero-orbit-c" type="button" data-video="7uKzViVoVRI" data-title="SUDANIM" data-depth="1.35">
-        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840_webp/b1664a187313013.65859e4f5539f.jpg" alt="SUDANIM" />
-        <span>SUDANIM / 2023</span>
-      </button>
-
-      <a class="hero-scroll" href="#work">Scroll ↓</a>
-      <div class="hero-index" aria-hidden="true">FILM / CGI / REALTIME / DESIGN</div>
+      <p class="hero-discipline" data-depth="0.28">CGI / FILM / DIRECTION / REALTIME</p>
+      <a class="hero-scroll" href="#work">Scroll <span>↓</span></a>
     </section>
 
     <section class="work section" id="work">
@@ -206,55 +196,43 @@
       </div>
 
       <div class="service-panels reveal" id="service-panels">
-        <article class="service-panel is-active" tabindex="0" aria-expanded="true"
-          data-service-panel data-video-id="gBQ-uRUiBM0">
+        <article class="service-panel is-active" tabindex="0" aria-expanded="true" data-service-panel>
           <img class="service-poster" src="https://i.ytimg.com/vi/gBQ-uRUiBM0/maxresdefault.jpg" alt="" loading="lazy" />
-          <div class="service-video-slot" aria-hidden="true"></div>
           <div class="service-shade"></div>
           <h3 class="service-vertical">Direction &amp; Video Production</h3>
           <div class="service-body">
             <h3>Direction &amp; Video Production</h3>
             <p>Concept, direction, production, editing and delivery for music videos, commercials and branded films.</p>
-            <button type="button" class="service-watch" data-video="gBQ-uRUiBM0" data-title="Direction & Video Production">Watch example ↗</button>
           </div>
         </article>
 
-        <article class="service-panel" tabindex="0" aria-expanded="false"
-          data-service-panel data-video-id="pv89x63GpbM">
+        <article class="service-panel" tabindex="0" aria-expanded="false" data-service-panel>
           <img class="service-poster" src="https://i.ytimg.com/vi/pv89x63GpbM/maxresdefault.jpg" alt="" loading="lazy" />
-          <div class="service-video-slot" aria-hidden="true"></div>
           <div class="service-shade"></div>
           <h3 class="service-vertical">CGI &amp; 3D Animation</h3>
           <div class="service-body">
             <h3>CGI &amp; 3D Animation</h3>
             <p>Cinematic scenes, environments and characters built for visually-led films, campaigns and digital work.</p>
-            <button type="button" class="service-watch" data-video="pv89x63GpbM" data-title="CGI & 3D Animation">Watch example ↗</button>
           </div>
         </article>
 
-        <article class="service-panel" tabindex="0" aria-expanded="false"
-          data-service-panel data-video-id="pEqlJTzops0">
+        <article class="service-panel" tabindex="0" aria-expanded="false" data-service-panel>
           <img class="service-poster" src="https://i.ytimg.com/vi/pEqlJTzops0/maxresdefault.jpg" alt="" loading="lazy" />
-          <div class="service-video-slot" aria-hidden="true"></div>
           <div class="service-shade"></div>
           <h3 class="service-vertical">VFX &amp; Compositing</h3>
           <div class="service-body">
             <h3>VFX &amp; Compositing</h3>
             <p>3D, compositing, motion and visual effects that bring live-action and CGI material into one visual language.</p>
-            <button type="button" class="service-watch" data-video="pEqlJTzops0" data-title="VFX & Compositing">Watch example ↗</button>
           </div>
         </article>
 
-        <article class="service-panel" tabindex="0" aria-expanded="false"
-          data-service-panel data-video-id="W4hGv2V01LQ">
+        <article class="service-panel" tabindex="0" aria-expanded="false" data-service-panel>
           <img class="service-poster" src="https://i.ytimg.com/vi/W4hGv2V01LQ/maxresdefault.jpg" alt="" loading="lazy" />
-          <div class="service-video-slot" aria-hidden="true"></div>
           <div class="service-shade"></div>
           <h3 class="service-vertical">Concept, Storyboards &amp; Design</h3>
           <div class="service-body">
             <h3>Concept, Storyboards &amp; Design</h3>
             <p>Creative direction, storyboards, concept development and design that shape the project before the final frame.</p>
-            <button type="button" class="service-watch" data-video="W4hGv2V01LQ" data-title="Concept, Storyboards & Design">Watch example ↗</button>
           </div>
         </article>
       </div>
