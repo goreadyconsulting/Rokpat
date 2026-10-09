@@ -23,6 +23,7 @@
 .home-page .section{padding-top:88px}
 
 .home-page .home-header{
+  display:block;
   position:fixed;
   inset:0 0 auto;
   z-index:100;
