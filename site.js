@@ -58,5 +58,55 @@
     revealItems.forEach(item => item.classList.add('is-visible'));
   }
 
+
+  const finePointer = window.matchMedia('(pointer:fine)').matches;
+  if (finePointer && !reduceMotion) {
+    document.documentElement.classList.add('has-rp-cursor');
+
+    const cursor = document.createElement('div');
+    cursor.className = 'rp-cursor';
+    cursor.setAttribute('aria-hidden','true');
+    cursor.innerHTML = '<img src="assets/brand/rp-white.png" alt="">';
+    body.appendChild(cursor);
+
+    let x = window.innerWidth / 2;
+    let y = window.innerHeight / 2;
+    let tx = x;
+    let ty = y;
+    let raf = 0;
+
+    const animateCursor = () => {
+      x += (tx - x) * .34;
+      y += (ty - y) * .34;
+      cursor.style.left = x + 'px';
+      cursor.style.top = y + 'px';
+      raf = requestAnimationFrame(animateCursor);
+    };
+
+    window.addEventListener('pointermove', event => {
+      tx = event.clientX;
+      ty = event.clientY;
+      cursor.classList.add('is-visible');
+    }, { passive:true });
+
+    document.addEventListener('pointerover', event => {
+      const target = event.target;
+      const textField = target.closest?.('input, textarea, select, [contenteditable="true"]');
+      const interactive = target.closest?.('a, button, [role="button"]');
+      cursor.classList.toggle('is-hidden', Boolean(textField));
+      cursor.classList.toggle('is-interactive', Boolean(interactive) && !textField);
+    });
+
+    document.addEventListener('pointerout', event => {
+      if (!event.relatedTarget) cursor.classList.remove('is-visible');
+    });
+
+    window.addEventListener('blur', () => cursor.classList.remove('is-visible'));
+    window.addEventListener('focus', () => cursor.classList.add('is-visible'));
+    window.addEventListener('pagehide', () => cancelAnimationFrame(raf), { once:true });
+
+    animateCursor();
+  }
+
   window.RokSite = { body, header, reduceMotion, closeMenu };
 })();
