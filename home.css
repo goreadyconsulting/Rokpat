@@ -791,3 +791,9 @@
   .cta-floating img{animation:none}
   .featured-item::after{transition:none!important}
 }
+
+/* The Play Reel disc is the mouse pointer on desktop, not a second fixed sticker. */
+@media (pointer:fine) and (prefers-reduced-motion:no-preference){
+  .home-page .hero-reel{opacity:0;pointer-events:none}
+  .home-page .hero-reel:focus-visible{opacity:1;pointer-events:auto}
+}
