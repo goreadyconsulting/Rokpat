@@ -59,53 +59,39 @@
   }
 
 
+  // The Play Reel artwork is a homepage-only pointer, never a site-wide cursor.
+  const hero = document.querySelector('.home-page .hero-scene');
   const finePointer = window.matchMedia('(pointer:fine)').matches;
-  if (finePointer && !reduceMotion) {
-    document.documentElement.classList.add('has-rp-cursor');
-
+  if (hero && finePointer && !reduceMotion) {
     const cursor = document.createElement('div');
     cursor.className = 'rp-cursor';
-    cursor.setAttribute('aria-hidden','true');
-    cursor.innerHTML = '<img src="assets/brand/rp-white.png" alt="">';
+    cursor.setAttribute('aria-hidden', 'true');
+    const img = document.createElement('img');
+    img.src = 'assets/home/play-reel.png';
+    img.alt = '';
+    cursor.appendChild(img);
     body.appendChild(cursor);
 
-    let x = window.innerWidth / 2;
-    let y = window.innerHeight / 2;
-    let tx = x;
-    let ty = y;
+    let x = window.innerWidth / 2, y = window.innerHeight / 2, tx = x, ty = y;
     let raf = 0;
-
-    const animateCursor = () => {
-      x += (tx - x) * .34;
-      y += (ty - y) * .34;
+    const animate = () => {
+      x += (tx - x) * .4;
+      y += (ty - y) * .4;
       cursor.style.left = x + 'px';
       cursor.style.top = y + 'px';
-      raf = requestAnimationFrame(animateCursor);
+      raf = requestAnimationFrame(animate);
     };
 
-    window.addEventListener('pointermove', event => {
+    hero.addEventListener('pointermove', event => {
       tx = event.clientX;
       ty = event.clientY;
       cursor.classList.add('is-visible');
+      cursor.classList.toggle('is-interactive', !!event.target.closest('button, a'));
     }, { passive:true });
-
-    document.addEventListener('pointerover', event => {
-      const target = event.target;
-      const textField = target.closest?.('input, textarea, select, [contenteditable="true"]');
-      const interactive = target.closest?.('a, button, [role="button"]');
-      cursor.classList.toggle('is-hidden', Boolean(textField));
-      cursor.classList.toggle('is-interactive', Boolean(interactive) && !textField);
-    });
-
-    document.addEventListener('pointerout', event => {
-      if (!event.relatedTarget) cursor.classList.remove('is-visible');
-    });
-
+    hero.addEventListener('pointerleave', () => cursor.classList.remove('is-visible'));
     window.addEventListener('blur', () => cursor.classList.remove('is-visible'));
-    window.addEventListener('focus', () => cursor.classList.add('is-visible'));
     window.addEventListener('pagehide', () => cancelAnimationFrame(raf), { once:true });
-
-    animateCursor();
+    animate();
   }
 
   window.RokSite = { body, header, reduceMotion, closeMenu };
