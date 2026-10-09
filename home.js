@@ -32,6 +32,13 @@
   });
 
   const hero = document.querySelector('.hero-scene');
+  // The Play Reel graphic replaces the pointer on desktop, so clicking
+  // the hero itself opens the showreel, excluding actual navigation links.
+  hero?.addEventListener('click', event => {
+    if (!window.matchMedia('(pointer:fine)').matches) return;
+    if (event.target.closest('a, button')) return;
+    document.querySelector('.hero-reel')?.click();
+  });
   const heroDepth = hero ? [...hero.querySelectorAll('[data-depth]')] : [];
   const heroLoop = document.querySelector('.hero-loop');
   const caveBridge = document.querySelector('.cave-bridge');
@@ -99,6 +106,27 @@
 
   const featuredVideo = document.getElementById('featured-video');
   const featuredItems = [...document.querySelectorAll('[data-featured]')];
+  const featuredPoster = document.getElementById('featured-poster');
+  const btsVideo = document.querySelector('.bts-video');
+  const heroVideo = document.querySelector('.hero-loop');
+
+  const markPlayback = video => {
+    if (!video) return;
+    video.addEventListener('playing', () => video.classList.add('is-playing'));
+    for (const eventName of ['error', 'stalled', 'emptied']) {
+      video.addEventListener(eventName, () => video.classList.remove('is-playing'));
+    }
+    if (video.readyState >= 3 && !video.paused) video.classList.add('is-playing');
+  };
+  [featuredVideo, btsVideo, heroVideo].forEach(markPlayback);
+  if (btsVideo && 'IntersectionObserver' in window) {
+    const btsObserver = new IntersectionObserver(entries => {
+      const shown = entries.some(entry => entry.isIntersecting);
+      if (shown) btsVideo.play().catch(() => {});
+      else btsVideo.pause();
+    }, { rootMargin: '100px' });
+    btsObserver.observe(btsVideo);
+  }
   const featuredMeta = document.getElementById('featured-meta');
   const featuredYear = document.getElementById('featured-year');
   let activeFeatured = featuredItems[0] || null;
@@ -109,6 +137,8 @@
     activeFeatured = item;
     featuredItems.forEach(el => el.classList.toggle('is-active',el === item));
     if (featuredMeta) featuredMeta.textContent = item.dataset.meta || '';
+    if (featuredPoster) featuredPoster.src = item.dataset.poster || featuredPoster.src;
+    featuredVideo?.classList.remove('is-playing');
     if (featuredYear) featuredYear.textContent = item.dataset.year || '';
 
     if (!featuredVideo) return;
@@ -132,6 +162,25 @@
     item.addEventListener('focus', () => activateFeatured(item));
     item.addEventListener('click', () => activateFeatured(item));
   });
+
+  // The original Rok mockup animates each letter in CREATE independently.
+  const createWord = document.querySelector('.create-letters');
+  if (createWord) {
+    const letters = [...createWord.textContent];
+    createWord.textContent = '';
+    for (const letter of letters) {
+      const span = document.createElement('span');
+      span.textContent = letter;
+      span.setAttribute('aria-hidden', 'true');
+      createWord.appendChild(span);
+    }
+  }
+
+  const cta = document.querySelector('.home-cta');
+  if (cta && window.matchMedia('(pointer:fine)').matches && !reduceMotion) {
+    cta.addEventListener('pointerenter', () => cta.classList.add('is-interacting'));
+    cta.addEventListener('pointerleave', () => cta.classList.remove('is-interacting'));
+  }
 
   const cards = [...document.querySelectorAll('.testimonial-card')];
   const prev = document.querySelector('.testimonial-prev');
