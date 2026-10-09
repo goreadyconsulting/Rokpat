@@ -13,19 +13,51 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: true
-      - name: Download source and encode browser-safe preview
+      - name: Fetch source videos from temporary download references
         env:
-          VIDEO_SOURCE: 'https://sdmntprdenmarkeast.oaiusercontent.com/files/00000000-1ec8-8210-993f-cbc2a8848b5b/raw?se=2026-10-09T19%3A22%3A56Z&sp=r&sv=2026-02-06&sr=b&scid=788a5da5-b7f0-5f9c-87dc-6d339216864a&skoid=a0b9f82a-c86e-4064-a822-2aa38890bb37&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-09T01%3A20%3A26Z&ske=2026-10-10T01%3A20%3A26Z&sks=b&skv=2026-02-06&sig=2CK246E2F4v25vn4LusE26ckywZqrSJXJdOs95yJIO4%3D'
+          SRC_0: 'https://sdmntpritalynorth.oaiusercontent.com/files/00000000-ad24-8246-b950-922b572848d2/raw?se=2026-10-09T19%3A24%3A22Z&sp=r&sv=2026-02-06&sr=b&scid=b2f49c6e-b972-5b01-b771-dcfec2c2e209&skoid=a0b9f82a-c86e-4064-a822-2aa38890bb37&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-09T05%3A40%3A29Z&ske=2026-10-10T05%3A40%3A29Z&sks=b&skv=2026-02-06&sig=zXSovxA/IwZp/rmHthZDZ623vwye7is0XSz3HShcgQo%3D'
+          SRC_1: 'https://sdmntprpolandcentral.oaiusercontent.com/files/00000000-3984-820a-8089-7e5b616324e5/raw?se=2026-10-09T19%3A24%3A19Z&sp=r&sv=2026-02-06&sr=b&scid=3723bb65-9174-57c8-8d2c-59790968af78&skoid=a0b9f82a-c86e-4064-a822-2aa38890bb37&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-09T05%3A15%3A05Z&ske=2026-10-10T05%3A15%3A05Z&sks=b&skv=2026-02-06&sig=HtHHNh94KBfiw8KYbA94GE6p8wYSPjlPkWHFHmgWvT8%3D'
+          SRC_2: 'https://sdmntprdenmarkeast.oaiusercontent.com/files/00000000-3770-8210-abdf-121f17633d46/raw?se=2026-10-09T19%3A24%3A18Z&sp=r&sv=2026-02-06&sr=b&scid=ab6a5e00-b63d-598a-8856-65405a9c4982&skoid=a0b9f82a-c86e-4064-a822-2aa38890bb37&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-09T02%3A42%3A20Z&ske=2026-10-10T02%3A42%3A20Z&sks=b&skv=2026-02-06&sig=vbO%2BwLODs/%2BytVgWrh%2BURzyMdY6M7hU6PSTuUpsTMhg%3D'
+          SRC_3: 'https://sdmntprdenmarkeast.oaiusercontent.com/files/00000000-3804-8210-9452-d15345b8e00c/raw?se=2026-10-09T19%3A24%3A18Z&sp=r&sv=2026-02-06&sr=b&scid=ef4770af-d0d7-5b75-8b8d-a2f10dc8569e&skoid=a0b9f82a-c86e-4064-a822-2aa38890bb37&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-09T01%3A34%3A27Z&ske=2026-10-10T01%3A34%3A27Z&sks=b&skv=2026-02-06&sig=xhrl551yOjUp1KcinyFwRPNnwglhK6TLl5aZSVF%2BbS4%3D'
+          SRC_4: 'https://sdmntprdenmarkeast.oaiusercontent.com/files/00000000-d2f4-8210-9296-a9e7f33ac5cb/raw?se=2026-10-09T19%3A24%3A18Z&sp=r&sv=2026-02-06&sr=b&scid=a5d51a0a-5a23-5687-af1c-3fceac29f174&skoid=a0b9f82a-c86e-4064-a822-2aa38890bb37&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-09T01%3A40%3A54Z&ske=2026-10-10T01%3A40%3A54Z&sks=b&skv=2026-02-06&sig=/fPdngLFgoijhW8/nR363Ellyw0eD9pdYnWr7IWn6rc%3D'
+          SRC_5: 'https://sdmntprdenmarkeast.oaiusercontent.com/files/00000000-2cc8-8210-b35f-9f088d7a7721/raw?se=2026-10-09T19%3A24%3A22Z&sp=r&sv=2026-02-06&sr=b&scid=2842c9d7-2370-5f16-a435-03fec67a6e50&skoid=a0b9f82a-c86e-4064-a822-2aa38890bb37&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-09T01%3A40%3A54Z&ske=2026-10-10T01%3A40%3A54Z&sks=b&skv=2026-02-06&sig=pWkaArlKhnp6AstKbGYrPmOeYqvPRYprJcyeUvhLwMM%3D'
+          SRC_6: 'https://sdmntprnortheu.oaiusercontent.com/files/00000000-e82c-81f4-b86c-ab41b9ce8ef4/raw?se=2026-10-09T19%3A24%3A22Z&sp=r&sv=2026-02-06&sr=b&scid=33915f16-1574-563a-8d7e-bb676639045a&skoid=a0b9f82a-c86e-4064-a822-2aa38890bb37&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-09T01%3A20%3A27Z&ske=2026-10-10T01%3A20%3A27Z&sks=b&skv=2026-02-06&sig=D4D%2BmK4rCIdNkTeN%2BidKC/T6kazzfDrCZyckRRdHdrU%3D'
+          SRC_7: 'https://sdmntprdenmarkeast.oaiusercontent.com/files/00000000-696c-8210-a3eb-808b5399262c/raw?se=2026-10-09T19%3A24%3A22Z&sp=r&sv=2026-02-06&sr=b&scid=6a767845-6364-5457-af51-d562a9fa94ef&skoid=a0b9f82a-c86e-4064-a822-2aa38890bb37&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-09T04%3A58%3A21Z&ske=2026-10-10T04%3A58%3A21Z&sks=b&skv=2026-02-06&sig=RsGiDHYbYMPXIJoIxqX%2BZLl5umkWr8IUMKysP4rEKcg%3D'
+          SRC_8: 'https://sdmntprdenmarkeast.oaiusercontent.com/files/00000000-3dfc-8210-a680-bfca78ebf203/raw?se=2026-10-09T19%3A24%3A22Z&sp=r&sv=2026-02-06&sr=b&scid=2339cb0d-163d-5940-a15f-24f3bcfcbf4c&skoid=a0b9f82a-c86e-4064-a822-2aa38890bb37&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-09T02%3A42%3A21Z&ske=2026-10-10T02%3A42%3A21Z&sks=b&skv=2026-02-06&sig=0jkQGO26571ipvO0ZIC3ph7D3epMVdfaDd/0pT89RkA%3D'
+          SRC_9: 'https://sdmntprpolandcentral.oaiusercontent.com/files/00000000-94b0-820a-9f5d-95fa3950b83e/raw?se=2026-10-09T19%3A24%3A25Z&sp=r&sv=2026-02-06&sr=b&scid=d1f53408-1e69-5d9e-987e-7b01ef12b93a&skoid=a0b9f82a-c86e-4064-a822-2aa38890bb37&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-09T05%3A15%3A06Z&ske=2026-10-10T05%3A15%3A06Z&sks=b&skv=2026-02-06&sig=H427j1ko8G38EJ331Ms6r%2BWgKbw7zPkmj5a1LYp9sxo%3D'
         run: |
           set -euo pipefail
           mkdir -p assets/media
-          curl --fail --location --retry 3 "$VIDEO_SOURCE" --output /tmp/inkslab.mp4
-          ffmpeg -hide_banner -loglevel error -y -i /tmp/inkslab.mp4 -t 8 -vf "scale=1280:-2" -c:v libx264 -preset medium -crf 27 -an -pix_fmt yuv420p -movflags +faststart assets/media/inkslab.mp4
-          test -s assets/media/inkslab.mp4
-          ls -lh assets/media/inkslab.mp4
-      - name: Commit optimized video
+          curl --fail --location --retry 3 "$SRC_0" --output "/tmp/rok-top.mp4"
+          curl --fail --location --retry 3 "$SRC_1" --output "/tmp/rok-inkslab.mp4"
+          curl --fail --location --retry 3 "$SRC_2" --output "/tmp/rok-yijing.mp4"
+          curl --fail --location --retry 3 "$SRC_3" --output "/tmp/rok-emerald.mp4"
+          curl --fail --location --retry 3 "$SRC_4" --output "/tmp/rok-another-me.mp4"
+          curl --fail --location --retry 3 "$SRC_5" --output "/tmp/rok-bts.mp4"
+          curl --fail --location --retry 3 "$SRC_6" --output "/tmp/rok-service-direction.mp4"
+          curl --fail --location --retry 3 "$SRC_7" --output "/tmp/rok-service-cgi.mp4"
+          curl --fail --location --retry 3 "$SRC_8" --output "/tmp/rok-service-vfx.mp4"
+          curl --fail --location --retry 3 "$SRC_9" --output "/tmp/rok-service-design.mp4"
+      - name: Install FFmpeg and encode browser-friendly loops
         run: |
-          git config user.name "Rok Site Media Bot"
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          ffmpeg -hide_banner -loglevel error -y -i "/tmp/rok-top.mp4" -t 12 -vf "scale=1920:-2,fps=24" -c:v libx264 -preset fast -crf 28 -an -pix_fmt yuv420p -movflags +faststart "assets/media/top.mp4"
+          ffmpeg -hide_banner -loglevel error -y -i "/tmp/rok-inkslab.mp4" -t 9 -vf "scale=1280:-2,fps=24" -c:v libx264 -preset fast -crf 28 -an -pix_fmt yuv420p -movflags +faststart "assets/media/inkslab.mp4"
+          ffmpeg -hide_banner -loglevel error -y -i "/tmp/rok-yijing.mp4" -t 9 -vf "scale=1280:-2,fps=24" -c:v libx264 -preset fast -crf 28 -an -pix_fmt yuv420p -movflags +faststart "assets/media/yijing.mp4"
+          ffmpeg -hide_banner -loglevel error -y -i "/tmp/rok-emerald.mp4" -t 9 -vf "scale=1280:-2,fps=24" -c:v libx264 -preset fast -crf 28 -an -pix_fmt yuv420p -movflags +faststart "assets/media/emerald.mp4"
+          ffmpeg -hide_banner -loglevel error -y -i "/tmp/rok-another-me.mp4" -t 9 -vf "scale=1280:-2,fps=24" -c:v libx264 -preset fast -crf 28 -an -pix_fmt yuv420p -movflags +faststart "assets/media/another-me.mp4"
+          ffmpeg -hide_banner -loglevel error -y -i "/tmp/rok-bts.mp4" -t 12 -vf "scale=1280:-2,fps=24" -c:v libx264 -preset fast -crf 28 -an -pix_fmt yuv420p -movflags +faststart "assets/media/bts.mp4"
+          ffmpeg -hide_banner -loglevel error -y -i "/tmp/rok-service-direction.mp4" -t 8 -vf "scale=960:-2,fps=24" -c:v libx264 -preset fast -crf 28 -an -pix_fmt yuv420p -movflags +faststart "assets/media/service-direction.mp4"
+          ffmpeg -hide_banner -loglevel error -y -i "/tmp/rok-service-cgi.mp4" -t 8 -vf "scale=960:-2,fps=24" -c:v libx264 -preset fast -crf 28 -an -pix_fmt yuv420p -movflags +faststart "assets/media/service-cgi.mp4"
+          ffmpeg -hide_banner -loglevel error -y -i "/tmp/rok-service-vfx.mp4" -t 8 -vf "scale=960:-2,fps=24" -c:v libx264 -preset fast -crf 28 -an -pix_fmt yuv420p -movflags +faststart "assets/media/service-vfx.mp4"
+          ffmpeg -hide_banner -loglevel error -y -i "/tmp/rok-service-design.mp4" -t 8 -vf "scale=960:-2,fps=24" -c:v libx264 -preset fast -crf 28 -an -pix_fmt yuv420p -movflags +faststart "assets/media/service-design.mp4"
+          ls -lh assets/media/
+      - name: Commit optimized media
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/media/inkslab.mp4
-          git diff --cached --quiet || (git commit -m "Add optimized INKSLAB preview" && git push)
+          git add assets/media/
+          git diff --cached --quiet || (git commit -m "Add optimized Rok Pat website loops" && git push)
