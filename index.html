@@ -3,13 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#0b0b0a" />
-  <meta name="description" content="Rok Pat — CGI artist, video producer and director based in Birmingham, UK." />
+  <meta name="theme-color" content="#1A1818" />
+  <meta name="description" content="Rok Pat — director and CGI artist based in Birmingham, UK." />
   <title>Rok Pat</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://www.youtube-nocookie.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="home.css" />
   <link rel="stylesheet" href="services.css" />
@@ -22,10 +21,11 @@
         <a href="#services">Services</a>
         <a href="#about">About</a>
       </div>
-      <a class="home-mark" href="#top" aria-label="Rok Pat home">RP</a>
+      <a class="home-mark" href="#top" aria-label="Rok Pat home">
+        <img src="https://drive.google.com/thumbnail?id=1YT2MPfwCyc2uhbEZvVZPedy6RU0L7G6D&sz=w200" alt="Rok Pat" />
+      </a>
       <div class="home-nav-group home-nav-right">
         <a href="#clients">Clients</a>
-        <a href="#testimonials">Testimonials</a>
         <a href="contact.html">Contact</a>
       </div>
     </nav>
@@ -35,163 +35,115 @@
   <div class="mobile-menu" aria-hidden="true">
     <a href="#work">Work</a>
     <a href="#services">Services</a>
-    <a href="#clients">Clients &amp; Collaborations</a>
-    <a href="#testimonials">Testimonials</a>
     <a href="#about">About</a>
+    <a href="#clients">Clients</a>
     <a href="contact.html">Contact</a>
   </div>
 
   <main id="top">
     <section class="hero hero-scene" id="hero">
-      <figure class="hero-backdrop" data-depth="0.32" aria-hidden="true">
-        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840_webp/1605a5246228197.69bffee990fdd.png" alt="" />
-      </figure>
+      <div class="hero-media" aria-hidden="true">
+        <img class="hero-fallback" src="https://drive.google.com/thumbnail?id=13EMcT0C5q7uzr44WJVFpt9SWfgdWiYHT&sz=w2400" alt="" />
+        <video class="hero-loop" autoplay muted loop playsinline preload="metadata" poster="https://drive.google.com/thumbnail?id=1NSJebnmjF6-RN9T9iZHQwqHvw2RDGeHT&sz=w2400">
+          <source src="https://drive.google.com/uc?export=download&id=1NSJebnmjF6-RN9T9iZHQwqHvw2RDGeHT" type="video/mp4" />
+        </video>
+      </div>
+
       <div class="hero-vignette" aria-hidden="true"></div>
       <div class="hero-grain" aria-hidden="true"></div>
 
       <h1 class="hero-name" aria-label="Rok Pat">
-        <span class="hero-name-left" data-depth="0.75">ROK</span>
-        <span class="hero-name-right" data-depth="0.58">PAT</span>
+        <span class="hero-name-left" data-depth=".75">ROK</span>
+        <span class="hero-name-right" data-depth=".58">PAT</span>
       </h1>
 
-      <div class="hero-intro" data-depth="0.35">
-        <p>CGI artist, filmmaker and director based in Birmingham, UK, working across cinematic production, real-time environments and visual design.</p>
+      <div class="hero-intro" data-depth=".32">
+        <p>I'm a filmmaker and CGI artist. I direct, animate and edit cinematic work for musicians, dancers and brands, building worlds in Unreal Engine with an eye trained in architecture. Working remotely and in person with clients worldwide.</p>
         <a href="#about">Read more</a>
       </div>
 
-      <p class="hero-discipline" data-depth="0.28">CGI / FILM / DIRECTION / REALTIME</p>
-      <a class="hero-scroll" href="#work">Scroll <span>↓</span></a>
+      <button class="hero-reel" type="button" data-video="v1S3EViVK5Y" data-title="Rok Pat Showreel" aria-label="Play Rok Pat showreel">
+        <img src="https://drive.google.com/thumbnail?id=1k9q5CYZbXn3lww9A_sa0ih2uF1xd34jA&sz=w260" alt="" />
+      </button>
+
+      <a class="hero-scroll" href="#work">Scroll<span>⌄</span></a>
+
+      <img class="hero-rocks hero-rocks-bottom" src="https://drive.google.com/thumbnail?id=1VEM29f8TWOaurOzPhLDt20x2t7CwrANp&sz=w2400" alt="" aria-hidden="true" />
     </section>
 
-    <section class="work section" id="work">
-      <div class="shell section-head work-head reveal">
-        <h2>Selected Work</h2>
-        <div class="work-tools">
-          <div class="filters" aria-label="Filter work">
-            <button class="filter-button is-active" type="button" data-filter="all">All</button>
-            <button class="filter-button" type="button" data-filter="film">Film</button>
-            <button class="filter-button" type="button" data-filter="cgi">CGI / VFX</button>
-            <button class="filter-button" type="button" data-filter="realtime">Realtime</button>
-          </div>
-          <a href="https://www.behance.net/rokpat" target="_blank" rel="noreferrer">Behance ↗</a>
-        </div>
+    <section class="cave-bridge" aria-hidden="true">
+      <img class="cave-bg" src="https://drive.google.com/thumbnail?id=13EMcT0C5q7uzr44WJVFpt9SWfgdWiYHT&sz=w2400" alt="" />
+      <img class="cave-rock cave-rock-top" src="https://drive.google.com/thumbnail?id=1V4fTQUYJX1p-DhB5AJ_GkUyvGy5WBENo&sz=w2400" alt="" />
+      <img class="cave-rock cave-rock-bottom" src="https://drive.google.com/thumbnail?id=1VEM29f8TWOaurOzPhLDt20x2t7CwrANp&sz=w2400" alt="" />
+    </section>
+
+    <section class="featured-work" id="work">
+      <div class="featured-media" aria-hidden="true">
+        <video id="featured-video" autoplay muted loop playsinline preload="metadata" poster="https://drive.google.com/thumbnail?id=1aOP44xBEsN8xDbalmCrhe9mU2AQETpJz&sz=w2200">
+          <source id="featured-source" src="https://drive.google.com/uc?export=download&id=1aOP44xBEsN8xDbalmCrhe9mU2AQETpJz" type="video/mp4" />
+        </video>
+        <div class="featured-overlay"></div>
       </div>
 
-      <div class="work-browser reveal" id="work-browser">
-        <div class="work-stage" id="work-stage">
-        <div class="work-preview" aria-hidden="true">
-          <img id="work-preview-poster" src="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840_webp/5ac592246228197.69bffee991458.png" alt="" />
-          <iframe id="work-preview-video" title="Selected work preview" allow="autoplay; encrypted-media; picture-in-picture" tabindex="-1"></iframe>
-          <div class="work-preview-shade"></div>
+      <div class="featured-inner">
+        <div class="featured-heading">
+          <span>Featured</span>
+          <span>Work</span>
         </div>
 
-        <div class="work-list shell" id="work-list">
-          <button class="work-row is-active" type="button"
-            data-work-row data-category="cgi realtime"
-            data-video="c2HpIfrBOyA"
-            data-title="Yi Jing - Season 2"
-            data-meta="Title Sequence / Unreal Engine 5"
+        <div class="featured-list" role="list">
+          <button class="featured-item is-active" type="button"
+            data-featured
+            data-title="INKSLAB"
+            data-meta="Commercial / CGI Animation"
             data-year="2026"
-            data-poster="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840_webp/5ac592246228197.69bffee991458.png">
-            <span class="work-row-title">Yi Jing - Season 2</span><span>Title Sequence / UE5</span><span>2026</span>
+            data-src="https://drive.google.com/uc?export=download&id=1aOP44xBEsN8xDbalmCrhe9mU2AQETpJz"
+            data-poster="https://drive.google.com/thumbnail?id=1aOP44xBEsN8xDbalmCrhe9mU2AQETpJz&sz=w2200">
+            <span>INKSLAB</span><small>Commercial / CGI Animation</small>
           </button>
 
-          <button class="work-row" type="button"
-            data-work-row data-category="film cgi realtime"
-            data-video="FqLjdEXpmxo"
+          <button class="featured-item" type="button"
+            data-featured
+            data-title="Yi Jing 意境"
+            data-meta="Music Series / Direction / CGI & VFX"
+            data-year="2026"
+            data-src="https://drive.google.com/uc?export=download&id=1Mx_6XT-0c8A2dDS0bZUOvqtEKQ3IaIIY"
+            data-poster="https://drive.google.com/thumbnail?id=1Mx_6XT-0c8A2dDS0bZUOvqtEKQ3IaIIY&sz=w2200">
+            <span>YI JING 意境</span><small>Music Series / Direction / CGI &amp; VFX</small>
+          </button>
+
+          <button class="featured-item" type="button"
+            data-featured
             data-title="Emerald Seed"
-            data-meta="Short Film / Direction / Animation"
-            data-year="2026"
-            data-poster="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/42f88c246227077.69bff6d96616e.jpg">
-            <span class="work-row-title">Emerald Seed</span><span>Short Film / Direction</span><span>2026</span>
+            data-meta="Short Film / Direction / CGI Animation"
+            data-year="2024"
+            data-src="https://drive.google.com/uc?export=download&id=18Q9CZWI1tl3lQZcT-QTuXFeOtF98phbZ"
+            data-poster="https://drive.google.com/thumbnail?id=18Q9CZWI1tl3lQZcT-QTuXFeOtF98phbZ&sz=w2200">
+            <span>EMERALD SEED</span><small>Short Film / Direction / CGI Animation</small>
           </button>
 
-          <button class="work-row" type="button"
-            data-work-row data-category="film cgi realtime"
-            data-video="lWnz9aUGY4c"
-            data-title="Soft as Cotton Candy"
-            data-meta="Music Video / Unreal Engine 5"
-            data-year="2026"
-            data-poster="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840_webp/501725246227417.69bff93f886c3.png">
-            <span class="work-row-title">Soft as Cotton Candy</span><span>Music Video / UE5</span><span>2026</span>
-          </button>
-
-          <button class="work-row" type="button"
-            data-work-row data-category="cgi realtime"
-            data-video="7uKzViVoVRI"
-            data-title="SUDANIM"
-            data-meta="CGI Showcase / Unreal Engine 5"
-            data-year="2023"
-            data-poster="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840_webp/b1664a187313013.65859e4f5539f.jpg">
-            <span class="work-row-title">SUDANIM</span><span>CGI / Unreal Engine 5</span><span>2023</span>
-          </button>
-
-          <button class="work-row" type="button"
-            data-work-row data-category="film cgi"
-            data-video="ToPW_bGKfCU"
-            data-title="Mood Swings"
-            data-meta="CGI Music Video / VFX"
+          <button class="featured-item" type="button"
+            data-featured
+            data-title="Another Me"
+            data-meta="Music Video / VFX"
             data-year="2021"
-            data-poster="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/af4b68115808051.6055465f1c642.jpg">
-            <span class="work-row-title">Mood Swings</span><span>CGI Music Video / VFX</span><span>2021</span>
+            data-src="https://drive.google.com/uc?export=download&id=1xWj6MytIO3tB5tdZHBOosDX1Qw51vthu"
+            data-poster="https://drive.google.com/thumbnail?id=1xWj6MytIO3tB5tdZHBOosDX1Qw51vthu&sz=w2200">
+            <span>ANOTHER ME</span><small>Music Video / VFX</small>
           </button>
         </div>
 
-        <div class="work-preview-meta shell">
-          <div>
-            <strong id="work-preview-title">Yi Jing - Season 2</strong>
-            <span id="work-preview-meta">Title Sequence / Unreal Engine 5 / 2026</span>
-          </div>
-          <button type="button" class="preview-play" id="preview-play">Play film</button>
+        <div class="featured-meta">
+          <span id="featured-meta">Commercial / CGI Animation</span>
+          <span id="featured-year">2026</span>
         </div>
-        </div>
-      </div>
 
-      <div class="mobile-work shell" id="mobile-work">
-        <article class="mobile-work-card" data-mobile-project data-category="cgi realtime" data-video="c2HpIfrBOyA" data-title="Yi Jing - Season 2">
-          <div class="mobile-media">
-            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840_webp/5ac592246228197.69bffee991458.png" alt="Yi Jing Season 2 title sequence" loading="lazy" />
-            <button class="mobile-inline-play" type="button" aria-label="Play Yi Jing Season 2">Play</button>
-          </div>
-          <div class="mobile-work-meta"><h3>Yi Jing - Season 2</h3><span>Title Sequence / Unreal Engine 5</span><span>2026</span></div>
-        </article>
-
-        <article class="mobile-work-card" data-mobile-project data-category="film cgi realtime" data-video="FqLjdEXpmxo" data-title="Emerald Seed">
-          <div class="mobile-media">
-            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/42f88c246227077.69bff6d96616e.jpg" alt="Emerald Seed short film" loading="lazy" />
-            <button class="mobile-inline-play" type="button" aria-label="Play Emerald Seed">Play</button>
-          </div>
-          <div class="mobile-work-meta"><h3>Emerald Seed</h3><span>Short Film / Direction</span><span>2026</span></div>
-        </article>
-
-        <article class="mobile-work-card" data-mobile-project data-category="film cgi realtime" data-video="lWnz9aUGY4c" data-title="Soft as Cotton Candy">
-          <div class="mobile-media">
-            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840_webp/501725246227417.69bff93f886c3.png" alt="Soft as Cotton Candy music video" loading="lazy" />
-            <button class="mobile-inline-play" type="button" aria-label="Play Soft as Cotton Candy">Play</button>
-          </div>
-          <div class="mobile-work-meta"><h3>Soft as Cotton Candy</h3><span>Music Video / Unreal Engine 5</span><span>2026</span></div>
-        </article>
-
-        <article class="mobile-work-card" data-mobile-project data-category="cgi realtime" data-video="7uKzViVoVRI" data-title="SUDANIM">
-          <div class="mobile-media">
-            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840_webp/b1664a187313013.65859e4f5539f.jpg" alt="SUDANIM CGI showcase" loading="lazy" />
-            <button class="mobile-inline-play" type="button" aria-label="Play SUDANIM">Play</button>
-          </div>
-          <div class="mobile-work-meta"><h3>SUDANIM</h3><span>CGI / Unreal Engine 5</span><span>2023</span></div>
-        </article>
-
-        <article class="mobile-work-card" data-mobile-project data-category="film cgi" data-video="ToPW_bGKfCU" data-title="Mood Swings">
-          <div class="mobile-media">
-            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/af4b68115808051.6055465f1c642.jpg" alt="Mood Swings CGI music video" loading="lazy" />
-            <button class="mobile-inline-play" type="button" aria-label="Play Mood Swings">Play</button>
-          </div>
-          <div class="mobile-work-meta"><h3>Mood Swings</h3><span>CGI Music Video / VFX</span><span>2021</span></div>
-        </article>
+        <a class="featured-more" href="https://www.behance.net/rokpat" target="_blank" rel="noreferrer">See more</a>
       </div>
     </section>
 
     <section class="services shell section" id="services">
-      <div class="section-head reveal">
+      <div class="brand-section-title reveal">
         <h2>Services</h2>
       </div>
 
@@ -212,7 +164,7 @@
           <h3 class="service-vertical">CGI &amp; 3D Animation</h3>
           <div class="service-body">
             <h3>CGI &amp; 3D Animation</h3>
-            <p>Cinematic scenes, environments and characters built for visually-led films, campaigns and digital work.</p>
+            <p>Cinematic scenes, environments and characters created for films, campaigns and visual experiences.</p>
           </div>
         </article>
 
@@ -222,7 +174,7 @@
           <h3 class="service-vertical">VFX &amp; Compositing</h3>
           <div class="service-body">
             <h3>VFX &amp; Compositing</h3>
-            <p>3D, compositing, motion and visual effects that bring live-action and CGI material into one visual language.</p>
+            <p>3D, compositing, motion and visual effects bringing live action and CGI into one visual language.</p>
           </div>
         </article>
 
@@ -232,95 +184,117 @@
           <h3 class="service-vertical">Concept, Storyboards &amp; Design</h3>
           <div class="service-body">
             <h3>Concept, Storyboards &amp; Design</h3>
-            <p>Creative direction, storyboards, concept development and design that shape the project before the final frame.</p>
+            <p>Creative direction, storyboards, concept development and visual design that shape the project before the final frame.</p>
           </div>
         </article>
       </div>
+    </section>
 
-      <div class="services-cta reveal">
-        <p>Have something in mind?</p>
-        <a href="contact.html">Let’s create together ↗</a>
+    <section class="about-home shell section" id="about">
+      <div class="about-home-image reveal">
+        <video autoplay muted loop playsinline preload="metadata" poster="assets/rok-pat-portrait.webp">
+          <source src="https://drive.google.com/uc?export=download&id=1VcxJQpJ1NVFYCxz9_fVRX-y-A31VYERb" type="video/mp4" />
+        </video>
+      </div>
+      <div class="about-home-copy reveal">
+        <p class="eyebrow">About</p>
+        <h2>Director &amp;<br><span>CGI Artist</span></h2>
+        <p>Rok is a filmmaker and CGI artist based in Birmingham, UK. His work moves between directing, animation, editing and Unreal Engine, shaped by an architectural eye and a focus on cinematic world-building.</p>
+        <a href="contact.html">Work together ↗</a>
       </div>
     </section>
 
-    <section class="clients shell section" id="clients">
-      <div class="section-head reveal"><h2>Clients &amp; Collaborations</h2></div>
-      <div class="client-grid reveal">
-        <div>INKSLAB</div>
-        <div>Birmingham Open Media</div>
-        <div>SUDANIM</div>
-        <div>Fifi Rong / Yi Jing</div>
-        <div>The House of Radha</div>
-        <div>Bība / Emerald Seed</div>
-        <div>Sooski</div>
-        <div>Haximum</div>
+    <section class="clients-testimonials section" id="clients">
+      <div class="shell clients-title reveal">
+        <h2><span>Clients</span><b>&amp; Collaborators</b></h2>
       </div>
 
-      <div class="collab-grid">
-        <a class="collab-feature reveal" href="https://www.instagram.com/rokpat.vc/" target="_blank" rel="noreferrer">
-          <div class="collab-image"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840_webp/81df1d187313013.65859e4f578db.jpg" alt="SUDANIM collaboration work by Rok Pat" loading="lazy" /></div>
-          <div class="collab-meta"><strong>SUDANIM</strong><span>CGI Showcase / Unreal Engine</span></div>
-        </a>
-        <a class="collab-feature reveal" href="https://www.thehouseofradha.co.uk/collaborations" target="_blank" rel="noreferrer">
-          <div class="collab-image"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/7bb506246227077.69bff6d964fc2.jpg" alt="Emerald Seed collaboration by Rok Pat" loading="lazy" /></div>
-          <div class="collab-meta"><strong>Creative Collaborations</strong><span>Film / Visual Design / Direction</span></div>
-        </a>
-      </div>
-    </section>
+      <div class="logo-ribbon reveal" aria-label="Clients and collaborators">
+        <div class="logo-track">
+          <a href="https://bac.org.uk/" target="_blank" rel="noreferrer"><img src="https://drive.google.com/thumbnail?id=1gVsAeibeFGI5sfh1wZkT79IWmESyN5SC&sz=w420" alt="BAC" /></a>
+          <a href="https://bom.org.uk/" target="_blank" rel="noreferrer"><img src="https://drive.google.com/thumbnail?id=1gQtAVywMs5JYUuG8xs3He61xYdaForMW&sz=w420" alt="BOM" /></a>
+          <a href="https://fifirong.com/" target="_blank" rel="noreferrer"><img src="https://drive.google.com/thumbnail?id=1Ay1q5r2j-KDlwG5-ggGiPK3Ti1SDg2Eq&sz=w420" alt="Fifi Rong" /></a>
+          <a href="https://inkslabs.com/" target="_blank" rel="noreferrer"><img src="https://drive.google.com/thumbnail?id=14Nlczh-2aQe5n6mXYwoVId_brPykLZdz&sz=w420" alt="INKSLAB" /></a>
+          <a href="https://www.thehouseofradha.co.uk/" target="_blank" rel="noreferrer"><img src="https://drive.google.com/thumbnail?id=1XEQxcMv9uNcFnN1vWKq-6B5uZ0ibXfPb&sz=w420" alt="The House of Radha" /></a>
+          <a href="https://www.instagram.com/sooskimusic/" target="_blank" rel="noreferrer"><img src="https://drive.google.com/thumbnail?id=12EqQS2qD3Z159XayCa3vP9NxORuLHKzP&sz=w420" alt="Sooski" /></a>
+          <a href="https://www.instagram.com/sudanim._/" target="_blank" rel="noreferrer"><img src="https://drive.google.com/thumbnail?id=1QOM7x11_plIBIIaDKGUL4cNxLs_nsRAa&sz=w420" alt="SUDANIM" /></a>
+          <a href="https://gretamadline.com/" target="_blank" rel="noreferrer"><img src="https://drive.google.com/thumbnail?id=1jEUE0IPVOlfpPIt3i2YoYaUtOtc-kTyk&sz=w420" alt="Greta Madline" /></a>
+          <a href="https://www.noteten.com/" target="_blank" rel="noreferrer"><img src="https://drive.google.com/thumbnail?id=1QMT4asCzGDwmgozMX_ZWWrVdLCmhg4e4&sz=w420" alt="Noteten" /></a>
+          <a href="https://www.pwpdesign.co.uk/" target="_blank" rel="noreferrer"><img src="https://drive.google.com/thumbnail?id=1g_ytcnF6NbGPPeOHRI2sNKsvdLWtxhHx&sz=w420" alt="PWP Design" /></a>
 
-    <section class="testimonials section" id="testimonials">
-      <div class="shell">
-        <div class="section-head reveal"><h2>Testimonials</h2></div>
-        <div class="testimonial-stage reveal" aria-live="polite">
-          <article class="testimonial is-active">
-            <blockquote>“It’s been great to see the results!”</blockquote>
-            <p>Birmingham Open Media, on the INKSLAB launch film</p>
-          </article>
-          <article class="testimonial">
-            <blockquote>“The lighting and dialogue throughout this film are just phenomenal.”</blockquote>
-            <p>Epic Developer Community, on Emerald Seed</p>
-          </article>
-          <article class="testimonial">
-            <blockquote>“Magnificent lighting and outstanding decorative assets!”</blockquote>
-            <p>Epic Developer Community, on SUDANIM</p>
-          </article>
-          <div class="testimonial-controls">
-            <button type="button" data-testimonial-prev aria-label="Previous testimonial">←</button>
-            <button type="button" data-testimonial-next aria-label="Next testimonial">→</button>
-          </div>
+          <a class="dup" aria-hidden="true" tabindex="-1" href="#"><img src="https://drive.google.com/thumbnail?id=1gVsAeibeFGI5sfh1wZkT79IWmESyN5SC&sz=w420" alt="" /></a>
+          <a class="dup" aria-hidden="true" tabindex="-1" href="#"><img src="https://drive.google.com/thumbnail?id=1gQtAVywMs5JYUuG8xs3He61xYdaForMW&sz=w420" alt="" /></a>
+          <a class="dup" aria-hidden="true" tabindex="-1" href="#"><img src="https://drive.google.com/thumbnail?id=1Ay1q5r2j-KDlwG5-ggGiPK3Ti1SDg2Eq&sz=w420" alt="" /></a>
+          <a class="dup" aria-hidden="true" tabindex="-1" href="#"><img src="https://drive.google.com/thumbnail?id=14Nlczh-2aQe5n6mXYwoVId_brPykLZdz&sz=w420" alt="" /></a>
+          <a class="dup" aria-hidden="true" tabindex="-1" href="#"><img src="https://drive.google.com/thumbnail?id=1XEQxcMv9uNcFnN1vWKq-6B5uZ0ibXfPb&sz=w420" alt="" /></a>
+          <a class="dup" aria-hidden="true" tabindex="-1" href="#"><img src="https://drive.google.com/thumbnail?id=12EqQS2qD3Z159XayCa3vP9NxORuLHKzP&sz=w420" alt="" /></a>
+          <a class="dup" aria-hidden="true" tabindex="-1" href="#"><img src="https://drive.google.com/thumbnail?id=1QOM7x11_plIBIIaDKGUL4cNxLs_nsRAa&sz=w420" alt="" /></a>
+          <a class="dup" aria-hidden="true" tabindex="-1" href="#"><img src="https://drive.google.com/thumbnail?id=1jEUE0IPVOlfpPIt3i2YoYaUtOtc-kTyk&sz=w420" alt="" /></a>
+          <a class="dup" aria-hidden="true" tabindex="-1" href="#"><img src="https://drive.google.com/thumbnail?id=1QMT4asCzGDwmgozMX_ZWWrVdLCmhg4e4&sz=w420" alt="" /></a>
+          <a class="dup" aria-hidden="true" tabindex="-1" href="#"><img src="https://drive.google.com/thumbnail?id=1g_ytcnF6NbGPPeOHRI2sNKsvdLWtxhHx&sz=w420" alt="" /></a>
         </div>
       </div>
-    </section>
 
-    <section class="about shell section" id="about">
-      <div class="about-image reveal"><img src="assets/rok-pat-portrait.webp" alt="Rok Pat" loading="lazy" /></div>
-      <div class="about-panel reveal">
-        <div>
-          <p class="about-kicker">About</p>
-          <h2>Rok Pat</h2>
-          <p>Creative based in Birmingham, UK, working across design, filmmaking, CGI and real-time production.</p>
-          <p class="about-secondary">With a background in arts and architecture, Rok combines visual storytelling, technical production and experimental media across commercial and independent work.</p>
+      <div class="testimonial-carousel shell reveal" id="testimonials" aria-live="polite">
+        <button class="testimonial-arrow testimonial-prev" type="button" aria-label="Previous testimonial">‹</button>
+        <div class="testimonial-stage">
+          <article class="testimonial-card is-left">
+            <h3>“Rok is a great listener and a very skilful <em>3D visualiser!</em>”</h3>
+            <div class="testimonial-full">
+              <p>He edited a homemade video I shot in my living room (lockdown), co directed the concept and brought my ideas to life just how I envisaged them (all under a very tight budget). Also did the same with a series of meditative projects. Again, took my rough sketches, color palettes and brought the spaces to life in a sensorial way. A pleasure and a friendly soul to work with.</p>
+            </div>
+            <footer><strong>Sooski</strong><span>Architectural Designer / Music Producer</span></footer>
+          </article>
+
+          <article class="testimonial-card is-center">
+            <h3>“Rok is one of the <em>best</em> people I have worked with.”</h3>
+            <div class="testimonial-full">
+              <p>He is a maverick in visual art in graphic design, CGI art, music videos, and short films. Rok is extremely reliable, punctual, organised and he always cares about and delivers 120% in everything he works on. Being a true professional with massive talent is certainly a winning combo. I count myself as lucky whenever I have him in my team.</p>
+            </div>
+            <footer><strong>Fifi Rong</strong><span>Artist / Performer / Producer</span></footer>
+          </article>
+
+          <article class="testimonial-card is-right">
+            <h3>“Rok will do <em>everything</em> to make your idea come to life.”</h3>
+            <div class="testimonial-full">
+              <p>From dance artist perspective, while working with Rok I felt heard and supported with my creative vision and advised with the capture process. Our collaborations for dance visuals and music videos ran smoothly all because of his excellent work ethic and dedication.</p>
+            </div>
+            <footer><strong>Gabija Čepelytė</strong><span>Dance Artist</span></footer>
+          </article>
+
+          <article class="testimonial-card is-hidden">
+            <h3>“We would absolutely <em>welcome him back</em> to our studio for future projects.”</h3>
+            <div class="testimonial-full">
+              <p>It was a pleasure working with Rok and welcoming him to BOM. We collaborated on his client project, sharing our expertise in virtual production and motion capture, alongside his already extensive knowledge of Unreal Engine and Virtual Production.</p>
+              <p>Rok was professional, organised and a fantastic collaborator.</p>
+            </div>
+            <footer><strong>BOM</strong><span>Birmingham Open Media</span></footer>
+          </article>
         </div>
-        <div class="about-meta">
-          <a href="https://www.instagram.com/rokpat.vc/" target="_blank" rel="noreferrer">Instagram ↗</a>
-          <a href="https://www.behance.net/rokpat" target="_blank" rel="noreferrer">Behance ↗</a>
-          <a href="https://www.youtube.com/c/RokPat" target="_blank" rel="noreferrer">YouTube ↗</a>
-          <a href="mailto:rokpat.dm@gmail.com">Email ↗</a>
-        </div>
+        <button class="testimonial-arrow testimonial-next" type="button" aria-label="Next testimonial">›</button>
+        <div class="testimonial-count"><span id="testimonial-current">2</span> / 4</div>
       </div>
     </section>
 
-    <section class="contact-band">
-      <div class="shell contact-band-inner">
-        <span>Contact</span>
-        <a href="mailto:rokpat.dm@gmail.com">rokpat.dm@gmail.com</a>
-        <a href="contact.html">Contact page ↗</a>
+    <section class="home-cta" aria-labelledby="cta-heading">
+      <img class="cta-mark" src="https://drive.google.com/thumbnail?id=1YT2MPfwCyc2uhbEZvVZPedy6RU0L7G6D&sz=w1200" alt="" aria-hidden="true" />
+      <div class="home-cta-inner">
+        <h2 id="cta-heading">Let's <span>Create</span> Together</h2>
+        <p>Tell me about your project</p>
+        <a class="cta-button" href="contact.html">Get in touch</a>
+        <small>Working remotely and in person with clients worldwide.</small>
       </div>
     </section>
   </main>
 
-  <footer class="footer shell">
-    <span>Rokas Patapas</span><span>Birmingham, UK</span><span id="year"></span>
+  <footer class="home-footer">
+    <div class="footer-brand"><strong><span>ROK</span> PAT</strong><small>Director and CGI artist · Birmingham, UK</small></div>
+    <nav aria-label="Social links">
+      <a href="https://www.instagram.com/rokpat.vc/" target="_blank" rel="noreferrer">Instagram</a>
+      <a href="https://www.youtube.com/c/RokPat" target="_blank" rel="noreferrer">YouTube</a>
+      <a href="https://www.behance.net/rokpat" target="_blank" rel="noreferrer">Behance</a>
+    </nav>
+    <div class="footer-copy">© 2026 Rok Pat<br>Let's CREATE Together</div>
   </footer>
 
   <dialog class="video-modal" id="video-modal">
