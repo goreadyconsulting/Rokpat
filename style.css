@@ -400,3 +400,54 @@ img{display:block;width:100%;height:100%;object-fit:cover}
     transition:transform .12s linear;
   }
 }
+
+
+/* Rok Pat custom cursor */
+@media (pointer:fine) {
+  html.has-rp-cursor,
+  html.has-rp-cursor body,
+  html.has-rp-cursor a,
+  html.has-rp-cursor button,
+  html.has-rp-cursor [role="button"] {
+    cursor:none !important;
+  }
+
+  html.has-rp-cursor input,
+  html.has-rp-cursor textarea,
+  html.has-rp-cursor select,
+  html.has-rp-cursor [contenteditable="true"] {
+    cursor:text !important;
+  }
+
+  .rp-cursor{
+    position:fixed;
+    left:0;
+    top:0;
+    width:34px;
+    height:34px;
+    z-index:9999;
+    pointer-events:none;
+    opacity:0;
+    transform:translate3d(-50%,-50%,0) scale(.92);
+    transition:opacity .16s ease,transform .18s cubic-bezier(.2,.75,.2,1);
+    will-change:left,top,transform,opacity;
+    mix-blend-mode:difference;
+  }
+
+  .rp-cursor img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    display:block;
+  }
+
+  .rp-cursor.is-visible{opacity:1}
+  .rp-cursor.is-interactive{
+    transform:translate3d(-50%,-50%,0) scale(1.28) rotate(-5deg);
+  }
+  .rp-cursor.is-hidden{opacity:0}
+}
+
+@media (pointer:coarse), (prefers-reduced-motion:reduce) {
+  .rp-cursor{display:none !important}
+}
