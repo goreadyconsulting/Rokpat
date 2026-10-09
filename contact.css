@@ -424,3 +424,53 @@
   }
   .contact-stage.is-revealing .contact-grid{opacity:.14}
 }
+
+/* Rok's small supplied artworks float independently, revealed by cursor.
+   The radial reveal remains; the stationary mosaic has been retired. */
+.contact-page .contact-grid{
+  display:block;
+  overflow:hidden;
+  gap:0;
+}
+.contact-page .contact-tile{
+  position:absolute;
+  width:clamp(110px,14vw,200px);
+  height:auto;
+  aspect-ratio:auto;
+  margin:0;
+  overflow:visible;
+  background:transparent;
+  will-change:transform;
+  animation:contactMiniFloat 7s ease-in-out infinite alternate;
+}
+.contact-page .contact-tile img{
+  width:100%;
+  height:auto;
+  object-fit:contain;
+  filter:drop-shadow(0 16px 24px rgba(0,0,0,.35));
+}
+.contact-page .contact-tile:nth-child(1){top:13%;left:8%;animation-delay:-1s}
+.contact-page .contact-tile:nth-child(2){top:10%;right:21%;width:clamp(95px,12vw,175px);animation-delay:-2.4s}
+.contact-page .contact-tile:nth-child(3){top:30%;right:6%;animation-delay:-3.8s}
+.contact-page .contact-tile:nth-child(4){top:47%;left:3%;width:clamp(95px,12vw,175px);animation-delay:-.8s}
+.contact-page .contact-tile:nth-child(5){bottom:8%;left:21%;animation-delay:-5s}
+.contact-page .contact-tile:nth-child(6){bottom:10%;right:12%;width:clamp(95px,12vw,175px);animation-delay:-2s}
+.contact-page .contact-tile:nth-child(7){top:18%;left:44%;animation-delay:-3.1s}
+.contact-page .contact-tile:nth-child(8){bottom:18%;right:33%;width:clamp(100px,12vw,180px);animation-delay:-4.4s}
+@keyframes contactMiniFloat {
+  from{transform:translate3d(-8px,-13px,0) rotate(-7deg)}
+  to{transform:translate3d(10px,15px,0) rotate(8deg)}
+}
+@media(max-width:767px){
+  .contact-page .contact-tile{width:27vw}
+  .contact-page .contact-tile:nth-child(1){top:16%;left:2%}
+  .contact-page .contact-tile:nth-child(2){top:17%;right:4%;width:25vw}
+  .contact-page .contact-tile:nth-child(3){top:48%;right:0}
+  .contact-page .contact-tile:nth-child(4){top:54%;left:1%;width:24vw}
+  .contact-page .contact-tile:nth-child(5){bottom:6%;left:26%}
+  .contact-page .contact-tile:nth-child(6){bottom:12%;right:6%;width:23vw}
+  .contact-page .contact-tile:nth-child(n+7){display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  .contact-page .contact-tile{animation:none!important}
+}
