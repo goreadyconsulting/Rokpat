@@ -27,8 +27,6 @@
 }
 
 .service-poster,
-.service-video-slot,
-.service-video-slot iframe,
 .service-shade{
   position:absolute;
   inset:0;
@@ -254,4 +252,27 @@
   .service-body{
     transition:none!important;
   }
+}
+
+/* Native muted loops: only the expanded panel decodes video */
+.service-panel .service-loop{
+  position:absolute;inset:0;width:100%;height:100%;
+  display:block;
+  z-index:1;
+  object-fit:cover;
+  pointer-events:none;
+  filter:saturate(.92) brightness(.82);
+}
+.home-page .service-vertical,
+.home-page .service-body h3{
+  font-family:"Bebas Neue","Arial Narrow",Impact,sans-serif;
+  font-weight:400;
+  letter-spacing:.025em;
+  line-height:1;
+}
+.home-page .service-vertical{font-size:clamp(24px,2.5vw,42px)}
+.home-page .service-body h3{font-size:clamp(37px,4.5vw,74px)}
+@media(max-width:767px){
+  .home-page .service-vertical{font-size:clamp(24px,7vw,34px)}
+  .home-page .service-body h3{font-size:clamp(35px,10vw,56px)}
 }
