@@ -19,7 +19,7 @@
       <div class="home-nav-group">
         <a href="#work">Work</a>
         <a href="#services">Services</a>
-        <a href="#about">About</a>
+        <a href="about.html">About</a>
       </div>
       <a class="home-mark" href="#top" aria-label="Rok Pat home">
         <img src="assets/brand/rp-white.png" alt="Rok Pat" />
@@ -35,7 +35,7 @@
   <div class="mobile-menu" aria-hidden="true">
     <a href="#work">Work</a>
     <a href="#services">Services</a>
-    <a href="#about">About</a>
+    <a href="about.html">About</a>
     <a href="#clients">Clients</a>
     <a href="contact.html">Contact</a>
   </div>
@@ -59,7 +59,7 @@
 
       <div class="hero-intro" data-depth=".32">
         <p>I'm a filmmaker and CGI artist. I direct, animate and edit cinematic work for musicians, dancers and brands, building worlds in Unreal Engine with an eye trained in architecture. Working remotely and in person with clients worldwide.</p>
-        <a href="#about">Read more</a>
+        <a href="about.html">Read more</a>
       </div>
 
       <button class="hero-reel" type="button" data-video="v1S3EViVK5Y" data-title="Rok Pat Showreel" aria-label="Play Rok Pat showreel">
@@ -68,7 +68,7 @@
 
       <a class="hero-scroll" href="#work">Scroll<span>⌄</span></a>
 
-      <img class="hero-rocks hero-rocks-bottom" src="https://drive.google.com/thumbnail?id=1VEM29f8TWOaurOzPhLDt20x2t7CwrANp&sz=w2400" alt="" aria-hidden="true" />
+      
     </section>
 
     <section class="cave-bridge" aria-hidden="true">
@@ -79,7 +79,8 @@
 
     <section class="featured-work" id="work">
       <div class="featured-media" aria-hidden="true">
-        <video id="featured-video" autoplay muted loop playsinline preload="metadata" poster="https://drive.google.com/thumbnail?id=1aOP44xBEsN8xDbalmCrhe9mU2AQETpJz&sz=w2200">
+        <img class="featured-poster" id="featured-poster" src="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840_webp/b1664a187313013.65859e4f5539f.jpg" alt="" />
+        <video id="featured-video" autoplay muted loop playsinline preload="metadata">
           <source id="featured-source" src="https://drive.google.com/uc?export=download&id=1aOP44xBEsN8xDbalmCrhe9mU2AQETpJz" type="video/mp4" />
         </video>
         <div class="featured-overlay"></div>
@@ -98,7 +99,7 @@
             data-meta="Commercial / CGI Animation"
             data-year="2026"
             data-src="https://drive.google.com/uc?export=download&id=1aOP44xBEsN8xDbalmCrhe9mU2AQETpJz"
-            data-poster="https://drive.google.com/thumbnail?id=1aOP44xBEsN8xDbalmCrhe9mU2AQETpJz&sz=w2200">
+            data-poster="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840_webp/b1664a187313013.65859e4f5539f.jpg">
             <span>INKSLAB</span><small>Commercial / CGI Animation</small>
           </button>
 
@@ -108,7 +109,7 @@
             data-meta="Music Series / Direction / CGI & VFX"
             data-year="2026"
             data-src="https://drive.google.com/uc?export=download&id=1Mx_6XT-0c8A2dDS0bZUOvqtEKQ3IaIIY"
-            data-poster="https://drive.google.com/thumbnail?id=1Mx_6XT-0c8A2dDS0bZUOvqtEKQ3IaIIY&sz=w2200">
+            data-poster="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840_webp/5ac592246228197.69bffee991458.png">
             <span>YI JING 意境</span><small>Music Series / Direction / CGI &amp; VFX</small>
           </button>
 
@@ -118,7 +119,7 @@
             data-meta="Short Film / Direction / CGI Animation"
             data-year="2024"
             data-src="https://drive.google.com/uc?export=download&id=18Q9CZWI1tl3lQZcT-QTuXFeOtF98phbZ"
-            data-poster="https://drive.google.com/thumbnail?id=18Q9CZWI1tl3lQZcT-QTuXFeOtF98phbZ&sz=w2200">
+            data-poster="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/42f88c246227077.69bff6d96616e.jpg">
             <span>EMERALD SEED</span><small>Short Film / Direction / CGI Animation</small>
           </button>
 
@@ -128,7 +129,7 @@
             data-meta="Music Video / VFX"
             data-year="2021"
             data-src="https://drive.google.com/uc?export=download&id=1xWj6MytIO3tB5tdZHBOosDX1Qw51vthu"
-            data-poster="https://drive.google.com/thumbnail?id=1xWj6MytIO3tB5tdZHBOosDX1Qw51vthu&sz=w2200">
+            data-poster="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/af4b68115808051.6055465f1c642.jpg">
             <span>ANOTHER ME</span><small>Music Video / VFX</small>
           </button>
         </div>
@@ -190,17 +191,16 @@
       </div>
     </section>
 
-    <section class="about-home shell section" id="about">
-      <div class="about-home-image reveal">
-        <video autoplay muted loop playsinline preload="metadata" poster="assets/rok-pat-portrait.webp">
+    <section class="bts-reel" aria-label="Behind the scenes">
+      <div class="bts-media">
+        <img src="https://drive.google.com/thumbnail?id=1VcxJQpJ1NVFYCxz9_fVRX-y-A31VYERb&sz=w2400" alt="Behind the scenes of Rok Pat's filming and production work" loading="lazy" />
+        <video class="bts-video" autoplay muted loop playsinline preload="none" aria-hidden="true">
           <source src="https://drive.google.com/uc?export=download&id=1VcxJQpJ1NVFYCxz9_fVRX-y-A31VYERb" type="video/mp4" />
         </video>
       </div>
-      <div class="about-home-copy reveal">
-        <p class="eyebrow">About</p>
-        <h2>Director &amp;<br><span>CGI Artist</span></h2>
-        <p>Rok is a filmmaker and CGI artist based in Birmingham, UK. His work moves between directing, animation, editing and Unreal Engine, shaped by an architectural eye and a focus on cinematic world-building.</p>
-        <a href="contact.html">Work together ↗</a>
+      <div class="bts-footer">
+        <span>Behind the scenes</span>
+        <a href="about.html">About Rok ↗</a>
       </div>
     </section>
 
@@ -277,9 +277,17 @@
     </section>
 
     <section class="home-cta" aria-labelledby="cta-heading">
-      <img class="cta-mark" src="assets/brand/rp-white.png" alt="" aria-hidden="true" />
+      <div class="cta-mark-frame" aria-hidden="true"><img class="cta-mark" src="assets/brand/rp-white.png" alt="" /></div>
+      <div class="cta-floating" aria-hidden="true">
+        <img src="https://drive.google.com/thumbnail?id=1GpaYq-6DRt6qx5bt6sahNqrtkJr1xvtj&sz=w460" alt="" loading="lazy" />
+        <img src="https://drive.google.com/thumbnail?id=1HUd7Al_SrNxcsW22xu8i4jI5FE5_BW40&sz=w460" alt="" loading="lazy" />
+        <img src="https://drive.google.com/thumbnail?id=1FSRClekbioSg0a3CyS2XaxClwVDDohKM&sz=w460" alt="" loading="lazy" />
+        <img src="https://drive.google.com/thumbnail?id=1Ul6TEwPZsrY3upIFIQfuHUd5mxan4n50&sz=w460" alt="" loading="lazy" />
+        <img src="https://drive.google.com/thumbnail?id=1Mp-DMtITULgrRJHjdLFSzPzgSVJBmp__&sz=w460" alt="" loading="lazy" />
+        <img src="https://drive.google.com/thumbnail?id=1bHV1kPnS7qrlvb5bUODMww13MaR3oS-y&sz=w460" alt="" loading="lazy" />
+      </div>
       <div class="home-cta-inner">
-        <h2 id="cta-heading">Let's <span>Create</span> Together</h2>
+        <h2 id="cta-heading">Let's <span class="create-letters" aria-label="Create">Create</span> Together</h2>
         <p>Tell me about your project</p>
         <a class="cta-button" href="contact.html">Get in touch</a>
         <small>Working remotely and in person with clients worldwide.</small>
