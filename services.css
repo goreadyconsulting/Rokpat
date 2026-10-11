@@ -1,3 +1,7 @@
+.home-page .services.shell{
+  width:calc(100% - 56px);
+}
+
 .service-panels{
   display:flex;
   gap:8px;
@@ -164,9 +168,9 @@
   font-weight:500;
 }
 
-@media (min-width:1600px){
+@media (min-width:1200px){
   .service-panels{
-    height:min(700px,73vh);
+    height:min(820px,76svh);
   }
 }
 
@@ -183,6 +187,10 @@
 }
 
 @media (max-width:767px){
+  .home-page .services.shell{
+    width:calc(100% - 24px);
+  }
+
   .service-panels{
     display:flex;
     flex-direction:column;
