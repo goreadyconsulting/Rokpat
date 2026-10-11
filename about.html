@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#1A1818" />
   <meta name="description" content="About Rok Pat, director and CGI artist based in Birmingham, UK." />
-  <title>About — Rok Pat</title>
+  <title>About - Rok Pat</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
@@ -16,11 +16,11 @@
   <header class="site-header about-header">
     <nav class="about-nav" aria-label="Primary navigation">
       <div class="about-nav-group">
-        <a href="index.html#work">Work</a>
+        <a href="work.html">Work</a>
         <a href="index.html#services">Services</a>
         <a href="about.html" aria-current="page">About</a>
       </div>
-      <a class="about-mark" href="index.html" aria-label="Rok Pat home"><img src="assets/brand/rp-white.png" alt="Rok Pat" /></a>
+      <a class="about-mark" href="index.html" aria-label="Rok Pat home"><img src="assets/brand/rp-symbol.png" alt="Rok Pat" /></a>
       <div class="about-nav-group about-nav-right">
         <a href="index.html#clients">Clients</a>
         <a href="contact.html">Contact</a>
@@ -28,34 +28,61 @@
     </nav>
     <button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
   </header>
+
   <div class="mobile-menu" aria-hidden="true">
-    <a href="index.html#work">Work</a><a href="index.html#services">Services</a>
-    <a href="about.html">About</a><a href="index.html#clients">Clients</a><a href="contact.html">Contact</a>
+    <a href="work.html">Work</a>
+    <a href="index.html#services">Services</a>
+    <a href="about.html">About</a>
+    <a href="index.html#clients">Clients</a>
+    <a href="contact.html">Contact</a>
   </div>
+
   <main>
-    <section class="about-lead">
-      <div class="about-lead-inner">
-        <div class="about-heading"><span>About</span><h1>Director &amp;<br><em>CGI Artist</em></h1></div>
-        <figure class="about-portrait"><img src="assets/rok-pat-portrait.webp" alt="Rok Pat" /></figure>
+    <section class="about-intro">
+      <figure class="about-portrait" aria-label="Portrait of Rok Pat">
+        <img src="assets/rok-pat-portrait.webp" alt="Rok Pat" />
+      </figure>
+      <div class="about-copy">
+        <p class="about-eyebrow">Director &amp; CGI Artist · Birmingham, UK</p>
+        <h1>I direct, build, animate and edit <em>cinematic</em> worlds.</h1>
+        <p>I'm Rok Pat, a director and CGI artist working with musicians, dancers and brands around the world. I take a project from the first idea to the final frame: concept, storyboard, set and 3D build, animation, edit and delivery.</p>
+        <p>My background is in arts and architecture, which is why I think about space, light and composition before anything else.</p>
+        <p>Every project is a conversation, so you're involved at the stages that matter.</p>
       </div>
     </section>
-    <section class="about-story">
-      <div class="about-label">Rok Pat<br>Birmingham, UK</div>
-      <div class="about-prose">
-        <p>I'm a filmmaker and CGI artist. I direct, animate and edit cinematic work for musicians, dancers and brands, building worlds in Unreal Engine with an eye trained in architecture.</p>
-        <p>With a background in arts and architecture, my creative practice spans filmmaking, CGI, VFX, real-time environments and visual design. I work remotely and in person with clients worldwide.</p>
-        <div class="about-practice"><span>Direction &amp; Video Production</span><span>CGI &amp; 3D Animation</span><span>VFX &amp; Compositing</span><span>Concept, Storyboards &amp; Design</span></div>
+
+    <section class="about-process">
+      <h2>How I work</h2>
+      <div class="process-steps">
+        <article><span>01</span><h3>Concept</h3><p>We talk through your idea, references and goals.</p></article>
+        <article><span>02</span><h3>Storyboard</h3><p>Every video, CGI or filmed, starts with a storyboard: a clear plan you can react to before anything is built.</p></article>
+        <article><span>03</span><h3>Build or shoot</h3><p>Sets and environments are built, in 3D or in real life, and filmed work is shot.</p></article>
+        <article><span>04</span><h3>Bring it to life</h3><p>Animation, VFX, camera and lighting turn the plan into finished scenes.</p></article>
+        <article><span>05</span><h3>Edit and deliver</h3><p>The final edit, in the formats you need.</p></article>
+      </div>
+      <div class="about-bts">
+        <figure><img src="assets/posters/bts.jpg" alt="Behind the scenes of Rok Pat's production work" /><figcaption>Behind the scenes</figcaption></figure>
+        <figure><video autoplay muted loop playsinline preload="none" poster="assets/posters/service-design.jpg"><source src="assets/media/service-design.mp4" type="video/mp4" /></video><figcaption>Concept and work in progress</figcaption></figure>
       </div>
     </section>
-    <section class="about-bottom">
-      <h2>Let's <span>Create</span> Together</h2>
-      <a href="contact.html">Get in touch ↗</a>
+
+    <section class="about-remote">
+      <h2>Working remotely</h2>
+      <p>Most of my projects run remotely. We agree the plan and review stages together at the start, I share work through a private review link, and you give feedback along the way. For filmed work, I'm happy to travel.</p>
+    </section>
+
+    <section class="about-cta">
+      <h2>Let's <em>Create</em> Together</h2>
+      <a href="contact.html">Get in touch</a>
     </section>
   </main>
+
   <footer class="about-footer">
-    <span>© 2026 Rok Pat</span>
+    <div><strong><span>ROK</span> PAT</strong><small>Director and CGI artist · Birmingham, UK</small></div>
     <nav aria-label="Social links"><a href="https://www.instagram.com/rokpat.vc/" target="_blank" rel="noreferrer">Instagram</a><a href="https://www.youtube.com/c/RokPat" target="_blank" rel="noreferrer">YouTube</a><a href="https://www.behance.net/rokpat" target="_blank" rel="noreferrer">Behance</a></nav>
+    <span>© 2026 Rok Pat</span>
   </footer>
+
   <script src="site.js"></script>
 </body>
 </html>
