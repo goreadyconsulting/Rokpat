@@ -763,7 +763,6 @@
   pointer-events:none;
   transition:opacity .4s ease;
 }
-.home-cta.is-interacting .cta-floating{opacity:1}
 .cta-floating img{
   position:absolute;
   display:block;

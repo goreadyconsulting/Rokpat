@@ -45,21 +45,37 @@
     pointer-events:auto;
   }
   .hero-name-left,.contact-content h1 em{pointer-events:auto}
-  .contact-gallery.is-interactive{
+  [data-photo-trail].is-interactive{
     position:absolute;
     inset:0;
     display:block;
   }
-  .contact-gallery.is-interactive .contact-photo{
+  .cta-floating.is-interactive{opacity:1;transition:none}
+  .contact-gallery.is-interactive{z-index:0}
+  [data-photo-trail].is-interactive > :is(.contact-photo,img){
     position:absolute;
     width:clamp(96px,12vw,180px);
+    height:auto;
+    max-height:none;
+    aspect-ratio:1;
     margin:0;
+    top:0;right:auto;bottom:auto;left:0;
     opacity:0;
-    visibility:visible;
+    animation:none;
     transform:translate(-50%,-50%);
-    box-shadow:0 10px 28px rgba(0,0,0,.35);
+    box-shadow:0 10px 28px rgba(0,0,0,.32);
   }
-  .contact-gallery.is-interactive .contact-photo img{width:100%;height:100%;object-fit:cover}
+  [data-photo-trail].is-interactive img{
+    object-fit:cover;
+    filter:brightness(.76) saturate(.72) contrast(.89) blur(.55px);
+  }
+  .contact-gallery.is-interactive .contact-photo img{width:100%;height:100%}
+  [data-photo-trail].is-interactive::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(145deg,rgba(159,163,177,.065),transparent 52%,rgba(5,5,8,.17));
+  }
   .contact-stage:has(.is-interactive){position:static}
 }
 

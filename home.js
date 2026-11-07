@@ -182,12 +182,6 @@
     item.addEventListener('click', () => activateFeatured(item));
   });
 
-  const cta = document.querySelector('.home-cta');
-  if (cta && window.matchMedia('(pointer:fine)').matches && !reduceMotion) {
-    cta.addEventListener('pointerenter', () => cta.classList.add('is-interacting'));
-    cta.addEventListener('pointerleave', () => cta.classList.remove('is-interacting'));
-  }
-
   const logoWindow = document.getElementById('client-logo-window');
   const logoArrows = [...document.querySelectorAll('[data-logo-step]')];
   if (logoWindow && logoArrows.length) {

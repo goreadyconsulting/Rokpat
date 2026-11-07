@@ -60,7 +60,7 @@
         <button class="work-chip" type="button" data-filter="all" aria-pressed="true">All</button>
         <button class="work-chip" type="button" data-filter="film" aria-pressed="false">Film</button>
         <button class="work-chip" type="button" data-filter="cgi" aria-pressed="false">CGI &amp; Animation</button>
-        <button class="work-chip" type="button" data-filter="product" aria-pressed="false">Product promos</button>
+        <button class="work-chip" type="button" data-filter="product" aria-pressed="false">Promos &amp; showcases</button>
       </div>
       <div class="work-view-group" role="group" aria-label="Project view">
         <button class="work-chip" type="button" data-view="grid" aria-pressed="true">Grid</button>
@@ -69,27 +69,33 @@
     </section>
 
     <section class="work-grid" id="work-grid" aria-live="polite">
-      <a class="work-card" href="projects/yi-jing-s2.html" data-categories="cgi">
+      <a class="work-card" href="projects/yi-jing-s2.html" data-categories="film cgi">
         <figure>
-          <img src="assets/posters/yijing-s2.webp" alt="A performer against a misty hillside" />
-          <span aria-hidden="true">Yi Jing</span>
+          <img src="assets/posters/yijing-s2.webp" alt="A performer in a misty landscape" />
         </figure>
-        <div><h2>Yi Jing S2: Animation</h2><p>Title sequence · 2026<span class="work-credit">CGI, animation &amp; lighting</span></p></div>
+        <div><h2>Yi Jing 意境 Season 2</h2><p>Live music series · 2026<span class="work-credit">Direction, cinematography, CGI &amp; VFX</span></p></div>
       </a>
 
       <a class="work-card" href="projects/emerald-seed.html" data-categories="film cgi">
         <figure>
-          <img src="assets/posters/emerald.jpg" alt="Emerald Seed preview" />
+          <img src="assets/posters/emerald.jpg" alt="Emerald Seed film still" />
           <video muted loop playsinline preload="none" poster="assets/posters/emerald.jpg"><source src="assets/media/emerald.mp4" type="video/mp4" /></video>
         </figure>
         <div><h2>Emerald Seed</h2><p>Animated short film · 2024<span class="work-credit">Direction &amp; animation</span></p></div>
       </a>
 
-      <a class="work-card" href="projects/sudanim.html" data-categories="cgi">
+      <a class="work-card" href="projects/sudanim.html" data-categories="cgi product">
         <figure>
           <img src="assets/posters/sudanim.webp" alt="Tattooed CGI figures gathered around a red gate" loading="lazy" />
         </figure>
-        <div><h2>SUDANIM Tattoo Showcase</h2><p>CGI showcase · 2022<span class="work-credit">Direction, animation &amp; editing</span></p></div>
+        <div><h2>SUDANIM Tattoo Showcase Part 1</h2><p>CGI showcase · 2022<span class="work-credit">Direction, animation &amp; editing</span></p></div>
+      </a>
+
+      <a class="work-card" href="projects/sudanim-2.html" data-categories="cgi product">
+        <figure>
+          <img src="assets/projects/sudanim-2-video.webp" alt="SUDANIM Tattoo Showcase Part 2 video cover" loading="lazy" />
+        </figure>
+        <div><h2>SUDANIM Tattoo Showcase Part 2</h2><p>CGI showcase · 2023<span class="work-credit">Direction, animation &amp; editing</span></p></div>
       </a>
 
       <a class="work-card" href="projects/soft-as-cotton-candy.html" data-categories="film cgi">
@@ -101,10 +107,38 @@
 
       <a class="work-card" href="projects/another-me.html" data-categories="film cgi">
         <figure>
-          <img src="assets/posters/another-me.jpg" alt="Another Me preview" loading="lazy" />
+          <img src="assets/posters/another-me.jpg" alt="Another Me music video still" loading="lazy" />
           <video muted loop playsinline preload="none" poster="assets/posters/another-me.jpg"><source src="assets/media/another-me.mp4" type="video/mp4" /></video>
         </figure>
         <div><h2>Another Me</h2><p>Music video · 2021<span class="work-credit">Direction, cinematography, editing &amp; VFX</span></p></div>
+      </a>
+
+      <a class="work-card" href="projects/the-temple.html" data-categories="cgi product">
+        <figure>
+          <img src="assets/projects/the-temple-01.webp" alt="Japan-inspired temple framed by trees" loading="lazy" />
+        </figure>
+        <div><h2>The Temple</h2><p>Environment design · 2024<span class="work-credit">3D modelling &amp; animation</span></p></div>
+      </a>
+
+      <a class="work-card" href="projects/yi-jing-s1.html" data-categories="film">
+        <figure>
+          <img src="assets/projects/yi-jing-s1-02.webp" alt="Fifi Rong surrounded by sculptural shapes in low blue light" loading="lazy" />
+        </figure>
+        <div><h2>Yi Jing 意境 Season 1</h2><p>Live music series · 2021<span class="work-credit">Direction, cinematography, editing &amp; VFX</span></p></div>
+      </a>
+
+      <a class="work-card" href="projects/mood-swings.html" data-categories="film cgi">
+        <figure>
+          <img src="assets/projects/mood-swings-01.webp" alt="A silhouetted performer against violet light" loading="lazy" />
+        </figure>
+        <div><h2>Mood Swings</h2><p>Music video · 2020<span class="work-credit">Creative direction, direction, editing &amp; VFX</span></p></div>
+      </a>
+
+      <a class="work-card" href="projects/glass-slipper.html" data-categories="film">
+        <figure>
+          <img src="assets/projects/glass-slipper-05.webp" alt="A dancer looking towards a cloudy sky" loading="lazy" />
+        </figure>
+        <div><h2>Glass Slipper</h2><p>Dance short film · 2020<span class="work-credit">Co-direction, cinematography &amp; editing</span></p></div>
       </a>
 
       <div class="work-empty" id="work-empty" hidden>
@@ -121,6 +155,6 @@
   </footer>
 
   <script src="site.js?v=20261107-desktop"></script>
-  <script src="work.js?v=20261011-review"></script>
+  <script src="work.js?v=20261107-portfolio"></script>
 </body>
 </html>
