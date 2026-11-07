@@ -38,9 +38,8 @@
 
       // Visibility changes in the pointer event, with no timer or opacity transition.
       positions.forEach(({photo}) => photo.classList.toggle('is-visible', visible.has(photo)));
-      nearest.forEach(({photo,x:cx,y:cy}) => {
-        photo.style.setProperty('--dx', `${reducedMotion.matches ? 0 : Math.max(-18,Math.min(18,(x - cx) * .06))}px`);
-        photo.style.setProperty('--dy', `${reducedMotion.matches ? 0 : Math.max(-18,Math.min(18,(y - cy) * .06))}px`);
+      nearest.forEach(({photo,x:cx}) => {
+        photo.style.setProperty('--pull', `${reducedMotion.matches ? 0 : Math.max(-5,Math.min(5,(x - cx) * .035))}deg`);
       });
     };
     setMode();

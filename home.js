@@ -201,6 +201,25 @@
     cta.addEventListener('pointerleave', () => cta.classList.remove('is-interacting'));
   }
 
+  const logoWindow = document.getElementById('client-logo-window');
+  const logoArrows = [...document.querySelectorAll('[data-logo-step]')];
+  if (logoWindow && logoArrows.length) {
+    const syncLogoArrows = () => {
+      const max = logoWindow.scrollWidth - logoWindow.clientWidth;
+      logoArrows.forEach(button => {
+        button.disabled = Number(button.dataset.logoStep) < 0 ? logoWindow.scrollLeft <= 1 : logoWindow.scrollLeft >= max - 1;
+      });
+    };
+    logoArrows.forEach(button => button.addEventListener('click', () => {
+      const logoWidth = logoWindow.querySelector('a')?.offsetWidth || 100;
+      const visible = Math.max(1, Math.floor(logoWindow.clientWidth / logoWidth));
+      logoWindow.scrollBy({ left:Number(button.dataset.logoStep) * visible * logoWidth, behavior:reduceMotion ? 'instant' : 'smooth' });
+    }));
+    logoWindow.addEventListener('scroll', syncLogoArrows, { passive:true });
+    window.addEventListener('resize', syncLogoArrows, { passive:true });
+    syncLogoArrows();
+  }
+
   const cards = [...document.querySelectorAll('.testimonial-card')];
   const prev = document.querySelector('.testimonial-prev');
   const next = document.querySelector('.testimonial-next');
