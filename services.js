@@ -55,6 +55,8 @@
       const on = el === active;
       el.classList.toggle('is-active', on);
       el.setAttribute('aria-expanded', String(on));
+      el.querySelector('.service-vertical')?.setAttribute('aria-hidden', String(on));
+      el.querySelector('.service-body')?.setAttribute('aria-hidden', String(!on));
     });
     playActive();
   };
