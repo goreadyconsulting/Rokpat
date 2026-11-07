@@ -119,17 +119,40 @@
     if (video.readyState >= 3 && !video.paused) video.classList.add('is-playing');
   };
   [featuredVideo, btsVideo, heroVideo].forEach(markPlayback);
-  if (btsVideo && 'IntersectionObserver' in window) {
-    const btsObserver = new IntersectionObserver(entries => {
-      const shown = entries.some(entry => entry.isIntersecting);
-      if (shown) btsVideo.play().catch(() => {});
-      else btsVideo.pause();
-    }, { rootMargin: '100px' });
-    btsObserver.observe(btsVideo);
-  }
+  const watchLoop = (video, source = () => video.dataset.loopSrc) => {
+    if (!video || reduceMotion) return () => {};
+    let nearViewport = !('IntersectionObserver' in window);
+    const sync = () => {
+      if (!nearViewport || document.hidden) {
+        video.pause();
+        return;
+      }
+      const src = source();
+      if (!src) return;
+      const changed = video.getAttribute('src') !== src;
+      if (changed) video.src = src;
+      if (changed || video.paused) video.play().catch(() => {});
+    };
+    if (!nearViewport) {
+      new IntersectionObserver(([entry]) => {
+        nearViewport = entry.isIntersecting;
+        sync();
+      }, { rootMargin: '100px' }).observe(video);
+    }
+    document.addEventListener('visibilitychange', sync);
+    sync();
+    return sync;
+  };
+  const mobileHero = window.matchMedia('(max-width:767px)');
+  const refreshHero = watchLoop(heroVideo, () => mobileHero.matches ? heroVideo.dataset.mobileSrc : heroVideo.dataset.loopSrc);
+  mobileHero.addEventListener('change', refreshHero);
+  watchLoop(btsVideo);
+
   const featuredMeta = document.getElementById('featured-meta');
   const featuredYear = document.getElementById('featured-year');
   let activeFeatured = featuredItems[0] || null;
+  let queuedFeatured = activeFeatured;
+  const refreshFeatured = watchLoop(featuredVideo, () => queuedFeatured?.dataset.src);
   let switchTimer = 0;
 
   const activateFeatured = item => {
@@ -138,20 +161,16 @@
     featuredItems.forEach(el => el.classList.toggle('is-active',el === item));
     if (featuredMeta) featuredMeta.textContent = item.dataset.meta || '';
     if (featuredPoster) featuredPoster.src = item.dataset.poster || featuredPoster.src;
+    featuredVideo?.pause();
     featuredVideo?.classList.remove('is-playing');
     if (featuredYear) featuredYear.textContent = item.dataset.year || '';
 
-    if (!featuredVideo) return;
+    if (!featuredVideo || reduceMotion) return;
     window.clearTimeout(switchTimer);
     switchTimer = window.setTimeout(() => {
-      const src = item.dataset.src;
-      if (!src) return;
-      featuredVideo.pause();
+      queuedFeatured = item;
       featuredVideo.poster = item.dataset.poster || '';
-      featuredVideo.src = src;
-      featuredVideo.load();
-      const play = featuredVideo.play();
-      if (play && typeof play.catch === 'function') play.catch(() => {});
+      refreshFeatured();
     }, 120);
   };
 

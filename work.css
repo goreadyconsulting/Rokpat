@@ -136,7 +136,8 @@
   text-transform:uppercase;
   transition:color .2s ease;
 }
-.work-card p{flex:none;margin:0;color:var(--muted);font-size:15px;text-align:right}
+.work-card p{flex:none;max-width:100%;margin:0;color:var(--muted);font-size:15px;text-align:right}
+.work-credit{display:block;margin-top:4px;color:#d6d2cb;font-size:14px}
 .work-grid.is-list{display:block;padding-top:8px}
 .work-grid.is-list .work-card{display:block;border-bottom:1px solid var(--line);padding:18px 0}
 .work-grid .work-card[hidden]{display:none}
