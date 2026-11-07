@@ -4,10 +4,12 @@
   const menuButton = document.querySelector('.menu-button');
   const mobileMenu = document.querySelector('.mobile-menu');
   const mobileLinks = mobileMenu ? mobileMenu.querySelectorAll('a') : [];
-  const year = document.getElementById('year');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  if (year) year.textContent = `© ${new Date().getFullYear()}`;
+  document.querySelectorAll('[data-copyright-year]').forEach(year => {
+    year.textContent = new Date().getFullYear();
+  });
+  header?.classList.add('rollout-header');
 
   const setHeaderState = () => {
     if (header) header.classList.toggle('is-scrolled', window.scrollY > 20);
@@ -75,6 +77,89 @@
     revealItems.forEach(item => item.classList.add('is-visible'));
   }
 
+  const yellowText = [
+    '.hero-name-left', '.featured-heading > span:first-child', '.brand-section-title h2',
+    '.about-home-copy h2 > span', '.clients-title h2 > span', '.testimonial-card h3 em',
+    '.create-letters', '.footer-brand strong > span', '.work-intro h1', '.work-empty button',
+    '.about-copy h1 em', '.about-cta em', '.process-steps article > span', '.about-footer strong > span',
+    '.contact-hero h1 em', '.contact-footer strong > span', '.work-footer strong > span',
+    '.project-intro h1', '.about-nav a[aria-current]', '.work-nav a[aria-current]', '.contact-nav a[aria-current]'
+  ].join(',');
+  const desktopMotion = matchMedia('(min-width:768px) and (prefers-reduced-motion:no-preference)');
+  const dancers = new WeakMap();
+
+  const dance = element => {
+    if (!desktopMotion.matches) return;
+    if (!dancers.has(element)) {
+      const letters = [];
+      if (element.childElementCount === 0 && !element.matches('.work-card h2')) {
+        const label = document.createElement('span');
+        label.className = 'dance-readable';
+        label.textContent = element.textContent;
+        element.replaceChildren(label);
+        for (const part of label.textContent.split(/(\s+)/)) {
+          if (!part.trim()) {
+            element.append(part);
+            continue;
+          }
+          const word = document.createElement('span');
+          word.className = 'dance-word';
+          word.setAttribute('aria-hidden', 'true');
+          for (const glyph of part) {
+            const letter = document.createElement('span');
+            letter.className = 'dance-letter';
+            letter.textContent = glyph;
+            word.append(letter);
+            letters.push(letter);
+          }
+          element.append(word);
+        }
+      }
+      dancers.set(element, letters.length ? letters : [element]);
+    }
+    dancers.get(element).forEach((letter, index) => {
+      letter.getAnimations().filter(animation => animation.id === 'yellow-dance').forEach(animation => animation.cancel());
+      const animation = letter.animate([
+        { translate:'0 0', rotate:'0deg' },
+        { translate:'0 -.12em', rotate:index % 2 ? '4deg' : '-4deg', offset:.38 },
+        { translate:'0 .02em', rotate:'0deg', offset:.72 },
+        { translate:'0 0', rotate:'0deg' }
+      ], { duration:420, delay:Math.min(index * 29, 350), easing:'ease-in-out' });
+      animation.id = 'yellow-dance';
+    });
+  };
+
+  if ('IntersectionObserver' in window) {
+    const yellowObserver = new IntersectionObserver(entries => {
+      entries.forEach(({ target, isIntersecting }) => {
+        if (isIntersecting && desktopMotion.matches) {
+          dance(target);
+          yellowObserver.unobserve(target);
+        }
+      });
+    }, { threshold:.3 });
+    document.querySelectorAll(yellowText).forEach(element => yellowObserver.observe(element));
+  }
+
+  const hoverYellow = [
+    '.hero-intro a', '.featured-more', '.bts-footer a', '.home-footer nav a',
+    '.about-nav-group a', '.contact-nav-group a', '.work-nav-group a',
+    '.about-footer a', '.contact-footer a', '.work-footer a', '.contact-email',
+    '.copy-email', '.contact-row', '.logo-arrow:not(:disabled)', '.testimonial-arrow',
+    '.project-back', '.project-source', '.project-play', '.project-pagination a',
+    '.suggested-grid a', '.work-card'
+  ].join(',');
+  const danceOnInteraction = event => {
+    const target = event.target.closest(yellowText + ',' + hoverYellow);
+    if (!target || (event.relatedTarget instanceof Node && target.contains(event.relatedTarget))) return;
+    const label = target.querySelector('h2,h3') || target;
+    const permanent = target.matches(yellowText);
+    if (event.type === 'pointerover' || permanent || target.matches('.logo-arrow,.project-play')) {
+      dance(label);
+    }
+  };
+  document.addEventListener('pointerover', danceOnInteraction);
+  document.addEventListener('focusin', danceOnInteraction);
 
   // The Play Reel artwork is a homepage-only pointer, never a site-wide cursor.
   const hero = document.querySelector('.home-page .hero-scene');

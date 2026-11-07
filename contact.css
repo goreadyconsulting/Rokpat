@@ -77,27 +77,10 @@
   width:min(80%,190px);
   aspect-ratio:1;
   margin:auto;
-  transform-origin:50% -14px;
-  transform:rotate(calc(var(--tilt) + var(--pull,0deg)));
+  transform:rotate(var(--tilt));
 }
 .contact-photo img{object-fit:contain}
-.contact-gallery.is-interactive .contact-photo::before{
-  content:"";
-  position:absolute;
-  width:1px;height:14px;
-  top:-14px;left:50%;
-  background:rgba(255,255,255,.4);
-}
 .contact-photo:nth-child(-n+5),.contact-photo:nth-child(n+10){width:min(75%,130px)}
-.contact-gallery.is-interactive .contact-photo{opacity:0;visibility:hidden}
-.contact-gallery.is-interactive .contact-photo.is-visible{
-  opacity:1;visibility:visible;
-  animation:contactHang var(--beat) ease-in-out var(--phase) infinite alternate;
-}
-@keyframes contactHang{
-  from{rotate:-6deg}
-  to{rotate:6deg}
-}
 .contact-overline{
   margin:0 0 16px;
   color:var(--muted);
@@ -251,5 +234,5 @@
 @media(max-width:360px){.contact-email{font-size:32px}}
 @media(prefers-reduced-motion:reduce){
   .contact-email,.contact-email:after{transition:none}
-  .contact-gallery .contact-photo,.contact-gallery.is-interactive .contact-photo.is-visible{transform:none;animation:none}
+  .contact-gallery .contact-photo{transform:none}
 }

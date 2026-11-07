@@ -9,47 +9,47 @@
   const email = 'rokpat.dm@gmail.com';
 
   if (hero && gallery && photos.length) {
-    let positions = [];
-    const hidePhotos = () => photos.forEach(photo => photo.classList.remove('is-visible'));
-    const measure = () => {
-      const galleryBounds = gallery.getBoundingClientRect();
-      const heroBounds = hero.getBoundingClientRect();
-      positions = photos.map(photo => ({
-        photo,
-        x:galleryBounds.left - heroBounds.left + photo.offsetLeft + photo.offsetWidth / 2,
-        y:galleryBounds.top - heroBounds.top + photo.offsetTop + photo.offsetHeight / 2
-      }));
-    };
+    let last;
+    let index = 0;
+    const animations = new Map();
     const setMode = () => {
-      hidePhotos();
+      last = null;
+      animations.forEach(animation => animation.cancel());
+      animations.clear();
+      gallery.append(...photos);
+      index = 0;
       gallery.classList.toggle('is-interactive', hoverPointer.matches);
-      measure();
     };
     const reveal = event => {
-      if (!hoverPointer.matches || event.pointerType === 'touch') return;
-      const bounds = hero.getBoundingClientRect();
-      const x = event.clientX - bounds.left;
-      const y = event.clientY - bounds.top;
-      const nearest = positions.map(position => ({
-        ...position,
-        distance:Math.hypot(x - position.x, y - position.y)
-      })).sort((a,b) => a.distance - b.distance).slice(0,3);
-      const visible = new Set(nearest.map(position => position.photo));
+      if (!hoverPointer.matches || event.pointerType === 'touch' || event.target.closest('a,button')) return;
+      const now = event.timeStamp;
+      const { clientX:x, clientY:y } = event;
+      if (last && (now - last.time < 105 || Math.hypot(x - last.x, y - last.y) < 76)) return;
 
-      // Visibility changes in the pointer event, with no timer or opacity transition.
-      positions.forEach(({photo}) => photo.classList.toggle('is-visible', visible.has(photo)));
-      nearest.forEach(({photo,x:cx}) => {
-        photo.style.setProperty('--pull', `${reducedMotion.matches ? 0 : Math.max(-5,Math.min(5,(x - cx) * .035))}deg`);
+      const bounds = gallery.getBoundingClientRect();
+      const photo = photos[index];
+      const half = photo.offsetWidth / 2;
+      photo.style.left = `${Math.max(half, Math.min(bounds.width - half, x - bounds.left))}px`;
+      photo.style.top = `${Math.max(half, Math.min(bounds.height - half, y - bounds.top))}px`;
+      gallery.append(photo);
+      animations.get(photo)?.cancel();
+      const frames = reducedMotion.matches
+        ? [{ opacity:.94 }, { opacity:.94 }]
+        : [{ opacity:0 }, { opacity:.94, offset:.1 }, { opacity:.94, offset:.76 }, { opacity:0 }];
+      const animation = photo.animate(frames, { duration:reducedMotion.matches ? 1000 : 1450 });
+      animations.set(photo, animation);
+      animation.addEventListener('finish', () => {
+        if (animations.get(photo) === animation) animations.delete(photo);
       });
+      index = (index + 1) % photos.length;
+      last = { x, y, time:now };
     };
     setMode();
     hero.addEventListener('pointerenter', reveal, { passive:true });
     hero.addEventListener('pointermove', reveal, { passive:true });
-    hero.addEventListener('pointerleave', hidePhotos);
-    window.addEventListener('blur', hidePhotos);
+    hero.addEventListener('pointerleave', () => { last = null; });
     hoverPointer.addEventListener('change', setMode);
-    if ('ResizeObserver' in window) new ResizeObserver(measure).observe(hero);
-    else window.addEventListener('resize', measure);
+    reducedMotion.addEventListener('change', setMode);
   }
 
   if (copyButton && copyMessage) {

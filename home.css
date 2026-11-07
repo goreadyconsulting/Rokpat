@@ -754,12 +754,6 @@
 }
 .home-cta h2{font-size:84px}
 .home-cta h2 .create-letters{color:var(--brand-yellow);display:inline-block;white-space:nowrap}
-.create-letters span{
-  display:inline-block;
-  transform:translate3d(0,0,0);
-  transition:transform .3s cubic-bezier(.22,.75,.22,1);
-}
-.create-letters span:hover{transform:translate3d(0,-.11em,0) rotate(-3deg)}
 .cta-button{border-radius:6px}
 .cta-floating{
   position:absolute;

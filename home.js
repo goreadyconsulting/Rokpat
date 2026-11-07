@@ -182,19 +182,6 @@
     item.addEventListener('click', () => activateFeatured(item));
   });
 
-  // The original Rok mockup animates each letter in CREATE independently.
-  const createWord = document.querySelector('.create-letters');
-  if (createWord) {
-    const letters = [...createWord.textContent];
-    createWord.textContent = '';
-    for (const letter of letters) {
-      const span = document.createElement('span');
-      span.textContent = letter;
-      span.setAttribute('aria-hidden', 'true');
-      createWord.appendChild(span);
-    }
-  }
-
   const cta = document.querySelector('.home-cta');
   if (cta && window.matchMedia('(pointer:fine)').matches && !reduceMotion) {
     cta.addEventListener('pointerenter', () => cta.classList.add('is-interacting'));
@@ -204,20 +191,90 @@
   const logoWindow = document.getElementById('client-logo-window');
   const logoArrows = [...document.querySelectorAll('[data-logo-step]')];
   if (logoWindow && logoArrows.length) {
+    const ribbon = logoWindow.closest('.logo-ribbon');
+    const track = logoWindow.querySelector('.logo-track');
+    const logos = [...track.children];
+    const loopMode = matchMedia('(min-width:768px) and (prefers-reduced-motion:no-preference)');
+    let period = 0;
+    let position = 0;
+    let lastTime;
+    let lastScroll = logoWindow.scrollLeft;
+    let frame;
+    let nudge;
+    let inView = false;
+    const duplicates = [];
+    const wrap = value => ((value % period) + period) % period;
+
     const syncLogoArrows = () => {
       const max = logoWindow.scrollWidth - logoWindow.clientWidth;
       logoArrows.forEach(button => {
-        button.disabled = Number(button.dataset.logoStep) < 0 ? logoWindow.scrollLeft <= 1 : logoWindow.scrollLeft >= max - 1;
+        button.disabled = !period && (Number(button.dataset.logoStep) < 0
+          ? logoWindow.scrollLeft <= 1 : logoWindow.scrollLeft >= max - 1);
       });
     };
+    const tick = time => {
+      const elapsed = lastTime === undefined ? 0 : Math.min(time - lastTime, 40);
+      lastTime = time;
+      if (nudge) {
+        const progress = Math.min((time - nudge.start) / 450, 1);
+        position = nudge.from + (nudge.to - nudge.from) * (1 - (1 - progress) ** 3);
+        if (progress === 1) nudge = null;
+      } else if (logoWindow.scrollLeft !== lastScroll) {
+        position = logoWindow.scrollLeft;
+      } else if (!logoWindow.matches(':hover,:has(:focus-visible)')) {
+        position += elapsed * .033;
+      }
+      logoWindow.scrollLeft = wrap(position);
+      lastScroll = logoWindow.scrollLeft;
+      frame = requestAnimationFrame(tick);
+    };
+    const syncLoop = () => {
+      cancelAnimationFrame(frame);
+      lastTime = undefined;
+      if (period && inView && !document.hidden) frame = requestAnimationFrame(tick);
+    };
+    const configureLoop = () => {
+      const fraction = period ? wrap(position) / period : 0;
+      const looping = loopMode.matches;
+      logoWindow.classList.toggle('is-looping', looping);
+      period = looping ? logos.length * logos[0].getBoundingClientRect().width : 0;
+      const needed = period ? Math.ceil(logoWindow.clientWidth / period) * logos.length : 0;
+      while (duplicates.length < needed) {
+        const clone = logos[duplicates.length % logos.length].cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        clone.tabIndex = -1;
+        duplicates.push(clone);
+        track.append(clone);
+      }
+      while (duplicates.length > needed) duplicates.pop().remove();
+      nudge = null;
+      position = fraction * period;
+      if (period) logoWindow.scrollLeft = position;
+      lastScroll = logoWindow.scrollLeft;
+      syncLogoArrows();
+      syncLoop();
+    };
     logoArrows.forEach(button => button.addEventListener('click', () => {
-      const logoWidth = logoWindow.querySelector('a')?.offsetWidth || 100;
-      const visible = Math.max(1, Math.floor(logoWindow.clientWidth / logoWidth));
-      logoWindow.scrollBy({ left:Number(button.dataset.logoStep) * visible * logoWidth, behavior:reduceMotion ? 'instant' : 'smooth' });
+      const step = Number(button.dataset.logoStep);
+      const width = logos[0].offsetWidth;
+      if (period) {
+        const target = nudge?.to ?? position;
+        nudge = { from:position, to:target + step * width * 2, start:performance.now() };
+      } else {
+        logoWindow.scrollBy({ left:step * Math.max(1, Math.floor(logoWindow.clientWidth / width)) * width,
+          behavior:reduceMotion ? 'instant' : 'smooth' });
+      }
     }));
-    logoWindow.addEventListener('scroll', syncLogoArrows, { passive:true });
-    window.addEventListener('resize', syncLogoArrows, { passive:true });
-    syncLogoArrows();
+    const visibility = new IntersectionObserver(([entry]) => {
+      inView = entry.isIntersecting;
+      syncLoop();
+    });
+    visibility.observe(ribbon);
+    document.addEventListener('visibilitychange', syncLoop);
+    logoWindow.addEventListener('scroll', () => { if (!period) syncLogoArrows(); }, { passive:true });
+    new ResizeObserver(configureLoop).observe(logoWindow);
+    loopMode.addEventListener('change', configureLoop);
+    configureLoop();
   }
 
   const cards = [...document.querySelectorAll('.testimonial-card')];
