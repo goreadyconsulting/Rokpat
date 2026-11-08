@@ -42,16 +42,25 @@
   const heroDepth = hero ? [...hero.querySelectorAll('[data-depth]')] : [];
   const heroLoop = document.querySelector('.hero-loop');
   const caveBridge = document.querySelector('.cave-bridge');
+  const caveStage = caveBridge?.querySelector('.cave-stage');
   const caveBg = caveBridge?.querySelector('.cave-bg');
   const caveTop = caveBridge?.querySelector('.cave-rock-top');
   const caveBottom = caveBridge?.querySelector('.cave-rock-bottom');
+  const featuredWork = document.getElementById('work');
+  const heroScroll = hero?.querySelector('.hero-scroll');
+  const desktopCave = matchMedia('(min-width:768px)');
+  const motionPreference = matchMedia('(prefers-reduced-motion:reduce)');
   const finePointer = window.matchMedia('(pointer:fine)');
   const clamp = (v,min,max) => Math.min(max,Math.max(min,v));
+  const easeBetween = (start,end,value) => {
+    const t = clamp((value - start) / (end - start),0,1);
+    return t * t * (3 - 2 * t);
+  };
   let ticking = false;
 
   const updateMotion = () => {
     ticking = false;
-    if (reduceMotion) return;
+    if (motionPreference.matches) return;
 
     if (hero) {
       const r = hero.getBoundingClientRect();
@@ -63,8 +72,18 @@
       if (heroLoop) heroLoop.style.transform = `scale(1.035) translate3d(0,${p * 28}px,0)`;
     }
 
-    if (caveBridge && caveBg && caveTop && caveBottom) {
+    if (caveBridge && caveStage && caveBg && caveTop && caveBottom) {
       const r = caveBridge.getBoundingClientRect();
+      if (desktopCave.matches) {
+        // Complete the rock wipe as Featured Work starts entering beneath it.
+        const handoff = featuredWork?.getBoundingClientRect().top ?? r.bottom;
+        const travel = Math.max(handoff - r.top - caveStage.offsetHeight,1);
+        const progress = clamp(-r.top / travel,0,1);
+        caveBridge.style.setProperty('--cave-open', easeBetween(.06,.58,progress));
+        caveBridge.style.setProperty('--cave-push', easeBetween(.23,1,progress));
+        caveBridge.style.setProperty('--cave-exit', easeBetween(.71,1,progress));
+        return;
+      }
       const p = clamp((window.innerHeight - r.top) / (window.innerHeight + r.height),0,1);
       caveBg.style.transform = `scale(1.06) translate3d(0,${(p - .5) * -38}px,0)`;
       caveTop.style.setProperty('--cave-shift', `${(p - .5) * 44}px`);
@@ -78,10 +97,22 @@
     requestAnimationFrame(updateMotion);
   };
 
-  if (!reduceMotion) {
-    window.addEventListener('scroll', requestMotion, { passive:true });
-    window.addEventListener('resize', requestMotion, { passive:true });
+  const syncCaveMode = () => {
+    const active = desktopCave.matches && !motionPreference.matches;
+    caveBridge?.classList.toggle('is-parallax',active);
+    caveBg?.style.removeProperty('transform');
+    caveTop?.style.removeProperty('--cave-shift');
+    caveBottom?.style.removeProperty('--cave-shift');
+    heroScroll?.setAttribute('href',active ? '#cave' : '#work');
+    requestMotion();
+  };
+  desktopCave.addEventListener('change', syncCaveMode);
+  motionPreference.addEventListener('change', syncCaveMode);
+  window.addEventListener('scroll', requestMotion, { passive:true });
+  window.addEventListener('resize', requestMotion, { passive:true });
+  syncCaveMode();
 
+  if (!reduceMotion) {
     hero?.addEventListener('pointermove', event => {
       if (!finePointer.matches) return;
       const r = hero.getBoundingClientRect();
@@ -100,8 +131,6 @@
         el.style.setProperty('--depth-y','0px');
       });
     });
-
-    requestMotion();
   }
 
   const featuredVideo = document.getElementById('featured-video');

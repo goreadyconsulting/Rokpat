@@ -85,12 +85,65 @@
     --scene-gutter:clamp(24px,3vw,76px);
     --scene-top:calc(72px + clamp(12px,2dvh,26px));
     --scene-bottom:clamp(16px,4dvh,52px);
+    --cave-overlap:clamp(32px,8dvh,68px);
   }
   .home-page main > section,.home-page .home-footer{scroll-snap-align:start}
   .home-page .home-footer{scroll-snap-align:end}
   .home-page .hero-scene,.home-page .cave-bridge,.home-page .bts-reel{
     height:100dvh;
     min-height:0;
+  }
+  .home-page:has(.cave-bridge.is-parallax):not(.modal-open,.menu-open){overflow-x:clip}
+  .home-page .cave-bridge.is-parallax{
+    z-index:1;
+    height:184dvh;
+    overflow:visible;
+    background:transparent;
+    pointer-events:none;
+  }
+  .cave-bridge.is-parallax + .featured-work{
+    isolation:isolate;
+    margin-top:calc(-1 * var(--cave-overlap));
+  }
+  .cave-bridge.is-parallax .cave-stage{
+    position:sticky;
+    top:0;
+    height:100dvh;
+    isolation:isolate;
+    background:#050505;
+    mask-image:linear-gradient(#000 calc(100% - var(--cave-overlap)),transparent);
+  }
+  .is-parallax .cave-bg{
+    transform:translateY(calc(var(--cave-push,0) * -4dvh)) scale(calc(1.08 + var(--cave-push,0) * .42));
+    opacity:calc(var(--cave-open,0) - var(--cave-exit,0) * .65);
+    filter:brightness(.85) contrast(1.06);
+  }
+  .is-parallax .cave-rock{
+    inset:auto;
+    left:50%;
+    width:max(112%,238dvh);
+    max-width:none;
+  }
+  .is-parallax .cave-rock-top{
+    bottom:50%;
+    left:49%;
+    transform:translate3d(-50%,calc(23% - var(--cave-open,0) * 49dvh + var(--cave-exit,0) * 30dvh),0)
+      rotate(180deg) scale(calc(1 + var(--cave-push,0) * .14));
+  }
+  .is-parallax .cave-rock-bottom{
+    top:50%;
+    left:53%;
+    filter:brightness(.86);
+    transform:translate3d(-50%,calc(-23% + var(--cave-open,0) * 48dvh - var(--cave-exit,0) * 58dvh),0)
+      scale(calc(1 + var(--cave-push,0) * .19));
+  }
+  .is-parallax .cave-stage::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:3;
+    background:radial-gradient(ellipse at 50% 46%,transparent 37%,rgba(4,5,7,.54) 100%);
+    pointer-events:none;
   }
   .home-page .hero-name{
     top:max(var(--scene-top),17dvh);
