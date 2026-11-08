@@ -1,4 +1,60 @@
 (() => {
+  const studio = document.querySelector('.suggested-grid');
+  if (studio) {
+    const workUrl = new URL('../work.html', location.href);
+    const pairKey = 'rokpat:studio-pair';
+    let previousPair = [];
+
+    const refreshStudio = async () => {
+      try {
+        const response = await fetch(workUrl);
+        if (!response.ok) return;
+        const catalog = document.createElement('template');
+        catalog.innerHTML = await response.text();
+        const candidates = [...catalog.content.querySelectorAll('#work-grid .work-card')].flatMap(card => {
+          const href = card.getAttribute('href');
+          const poster = card.querySelector('img')?.getAttribute('src');
+          const title = card.querySelector('h2')?.textContent.trim();
+          const details = card.querySelector('p')?.cloneNode(true);
+          details?.querySelector('.work-credit')?.remove();
+          if (!href || !poster || !title || !details) return [];
+          const url = new URL(href, workUrl);
+          if (url.pathname === location.pathname) return [];
+          return [{ url, poster:new URL(poster, workUrl), title, details }];
+        });
+        if (candidates.length < 2) return;
+
+        try {
+          const saved = JSON.parse(sessionStorage.getItem(pairKey));
+          if (Array.isArray(saved)) previousPair = saved;
+        } catch { /* The current page still remembers its last pair when storage is unavailable. */ }
+
+        const fresh = candidates.filter(project => !previousPair.includes(project.url.pathname));
+        const pool = fresh.length >= 2 ? fresh : candidates;
+        const picks = [0, 1].map(() => pool.splice(Math.floor(Math.random() * pool.length), 1)[0]);
+        const cards = picks.map(project => {
+          const link = document.createElement('a');
+          link.href = project.url;
+          const image = document.createElement('img');
+          image.src = project.poster;
+          image.alt = '';
+          image.loading = 'lazy';
+          image.decoding = 'async';
+          const title = document.createElement('h3');
+          title.textContent = project.title;
+          link.append(image, title, project.details);
+          return link;
+        });
+        studio.replaceChildren(...cards);
+        previousPair = picks.map(project => project.url.pathname);
+        try { sessionStorage.setItem(pairKey, JSON.stringify(previousPair)); } catch { /* Storage is optional. */ }
+      } catch { /* Leave the links in the page available if the Work grid can't be loaded. */ }
+    };
+
+    refreshStudio();
+    window.addEventListener('pageshow', event => { if (event.persisted) refreshStudio(); });
+  }
+
   const modifiedClick = event => event.metaKey || event.ctrlKey || event.shiftKey || event.altKey;
   const media = document.getElementById('project-media');
   const play = media?.querySelector('[data-video-id]');
