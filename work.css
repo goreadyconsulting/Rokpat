@@ -86,11 +86,37 @@
 .work-chip[aria-pressed=true]{background:var(--yellow);border-color:var(--yellow);color:#111}
 .work-view-group .work-chip{padding-inline:16px;font-size:17px}
 .work-grid{
+  position:relative;
   scroll-margin-top:140px;
   display:grid;
   grid-template-columns:repeat(6,minmax(0,1fr));
   gap:36px 22px;
   padding:32px clamp(20px,3vw,72px) 80px;
+}
+.work-glitch{
+  position:absolute;
+  inset:0;
+  z-index:3;
+  overflow:hidden;
+  pointer-events:none;
+}
+.work-glitch-band{position:absolute;inset:0}
+.work-glitch-fragment{position:absolute;overflow:hidden}
+.work-glitch-fragment img{position:absolute;left:0;width:100%;object-fit:cover}
+.work-glitch-band:not(:last-child) .work-glitch-fragment::after{
+  content:"";
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
+  height:2px;
+  background:linear-gradient(90deg,transparent,var(--yellow) 24%,rgba(255,219,9,.62) 72%,transparent);
+  animation:work-glitch-edge 255ms steps(1,end) both;
+}
+@keyframes work-glitch-edge{
+  0%,58%,100%{opacity:0}
+  18%,43%{opacity:.9}
+  32%{opacity:.3}
 }
 .work-card{
   min-width:0;
