@@ -23,8 +23,8 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="home.css?v=20261108-rok" />
   <link rel="stylesheet" href="services.css?v=20261107-revisions" />
-  <link rel="stylesheet" href="desktop.css?v=20261108-motion" />
-  <link rel="stylesheet" href="mobile.css?v=20261108-motion" media="(max-width:767px)" />
+  <link rel="stylesheet" href="desktop.css?v=20261108-rotation" />
+  <link rel="stylesheet" href="mobile.css?v=20261108-rotation" media="(max-width:767px)" />
 </head>
 <body class="home-page">
   <header class="site-header home-header">
@@ -238,9 +238,9 @@
         <button class="logo-arrow" type="button" data-logo-step="1" aria-label="Next client logos" aria-controls="client-logo-window" disabled>→</button>
       </div>
 
-      <div class="testimonial-carousel shell reveal" id="testimonials" aria-live="polite">
+      <div class="testimonial-carousel shell reveal" id="testimonials">
         <button class="testimonial-arrow testimonial-prev" type="button" aria-label="Previous testimonial">‹</button>
-        <div class="testimonial-stage">
+        <div class="testimonial-stage" aria-live="off">
           <article class="testimonial-card is-left">
             <h3>“Rok is a great listener and a very skilful <em>3D visualiser!</em>”</h3>
             <div class="testimonial-full">
@@ -275,7 +275,10 @@
           </article>
         </div>
         <button class="testimonial-arrow testimonial-next" type="button" aria-label="Next testimonial">›</button>
-        <div class="testimonial-count"><span id="testimonial-current">2</span> / 4</div>
+        <div class="testimonial-count">
+          <span><span id="testimonial-current">2</span> / 4</span>
+          <button class="testimonial-toggle" type="button" aria-label="Pause testimonial rotation" hidden>Pause</button>
+        </div>
       </div>
     </section>
 
@@ -315,7 +318,7 @@
   </dialog>
 
   <script src="site.js?v=20261108-nav"></script>
-  <script src="home.js?v=20261108-motion"></script>
+  <script src="home.js?v=20261108-rotation"></script>
   <script src="photo-trail.js?v=20261108-motion"></script>
   <script src="services.js?v=20261011-review"></script>
 </body>

@@ -285,12 +285,14 @@
   }
 
   const testimonials = document.getElementById('testimonials');
+  const stage = testimonials.querySelector('.testimonial-stage');
   const cards = [...testimonials.querySelectorAll('.testimonial-card')];
+  const rotationButton = testimonials.querySelector('.testimonial-toggle');
   const count = document.getElementById('testimonial-current');
   let selected = cards.findIndex(card => card.classList.contains('is-center'));
   let autoAdvance;
   let inView = false;
-  let interacted = false;
+  let paused = false;
 
   const showTestimonial = index => {
     const animate = index !== selected && desktopLayout.matches && !motionPreference.matches;
@@ -327,34 +329,39 @@
 
   testimonials.addEventListener('click', event => {
     if (!desktopLayout.matches) return;
-    if (event.target.closest('.testimonial-prev')) showTestimonial(selected - 1);
+    if (event.target.closest('.testimonial-toggle')) paused = !paused;
+    else if (event.target.closest('.testimonial-prev')) showTestimonial(selected - 1);
     else if (event.target.closest('.testimonial-next')) showTestimonial(selected + 1);
     else {
       const position = cards.indexOf(event.target.closest('.testimonial-card'));
-      if (position >= 0 && position !== selected) showTestimonial(position);
+      if (position < 0 || position === selected) return;
+      showTestimonial(position);
     }
+    syncTestimonials();
   });
   showTestimonial(selected);
 
   const syncTestimonials = () => {
     clearInterval(autoAdvance);
-    if (!desktopLayout.matches || motionPreference.matches) {
+    const canRotate = desktopLayout.matches && !motionPreference.matches;
+    if (!canRotate) {
       cards.forEach(card => card.getAnimations().forEach(animation => animation.cancel()));
     }
-    if (desktopLayout.matches && !motionPreference.matches && inView && !interacted) {
+    rotationButton.hidden = !canRotate;
+    const action = paused ? 'Play' : 'Pause';
+    rotationButton.textContent = action;
+    rotationButton.setAttribute('aria-label', `${action} testimonial rotation`);
+    stage.setAttribute('aria-live', canRotate && !paused ? 'off' : 'polite');
+    if (canRotate && inView && !paused && !document.hidden) {
       autoAdvance = setInterval(() => showTestimonial(selected + 1), 9000);
     }
   };
-  const pauseTestimonials = () => {
-    interacted = true;
-    syncTestimonials();
-  };
   new IntersectionObserver(([entry]) => {
-    inView = entry.isIntersecting;
+    inView = entry.intersectionRatio >= .4;
     syncTestimonials();
-  }, { threshold:.4 }).observe(testimonials);
-  testimonials.addEventListener('pointerenter', pauseTestimonials, { once:true });
-  testimonials.addEventListener('focusin', pauseTestimonials, { once:true });
+  }, { threshold:.4 }).observe(stage);
+  document.addEventListener('visibilitychange', syncTestimonials);
   desktopLayout.addEventListener('change', syncTestimonials);
   motionPreference.addEventListener('change', syncTestimonials);
+  syncTestimonials();
 })();
