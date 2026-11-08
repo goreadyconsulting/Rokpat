@@ -300,37 +300,4 @@
     configureLoop();
   }
 
-  const carousel = document.getElementById('testimonials');
-  if (carousel) {
-    const cards = [...carousel.querySelectorAll('.testimonial-card')];
-    const count = document.getElementById('testimonial-current');
-    const mobile = matchMedia('(max-width:767px)');
-    let index = Math.max(0,cards.findIndex(card => card.classList.contains('is-center')));
-    let timer;
-    let interacted = false;
-
-    const move = step => {
-      if (!cards.length) return;
-      index = (index + step + cards.length) % cards.length;
-      cards.forEach((card, position) => card.classList.toggle('is-center', position === index));
-      if (count) count.textContent = String(index + 1);
-    };
-    const syncAutoplay = () => {
-      clearInterval(timer);
-      if (mobile.matches && !reduceMotion && !interacted && cards.length > 1) {
-        timer = setInterval(() => move(1), 9000);
-      }
-    };
-    carousel.addEventListener('click', event => {
-      if (!mobile.matches) return;
-      const arrow = event.target.closest('.testimonial-arrow');
-      if (arrow) move(arrow.classList.contains('testimonial-prev') ? -1 : 1);
-      if (arrow || event.target.closest('.testimonial-card')) {
-        interacted = true;
-        syncAutoplay();
-      }
-    });
-    mobile.addEventListener('change', syncAutoplay);
-    syncAutoplay();
-  }
 })();
