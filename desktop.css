@@ -96,7 +96,7 @@
   .home-page:has(.cave-bridge.is-parallax):not(.modal-open,.menu-open){overflow-x:clip}
   .home-page .cave-bridge.is-parallax{
     z-index:1;
-    height:184dvh;
+    height:202dvh;
     overflow:visible;
     background:transparent;
     pointer-events:none;
