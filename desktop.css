@@ -168,7 +168,7 @@
     padding:var(--scene-top) var(--scene-gutter) var(--scene-bottom);
   }
   .home-page .featured-heading,.home-page .featured-more,.home-page .featured-meta{position:static}
-  .home-page .featured-heading,.home-page .brand-section-title h2,.home-page .clients-title h2{
+  .home-page .featured-heading,.home-page .brand-section-title h2{
     font-size:clamp(53px,min(6vw,10dvh),118px);
   }
   .featured-heading{grid-area:title}
@@ -186,37 +186,77 @@
   .home-page .services .service-panels{height:auto;min-height:0}
   .home-page .bts-reel{margin-top:0;border-top:clamp(16px,3dvh,44px) solid var(--brand-bg)}
   .home-page .clients-testimonials{
+    display:grid;
+    grid-template-rows:auto auto 1fr;
     min-height:100dvh;
     padding-top:var(--scene-top);
     padding-bottom:var(--scene-bottom);
   }
   .home-page .clients-testimonials .shell{width:calc(100% - 2 * var(--scene-gutter))}
-  .home-page .clients-title h2{margin-bottom:clamp(10px,2dvh,30px)}
+  .home-page .clients-title h2{
+    margin-bottom:clamp(10px,2dvh,30px);
+    font-size:clamp(33px,min(4vw,6.5dvh),86px);
+  }
   .home-page .logo-track a{flex-basis:clamp(108px,9vw,144px);height:clamp(53px,8dvh,80px)}
   .logo-window.is-looping{scroll-snap-type:none;scroll-behavior:auto}
   .logo-window.is-looping .logo-track{min-width:0;justify-content:flex-start}
-  .home-page .testimonial-carousel{min-height:0;padding-top:clamp(14px,4dvh,54px)}
-  .home-page .testimonial-stage{height:auto}
-  .home-page .testimonial-card{padding:clamp(14px,2.5dvh,26px)}
-  .home-page .testimonial-card.is-center{
-    position:relative;
+  .home-page .testimonial-carousel{display:flex;padding-top:clamp(14px,3.4dvh,44px)}
+  .home-page .testimonial-stage{
+    flex:1;
+    display:grid;
+    min-height:0;
+    padding:0;
+    grid-template-columns:repeat(12,minmax(0,1fr));
+    grid-template-rows:1fr 1fr;
+    gap:clamp(8px,1.2vw,20px);
+  }
+  .home-page .testimonial-card{
+    grid-column:span 5;
     display:flex;
     flex-direction:column;
-    height:auto;
-    min-height:clamp(200px,37dvh,440px);
+    gap:clamp(8px,1.6dvh,20px);
+    min-width:0;
+    padding:clamp(14px,2.55dvh,34px);
+    background:#201e1e;
   }
-  .home-page .testimonial-card h3{font-size:clamp(27px,min(3.1vw,5dvh),50px)}
-  .home-page .testimonial-card:not(.is-center) h3{font-size:clamp(18px,1.75vw,27px)}
-  .home-page .testimonial-full{margin-top:clamp(8px,2dvh,22px);font-size:clamp(14px,2.1dvh,17px)}
-  .home-page .testimonial-card.is-center footer{position:static;margin-top:auto}
+  .home-page .testimonial-card:first-child,.home-page .testimonial-card:last-child{
+    grid-column:span 7;
+    background:#252222;
+  }
+  .home-page .testimonial-full{
+    max-width:92ch;
+    margin-block:auto;
+    font-size:clamp(14px,1.5dvh,16px);
+    line-height:1.48;
+  }
+  .home-page .testimonial-full p{margin:0}
+  .home-page .testimonial-full p + p{margin-top:8px}
+  .home-page .testimonial-card footer{position:static;padding-top:clamp(7px,1.1dvh,13px)}
+  .home-page .testimonial-card footer strong{font-size:clamp(14px,1.5dvh,16px)}
+  .home-page .testimonial-card footer span{font-size:12px}
+  .home-page .testimonial-arrow,.home-page .testimonial-count{display:none}
   .home-page .home-cta h2{font-size:clamp(57px,min(8vw,13dvh),112px)}
   .contact-stage{padding-block:clamp(72px,15dvh,180px) clamp(64px,13dvh,160px)}
 }
 
 @media (min-width:768px) and (max-height:700px){
   .home-page .featured-item{padding-block:8px}
-  .home-page .testimonial-card footer{padding-top:7px}
-  .home-page .testimonial-full p{margin-bottom:8px}
+}
+
+@media (min-width:768px) and (max-height:760px){
+  .home-page .testimonial-carousel{padding-top:12px}
+  .home-page .testimonial-stage{grid-template-columns:1.12fr 1.07fr .84fr 1.1fr;grid-template-rows:1fr}
+  .home-page .testimonial-card:nth-child(n){grid-column:auto;padding:clamp(10px,1.8dvh,16px);gap:6px}
+  .home-page .testimonial-card h3{font-size:clamp(18px,2vw,22px)}
+  .home-page .testimonial-full{font-size:clamp(13px,1.4vw,14px);line-height:1.34}
+}
+
+@media (min-width:768px) and (max-width:900px) and (max-height:700px){
+  .home-page .clients-testimonials .shell{width:calc(100% - 32px)}
+  .home-page .testimonial-stage{gap:8px}
+  .home-page .testimonial-card:nth-child(n){padding:8px;gap:6px}
+  .home-page .testimonial-full{line-height:1.3}
+  .home-page .testimonial-card footer span{font-size:11px;margin-top:2px}
 }
 
 @media (prefers-reduced-motion:reduce){

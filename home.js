@@ -300,54 +300,37 @@
     configureLoop();
   }
 
-  const cards = [...document.querySelectorAll('.testimonial-card')];
-  const prev = document.querySelector('.testimonial-prev');
-  const next = document.querySelector('.testimonial-next');
-  const count = document.getElementById('testimonial-current');
-  let testimonialIndex = Math.max(0,cards.findIndex(c => c.classList.contains('is-center')));
+  const carousel = document.getElementById('testimonials');
+  if (carousel) {
+    const cards = [...carousel.querySelectorAll('.testimonial-card')];
+    const count = document.getElementById('testimonial-current');
+    const mobile = matchMedia('(max-width:767px)');
+    let index = Math.max(0,cards.findIndex(card => card.classList.contains('is-center')));
+    let timer;
+    let interacted = false;
 
-  const renderTestimonials = () => {
-    const n = cards.length;
-    cards.forEach((card,index) => {
-      const d = (index - testimonialIndex + n) % n;
-      card.classList.remove('is-left','is-center','is-right','is-hidden');
-      if (d === 0) card.classList.add('is-center');
-      else if (d === 1) card.classList.add('is-right');
-      else if (d === n - 1) card.classList.add('is-left');
-      else card.classList.add('is-hidden');
-    });
-    if (count) count.textContent = String(testimonialIndex + 1);
-  };
-
-  const moveTestimonial = step => {
-    if (!cards.length) return;
-    testimonialIndex = (testimonialIndex + step + cards.length) % cards.length;
-    renderTestimonials();
-  };
-
-  prev?.addEventListener('click', () => moveTestimonial(-1));
-  next?.addEventListener('click', () => moveTestimonial(1));
-  cards.forEach((card,index) => {
-    card.addEventListener('click', () => {
-      if (!card.classList.contains('is-center')) {
-        testimonialIndex = index;
-        renderTestimonials();
-      }
-    });
-  });
-  renderTestimonials();
-
-  let autoTestimonial = 0;
-  if (!reduceMotion && cards.length > 1) {
-    autoTestimonial = window.setInterval(() => moveTestimonial(1), 9000);
-    const stopAuto = () => {
-      if (autoTestimonial) {
-        clearInterval(autoTestimonial);
-        autoTestimonial = 0;
+    const move = step => {
+      if (!cards.length) return;
+      index = (index + step + cards.length) % cards.length;
+      cards.forEach((card, position) => card.classList.toggle('is-center', position === index));
+      if (count) count.textContent = String(index + 1);
+    };
+    const syncAutoplay = () => {
+      clearInterval(timer);
+      if (mobile.matches && !reduceMotion && !interacted && cards.length > 1) {
+        timer = setInterval(() => move(1), 9000);
       }
     };
-    prev?.addEventListener('click',stopAuto,{once:true});
-    next?.addEventListener('click',stopAuto,{once:true});
-    cards.forEach(card => card.addEventListener('click',stopAuto,{once:true}));
+    carousel.addEventListener('click', event => {
+      if (!mobile.matches) return;
+      const arrow = event.target.closest('.testimonial-arrow');
+      if (arrow) move(arrow.classList.contains('testimonial-prev') ? -1 : 1);
+      if (arrow || event.target.closest('.testimonial-card')) {
+        interacted = true;
+        syncAutoplay();
+      }
+    });
+    mobile.addEventListener('change', syncAutoplay);
+    syncAutoplay();
   }
 })();
