@@ -45,8 +45,8 @@
       gallery.append(photo);
       animations.get(photo)?.cancel();
       const frames = reducedMotion.matches
-        ? [{ opacity:.68 }, { opacity:.68 }]
-        : [{ opacity:0 }, { opacity:.68, offset:.1 }, { opacity:.68, offset:.76 }, { opacity:0 }];
+        ? [{ opacity:1 }, { opacity:1 }]
+        : [{ opacity:0 }, { opacity:1, offset:.1 }, { opacity:1, offset:.76 }, { opacity:0 }];
       const animation = photo.animate(frames, { duration:reducedMotion.matches ? 1000 : duration });
       animations.set(photo, animation);
       animation.addEventListener('finish', () => {

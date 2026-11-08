@@ -9,8 +9,6 @@
   document.querySelectorAll('[data-copyright-year]').forEach(year => {
     year.textContent = new Date().getFullYear();
   });
-  header?.classList.add('rollout-header');
-
   const setHeaderState = () => {
     if (header) header.classList.toggle('is-scrolled', window.scrollY > 20);
   };

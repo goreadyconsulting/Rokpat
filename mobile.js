@@ -14,7 +14,7 @@
     const icon = document.createElement('span');
     icon.className = 'phone-process-icon';
     icon.setAttribute('aria-hidden', 'true');
-    return {item, title, detail, label, button, icon};
+    return {title, detail, label, button, icon};
   });
 
   const show = active => {
@@ -33,20 +33,16 @@
   const sync = () => {
     if (phone.matches) {
       process.classList.add('is-phone-accordion');
-      for (const {item, title, label, button, icon} of steps) {
+      for (const {title, label, button, icon} of steps) {
         button.replaceChildren(...label, icon);
         title.append(button);
-        item.removeAttribute('tabindex');
-        item.removeAttribute('aria-describedby');
       }
       show(steps[0]);
     } else if (process.classList.contains('is-phone-accordion')) {
       process.classList.remove('is-phone-accordion');
-      for (const {item, title, detail, label} of steps) {
+      for (const {title, detail, label} of steps) {
         title.replaceChildren(...label);
         detail.hidden = false;
-        item.setAttribute('tabindex', '0');
-        item.setAttribute('aria-describedby', detail.id);
       }
     }
   };
