@@ -40,29 +40,22 @@
 .about-page .mobile-menu{background:#151414;color:#fff}
 .about-intro{
   display:grid;
-  grid-template-columns:minmax(260px,.82fr) 1.18fr;
-  gap:clamp(32px,5vw,96px);
   align-items:center;
-  min-height:calc(100svh - 72px);
-  padding:calc(72px + 56px) clamp(20px,3vw,72px) 80px;
 }
 .about-portrait{
   margin:0;
   position:relative;
-  aspect-ratio:4/5;
+  aspect-ratio:1500/2020;
   overflow:hidden;
   border-radius:3px;
   background:#111;
 }
 .about-portrait img{width:100%;height:100%;object-fit:cover;filter:saturate(.85) contrast(1.04)}
 .about-content{
-  align-self:stretch;
   min-width:0;
   display:grid;
-  grid-template-rows:1fr auto;
   gap:clamp(16px,2.4vw,32px);
 }
-.about-copy{align-self:center}
 .about-eyebrow{
   margin:0 0 16px;
   color:var(--muted);
@@ -189,10 +182,41 @@
 .about-footer a:hover{color:var(--yellow)}
 .about-footer>span{text-align:right;color:#99948e;font:400 12px/1.4 var(--barlow)}
 @media(min-width:1600px){
-  .about-copy h1{font-size:116px}
   .about-process h2,.about-remote h2{font-size:76px}
 }
-@media(max-width:1100px){.about-copy h1{font-size:66px}}
+@media(min-width:768px){
+  .about-intro{
+    --intro-top:calc(72px + clamp(12px,2.3dvh,28px));
+    --intro-bottom:clamp(24px,4dvh,54px);
+    --intro-room:calc(100dvh - var(--intro-top) - var(--intro-bottom));
+    grid-template-columns:min(40%,calc(var(--intro-room) * 1500 / 2020)) minmax(0,1fr);
+    gap:clamp(24px,4vw,88px);
+    min-height:100dvh;
+    padding:var(--intro-top) clamp(20px,3vw,72px) var(--intro-bottom);
+  }
+  .about-content{gap:clamp(16px,3dvh,36px)}
+  .about-eyebrow{
+    margin-bottom:clamp(8px,1.6dvh,16px);
+    font-size:clamp(11px,1.65dvh,14px);
+  }
+  .about-copy h1{
+    max-width:1280px;
+    margin-bottom:clamp(14px,2.7dvh,32px);
+    font-size:clamp(40px,min(5.6vw,9.4dvh),116px);
+  }
+  .about-copy p:not(.about-eyebrow){
+    max-width:50ch;
+    margin-bottom:clamp(10px,1.6dvh,20px);
+    font-size:clamp(16px,min(1.35vw,2.3dvh),25px);
+    line-height:1.55;
+  }
+  .about-copy p:last-child:not(.about-eyebrow){margin-bottom:0}
+  .about-cta-turn{min-height:clamp(58px,10dvh,98px)}
+  .about-cta-face{
+    padding-block:clamp(8px,1.4dvh,14px);
+    font-size:clamp(22px,min(2.2vw,4.7dvh),36px);
+  }
+}
 @media(max-width:1000px){.process-steps{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:767px){
   .about-page .site-header.about-header{display:grid;grid-template-columns:1fr auto;align-items:center;height:64px;padding:0 12px}
