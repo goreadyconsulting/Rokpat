@@ -20,7 +20,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../style.css" />
   <link rel="stylesheet" href="../work.css?v=20261107-revisions" />
-  <link rel="stylesheet" href="../project.css?v=20261107-portfolio" />
+  <link rel="stylesheet" href="../project.css?v=20261108-gallery" />
   <link rel="stylesheet" href="../desktop.css?v=20261107-desktop" />
 </head>
 <body class="work-page project-page">
@@ -88,18 +88,27 @@
             <span aria-hidden="true">▶</span> Play title sequence
           </a>
         </div>
-        <section class="project-gallery" aria-label="Project stills and artwork">
-            <figure><img src="../assets/projects/yi-jing-s2-01.webp" width="1400" height="788" alt="Performer framed by vibrant collage imagery" loading="lazy" decoding="async" /></figure>
-            <figure><img src="../assets/projects/yi-jing-s2-02.webp" width="1400" height="788" alt="A red-cloaked figure in the hills of Marche" loading="lazy" decoding="async" /></figure>
-            <figure><img src="../assets/projects/yi-jing-s2-03.webp" width="1400" height="788" alt="A solitary figure in shallow water under a blue sky" loading="lazy" decoding="async" /></figure>
-            <figure><img src="../assets/projects/yi-jing-s2-04.webp" width="1400" height="788" alt="A performer beneath a canopy of branches" loading="lazy" decoding="async" /></figure>
-            <figure><img src="../assets/projects/yi-jing-s2-05.webp" width="1400" height="788" alt="Compass design with ornate geometric detail" loading="lazy" decoding="async" /></figure>
-            <figure><img src="../assets/projects/yi-jing-s2-06.webp" width="1400" height="990" alt="Episode 1 storyboard" loading="lazy" decoding="async" /><figcaption>Episode 1 storyboard</figcaption></figure>
+        <section class="project-assets" aria-labelledby="project-assets-title">
+          <div class="project-assets-bar">
+            <h2 id="project-assets-title">Stills &amp; artwork</h2>
+            <div class="project-assets-controls" role="group" aria-label="Gallery controls" hidden>
+              <button type="button" data-gallery-step="-1" aria-label="Previous stills" aria-controls="project-gallery">←</button>
+              <button type="button" data-gallery-step="1" aria-label="Next stills" aria-controls="project-gallery">→</button>
+            </div>
+          </div>
+          <div class="project-gallery" id="project-gallery" role="group" aria-label="Project images" tabindex="0">
+            <figure><a class="project-still" href="../assets/projects/yi-jing-s2-01.webp" target="_blank" rel="noreferrer"><img src="../assets/projects/yi-jing-s2-01.webp" width="1400" height="788" alt="Performer framed by vibrant collage imagery" loading="lazy" decoding="async" /></a></figure>
+            <figure><a class="project-still" href="../assets/projects/yi-jing-s2-02.webp" target="_blank" rel="noreferrer"><img src="../assets/projects/yi-jing-s2-02.webp" width="1400" height="788" alt="A red-cloaked figure in the hills of Marche" loading="lazy" decoding="async" /></a></figure>
+            <figure><a class="project-still" href="../assets/projects/yi-jing-s2-03.webp" target="_blank" rel="noreferrer"><img src="../assets/projects/yi-jing-s2-03.webp" width="1400" height="788" alt="A solitary figure in shallow water under a blue sky" loading="lazy" decoding="async" /></a></figure>
+            <figure><a class="project-still" href="../assets/projects/yi-jing-s2-04.webp" target="_blank" rel="noreferrer"><img src="../assets/projects/yi-jing-s2-04.webp" width="1400" height="788" alt="A performer beneath a canopy of branches" loading="lazy" decoding="async" /></a></figure>
+            <figure><a class="project-still" href="../assets/projects/yi-jing-s2-05.webp" target="_blank" rel="noreferrer"><img src="../assets/projects/yi-jing-s2-05.webp" width="1400" height="788" alt="Compass design with ornate geometric detail" loading="lazy" decoding="async" /></a></figure>
+            <figure><a class="project-still" href="../assets/projects/yi-jing-s2-06.webp" target="_blank" rel="noreferrer"><img src="../assets/projects/yi-jing-s2-06.webp" width="1400" height="990" alt="Episode 1 storyboard" loading="lazy" decoding="async" /></a><figcaption>Episode 1 storyboard</figcaption></figure>
+          </div>
         </section>
       </div>
     </div>
     <section class="project-suggestions" aria-labelledby="suggestions-title">
-      <h2 id="suggestions-title">Suggested projects</h2>
+      <h2 id="suggestions-title">More from the studio</h2>
       <div class="suggested-grid">
         <a href="yi-jing-s1.html">
           <img src="../assets/projects/yi-jing-s1-02.webp" alt="" loading="lazy" decoding="async" />
@@ -121,6 +130,6 @@
     <span>© <span data-copyright-year>2026</span> Rok Pat</span>
   </footer>
   <script src="../site.js?v=20261107-desktop"></script>
-  <script src="../project.js?v=20261107-portfolio"></script>
+  <script src="../project.js?v=20261108-gallery"></script>
 </body>
 </html>
