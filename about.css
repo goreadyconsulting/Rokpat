@@ -71,51 +71,41 @@
   text-transform:uppercase;
 }
 .about-copy h1 em{font-style:normal;color:var(--yellow)}
-.about-copy p:not(.about-eyebrow){
-  max-width:46ch;
+.about-bio p,.about-remote p{
+  max-width:52ch;
   margin:0 0 20px;
   color:#d6d2cb;
   font:400 clamp(18px,1.3vw,25px)/1.65 var(--barlow);
 }
-.about-process{padding:0 clamp(20px,3vw,72px) 80px}
+.about-bio p:last-child,.about-remote p{margin-bottom:0}
 .about-process h2,.about-remote h2{
-  margin:0 0 28px;
-  font:400 56px/.95 var(--bebas);
+  margin:0 0 10px;
+  font:400 clamp(26px,4dvh,44px)/1 var(--bebas);
   letter-spacing:.02em;
   text-transform:uppercase;
 }
 .process-steps{
+  --step-gap:clamp(8px,1.2vw,18px);
   display:grid;
-  grid-template-columns:repeat(5,1fr);
-  border-top:1px solid var(--line);
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,140px),1fr));
+  gap:var(--step-gap);
+  margin:0;
+  padding:0;
+  list-style:none;
 }
-.process-steps article{padding:26px 22px 34px 0}
-.process-steps span{
-  color:var(--yellow);
-  font:400 22px/1 var(--bebas);
-  letter-spacing:.06em;
-}
-.process-steps h3{
-  margin:10px 0 12px;
-  font:400 clamp(30px,2.4vw,54px)/1 var(--bebas);
-  letter-spacing:.03em;
+.process-step{min-width:0;position:relative;border-radius:4px;outline-offset:3px}
+.process-step:focus-visible{outline:2px solid var(--yellow)}
+.process-card{padding:12px;background:#242121;border:1px solid var(--line);border-radius:inherit}
+.process-front{
+  margin:0 0 6px;
+  font:400 clamp(18px,1.9vw,30px)/1 var(--bebas);
+  letter-spacing:.025em;
   text-transform:uppercase;
 }
-.process-steps p{max-width:28ch;margin:0;color:#cfcbc4;font-size:17px}
-.about-remote{
-  display:grid;
-  grid-template-columns:1fr 1.3fr;
-  gap:48px;
-  align-items:start;
-  padding:72px clamp(20px,3vw,72px);
-  border-top:1px solid var(--line);
-}
-.about-remote h2{margin:0}
-.about-remote p{
-  max-width:52ch;
+.process-back{
   margin:0;
   color:#d6d2cb;
-  font:400 clamp(18px,1.3vw,25px)/1.65 var(--barlow);
+  font:500 clamp(12px,1.15vw,16px)/1.24 var(--barlow);
 }
 .about-cta{
   justify-self:end;
@@ -181,43 +171,131 @@
 .about-footer a{font:500 13px/1.3 var(--barlow);letter-spacing:.05em;text-transform:uppercase}
 .about-footer a:hover{color:var(--yellow)}
 .about-footer>span{text-align:right;color:#99948e;font:400 12px/1.4 var(--barlow)}
-@media(min-width:1600px){
-  .about-process h2,.about-remote h2{font-size:76px}
-}
 @media(min-width:768px){
   .about-intro{
-    --intro-top:calc(72px + clamp(12px,2.3dvh,28px));
-    --intro-bottom:clamp(24px,4dvh,54px);
-    --intro-room:calc(100dvh - var(--intro-top) - var(--intro-bottom));
-    grid-template-columns:min(40%,calc(var(--intro-room) * 1500 / 2020)) minmax(0,1fr);
-    gap:clamp(24px,4vw,88px);
+    --intro-top:calc(72px + clamp(10px,1.8dvh,24px));
+    --intro-bottom:clamp(20px,3dvh,40px);
+    --intro-gap:clamp(14px,2.5dvh,34px);
+    --step-size:clamp(88px,16dvh,164px);
+    --process-title:clamp(24px,3.8dvh,44px);
+    --portrait-max:32vw;
+    --portrait-room:calc(100dvh - var(--intro-top) - var(--intro-bottom) - var(--intro-gap) - var(--step-size) - var(--process-title) - 10px);
+    grid-template-columns:min(var(--portrait-max),max(120px,calc(var(--portrait-room) * 1500 / 2020))) minmax(0,1fr) clamp(168px,19vw,310px);
+    grid-template-rows:1fr auto;
+    grid-template-areas:"portrait info info" "process process contact";
+    gap:var(--intro-gap) clamp(20px,3vw,72px);
     min-height:100dvh;
     padding:var(--intro-top) clamp(20px,3vw,72px) var(--intro-bottom);
   }
-  .about-content{gap:clamp(16px,3dvh,36px)}
+  .about-portrait{grid-area:portrait}
+  .about-content{
+    grid-area:info;
+    grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);
+    align-items:start;
+    gap:clamp(12px,2.4dvh,32px) clamp(18px,3vw,60px);
+  }
+  .about-copy{grid-column:1/-1}
   .about-eyebrow{
-    margin-bottom:clamp(8px,1.6dvh,16px);
-    font-size:clamp(11px,1.65dvh,14px);
+    margin-bottom:clamp(6px,1.25dvh,14px);
+    font-size:clamp(10px,1.5dvh,14px);
   }
   .about-copy h1{
     max-width:1280px;
-    margin-bottom:clamp(14px,2.7dvh,32px);
-    font-size:clamp(40px,min(5.6vw,9.4dvh),116px);
+    margin-bottom:0;
+    font-size:clamp(34px,min(5.2vw,8.8dvh),110px);
   }
-  .about-copy p:not(.about-eyebrow){
-    max-width:50ch;
-    margin-bottom:clamp(10px,1.6dvh,20px);
-    font-size:clamp(16px,min(1.35vw,2.3dvh),25px);
-    line-height:1.55;
+  .about-bio p,.about-remote p{
+    font-size:clamp(14px,min(1.24vw,2.15dvh),22px);
+    line-height:1.42;
   }
-  .about-copy p:last-child:not(.about-eyebrow){margin-bottom:0}
-  .about-cta-turn{min-height:clamp(58px,10dvh,98px)}
+  .about-bio p:not(:last-child){margin-bottom:clamp(6px,1.25dvh,16px)}
+  .about-remote{
+    padding-left:clamp(12px,1.8vw,26px);
+    border-left:1px solid var(--line);
+  }
+  .about-remote h2{font-size:clamp(20px,3.4dvh,39px)}
+  .about-process{grid-area:process;min-width:0}
+  .about-process h2{font-size:var(--process-title)}
+  .process-steps{grid-template-columns:repeat(5,minmax(0,var(--step-size)))}
+  .about-cta{grid-area:contact;align-self:end;width:100%}
+  .about-cta-turn{min-height:clamp(56px,9.5dvh,96px)}
   .about-cta-face{
     padding-block:clamp(8px,1.4dvh,14px);
-    font-size:clamp(22px,min(2.2vw,4.7dvh),36px);
+    font-size:clamp(21px,min(2.1vw,4.5dvh),34px);
   }
 }
-@media(max-width:1000px){.process-steps{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:768px) and (max-width:1000px) and (max-height:700px){
+  .about-intro{--portrait-max:24vw}
+  .about-content{column-gap:16px}
+}
+@media(min-width:768px) and (hover:hover){
+  .process-step{perspective:650px;border-radius:50% 4px 50% 4px}
+  .process-card{
+    display:grid;
+    grid-template:minmax(0,1fr) / minmax(0,1fr);
+    aspect-ratio:1;
+    padding:0;
+    border:0;
+    background:none;
+    transform-style:preserve-3d;
+    transition:transform .44s var(--ease);
+  }
+  .process-front,.process-back{
+    grid-area:1/1;
+    position:relative;
+    display:grid;
+    place-items:center;
+    margin:0;
+    padding:9%;
+    border:1px solid var(--line);
+    border-radius:inherit;
+    backface-visibility:hidden;
+    text-align:center;
+  }
+  .process-front{background:#292525;overflow:hidden}
+  .process-front::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:url("assets/brand/rp-symbol.png") center / contain no-repeat;
+    opacity:.16;
+  }
+  .process-front span{position:relative}
+  .process-back{
+    border-color:var(--yellow);
+    background:var(--yellow);
+    color:#111;
+    transform:rotateY(180deg);
+  }
+  .process-step:is(:hover,:focus-visible){z-index:1}
+  .process-step:is(:hover,:focus-visible) .process-card{
+    transform:translateY(-6px) rotateY(180deg) scale(1.06);
+  }
+}
+@media(min-width:768px) and (hover:hover) and (prefers-reduced-motion:no-preference){
+  .process-step{--step-delay:calc(200ms + var(--step) * 100ms)}
+  .process-step:first-child{--step-delay:0ms}
+  .process-step:not(:first-child){
+    animation:process-rollout 560ms var(--ease) var(--step-delay) backwards;
+  }
+  .process-front{animation:process-yellow 660ms ease-out var(--step-delay) both}
+  .process-step:focus-visible{animation:none}
+}
+@keyframes process-rollout{
+  0%{opacity:0;transform:translateX(calc(var(--step) * (-100% - var(--step-gap)))) rotate(-18deg) scale(.82)}
+  22%{opacity:1}
+  100%{opacity:1;transform:none}
+}
+@keyframes process-yellow{
+  0%,40%{background-color:var(--yellow);border-color:var(--yellow);color:#111}
+  100%{background-color:#292525;border-color:var(--line);color:#fff}
+}
+@media(prefers-reduced-motion:reduce){
+  .process-card{transition:none}
+  .process-step:is(:hover,:focus-visible) .process-card{
+    transform:rotateY(180deg);
+  }
+}
 @media(max-width:767px){
   .about-page .site-header.about-header{display:grid;grid-template-columns:1fr auto;align-items:center;height:64px;padding:0 12px}
   .about-nav{display:block;height:auto;width:max-content}
@@ -228,10 +306,6 @@
   .about-portrait{aspect-ratio:4/3}
   .about-portrait img{object-position:center top}
   .about-copy h1{font-size:52px}
-  .about-process h2,.about-remote h2{font-size:40px}
-  .about-process{padding:0 16px 64px}
-  .process-steps,.about-remote{grid-template-columns:1fr}
-  .about-remote{gap:28px;padding:48px 16px}
   .about-footer{grid-template-columns:1fr;gap:22px;padding:32px 17px}
   .about-footer nav{flex-wrap:wrap}
   .about-footer>span{text-align:left}

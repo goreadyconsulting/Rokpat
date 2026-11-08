@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="about.css?v=20261108-fit" />
+  <link rel="stylesheet" href="about.css?v=20261108-process" />
   <link rel="stylesheet" href="desktop.css?v=20261107-desktop" />
 </head>
 <body class="about-page">
@@ -55,38 +55,64 @@
         <img src="assets/rok-pat-artist.jpg" width="1500" height="2020" alt="Rok Pat standing with crossed arms against a brick wall" />
       </figure>
       <div class="about-content">
-        <div class="about-copy">
+        <header class="about-copy">
           <p class="about-eyebrow">Director &amp; CGI Artist · Birmingham, UK</p>
           <h1>I direct, build, animate and edit <em>cinematic</em> worlds.</h1>
+        </header>
+        <div class="about-bio">
           <p>I'm Rok Pat, a director and CGI artist working with musicians, dancers and brands around the world. I take a project from the first idea to the final frame: concept, storyboard, set and 3D build, animation, edit and delivery.</p>
           <p>My background is in arts and architecture, which is why I think about space, light and composition before anything else.</p>
           <p>Every project is a conversation, so you're involved at the stages that matter.</p>
         </div>
-        <a class="about-cta" href="contact.html" aria-label="Get in touch. Let's create together">
-          <span class="about-cta-turn" aria-hidden="true">
-            <span class="about-cta-face about-cta-front">Get in touch <span>→</span></span>
-            <span class="about-cta-face about-cta-back">Let's create together <span>→</span></span>
-          </span>
-        </a>
+        <section class="about-remote" aria-labelledby="about-remote-title">
+          <h2 id="about-remote-title">Working remotely</h2>
+          <p>Most of my projects run remotely. We agree the plan and review stages together at the start, I share work through a private review link, and you give feedback along the way. For filmed work, I'm happy to travel.</p>
+        </section>
       </div>
-    </section>
 
-    <section class="about-process">
-      <h2>How I work</h2>
-      <div class="process-steps">
-        <article><span>01</span><h3>Concept</h3><p>We talk through your idea, references and goals.</p></article>
-        <article><span>02</span><h3>Storyboard</h3><p>Every video, CGI or filmed, starts with a storyboard: a clear plan you can react to before anything is built.</p></article>
-        <article><span>03</span><h3>Build or shoot</h3><p>Sets and environments are built, in 3D or in real life, and filmed work is shot.</p></article>
-        <article><span>04</span><h3>Bring it to life</h3><p>Animation, VFX, camera and lighting turn the plan into finished scenes.</p></article>
-        <article><span>05</span><h3>Edit and deliver</h3><p>The final edit, in the formats you need.</p></article>
-      </div>
-    </section>
+      <section class="about-process" aria-labelledby="about-process-title">
+        <h2 id="about-process-title">How I work</h2>
+        <ol class="process-steps" role="list">
+          <li class="process-step" style="--step:0" tabindex="0" aria-labelledby="process-concept" aria-describedby="process-concept-detail">
+            <div class="process-card">
+              <h3 class="process-front" id="process-concept"><span>Concept</span></h3>
+              <p class="process-back" id="process-concept-detail">We talk through your idea, references and goals.</p>
+            </div>
+          </li>
+          <li class="process-step" style="--step:1" tabindex="0" aria-labelledby="process-storyboard" aria-describedby="process-storyboard-detail">
+            <div class="process-card">
+              <h3 class="process-front" id="process-storyboard"><span>Storyboard</span></h3>
+              <p class="process-back" id="process-storyboard-detail">We map out the story before anything is built.</p>
+            </div>
+          </li>
+          <li class="process-step" style="--step:2" tabindex="0" aria-labelledby="process-build" aria-describedby="process-build-detail">
+            <div class="process-card">
+              <h3 class="process-front" id="process-build"><span>Build or shoot</span></h3>
+              <p class="process-back" id="process-build-detail">I build sets in 3D or in real life and shoot the footage.</p>
+            </div>
+          </li>
+          <li class="process-step" style="--step:3" tabindex="0" aria-labelledby="process-animation" aria-describedby="process-animation-detail">
+            <div class="process-card">
+              <h3 class="process-front" id="process-animation"><span>Bring it to life</span></h3>
+              <p class="process-back" id="process-animation-detail">I add animation, VFX, camera and lighting.</p>
+            </div>
+          </li>
+          <li class="process-step" style="--step:4" tabindex="0" aria-labelledby="process-delivery" aria-describedby="process-delivery-detail">
+            <div class="process-card">
+              <h3 class="process-front" id="process-delivery"><span>Edit and deliver</span></h3>
+              <p class="process-back" id="process-delivery-detail">I make the final edit in the formats you need.</p>
+            </div>
+          </li>
+        </ol>
+      </section>
 
-    <section class="about-remote">
-      <h2>Working remotely</h2>
-      <p>Most of my projects run remotely. We agree the plan and review stages together at the start, I share work through a private review link, and you give feedback along the way. For filmed work, I'm happy to travel.</p>
+      <a class="about-cta" href="contact.html" aria-label="Get in touch. Let's create together">
+        <span class="about-cta-turn" aria-hidden="true">
+          <span class="about-cta-face about-cta-front">Get in touch <span>→</span></span>
+          <span class="about-cta-face about-cta-back">Let's create together <span>→</span></span>
+        </span>
+      </a>
     </section>
-
   </main>
 
   <footer class="about-footer">
