@@ -21,7 +21,7 @@
   .contact-gallery.is-interactive{z-index:0}
   [data-photo-trail].is-interactive > :is(.contact-photo,img){
     position:absolute;
-    width:clamp(96px,12vw,180px);
+    width:clamp(67.2px,8.4vw,126px);
     height:auto;
     max-height:none;
     aspect-ratio:1;
@@ -31,7 +31,7 @@
     animation:none;
     transform:translate(-50%,-50%);
   }
-  [data-photo-trail].is-interactive img{object-fit:contain;filter:none}
+  [data-photo-trail].is-interactive img{object-fit:contain;filter:brightness(.65) saturate(.7)}
   .contact-gallery.is-interactive .contact-photo img{width:100%;height:100%}
   .contact-stage:has(.is-interactive){position:static}
 }
@@ -132,7 +132,8 @@
     margin-bottom:clamp(10px,2dvh,30px);
     font-size:clamp(33px,min(4vw,6.5dvh),86px);
   }
-  .home-page .logo-track a{flex-basis:clamp(108px,9vw,144px);height:clamp(53px,8dvh,80px)}
+  .home-page .logo-track a{flex-basis:clamp(118px,9.5vw,156px);height:clamp(64px,9.5dvh,96px);padding-block:9px}
+  .home-page .logo-track img{max-height:56px}
   .logo-window.is-looping{scroll-snap-type:none;scroll-behavior:auto}
   .logo-window.is-looping .logo-track{min-width:0;justify-content:flex-start}
   .home-page .testimonial-carousel{padding-top:clamp(14px,4dvh,54px)}

@@ -64,10 +64,16 @@
       if (heroLoop) heroLoop.style.transform = `scale(1.035) translate3d(0,${p * 28}px,0)`;
     }
 
-    if (caveBridge && caveBg && !desktopLayout.matches) {
+    if (caveBridge && caveBg) {
       const r = caveBridge.getBoundingClientRect();
-      const p = clamp((window.innerHeight - r.top) / (window.innerHeight + r.height),0,1);
-      caveBg.style.transform = `scale(1.06) translate3d(0,${(p - .5) * -38}px,0)`;
+      const viewport = window.innerHeight;
+      if (desktopLayout.matches) {
+        const progress = clamp(-r.top / Math.max(r.height - viewport,1),0,1);
+        caveBg.style.transform = `translateY(${(.5 - progress) * viewport * .1}px) scale(1.12)`;
+      } else {
+        const progress = clamp((viewport - r.top) / (viewport + r.height),0,1);
+        caveBg.style.transform = `scale(1.06) translate3d(0,${(progress - .5) * -38}px,0)`;
+      }
     }
   };
 
@@ -287,6 +293,12 @@
   let interacted = false;
 
   const showTestimonial = index => {
+    const animate = index !== selected && desktopLayout.matches && !motionPreference.matches;
+    const previous = animate ? cards.map(card => ({
+      bounds:card.getBoundingClientRect(),
+      opacity:getComputedStyle(card).opacity
+    })) : [];
+    cards.forEach(card => card.getAnimations().forEach(animation => animation.cancel()));
     selected = (index + cards.length) % cards.length;
     cards.forEach((card, position) => {
       const offset = (position - selected + cards.length) % cards.length;
@@ -296,6 +308,21 @@
       card.classList.toggle('is-hidden', offset > 1 && offset < cards.length - 1);
     });
     count.textContent = String(selected + 1);
+    if (!animate) return;
+
+    cards.forEach((card, position) => {
+      const next = card.getBoundingClientRect();
+      if (!next.width) return;
+      const { bounds, opacity } = previous[position];
+      const targetOpacity = getComputedStyle(card).opacity;
+      const transform = bounds.width
+        ? `translate(${bounds.x - next.x}px,${bounds.y - next.y}px) scale(${bounds.width / next.width},${bounds.height / next.height})`
+        : 'none';
+      card.animate([
+        { transform, transformOrigin:'top left', opacity:bounds.width ? opacity : 0 },
+        { transform:'none', transformOrigin:'top left', opacity:targetOpacity }
+      ], { duration:500, easing:'cubic-bezier(.22,.75,.22,1)' });
+    });
   };
 
   testimonials.addEventListener('click', event => {
@@ -311,6 +338,9 @@
 
   const syncTestimonials = () => {
     clearInterval(autoAdvance);
+    if (!desktopLayout.matches || motionPreference.matches) {
+      cards.forEach(card => card.getAnimations().forEach(animation => animation.cancel()));
+    }
     if (desktopLayout.matches && !motionPreference.matches && inView && !interacted) {
       autoAdvance = setInterval(() => showTestimonial(selected + 1), 9000);
     }

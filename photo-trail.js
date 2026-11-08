@@ -3,12 +3,13 @@
   const reducedMotion = matchMedia('(prefers-reduced-motion:reduce)');
   const duration = 1450;
   const interval = 105;
-  const poolSize = Math.ceil(duration / interval);
 
   document.querySelectorAll('[data-photo-trail]').forEach(gallery => {
     const area = gallery.closest('[data-photo-trail-area]');
     const originals = [...gallery.children];
     if (!area || !originals.length) return;
+    // Keep complete cycles of artwork so the order is preserved when the pool wraps.
+    const poolSize = Math.ceil(duration / interval / originals.length) * originals.length;
     const photos = [...originals];
     const animations = new Map();
     let last;
@@ -46,7 +47,12 @@
       animations.get(photo)?.cancel();
       const frames = reducedMotion.matches
         ? [{ opacity:1 }, { opacity:1 }]
-        : [{ opacity:0 }, { opacity:1, offset:.1 }, { opacity:1, offset:.76 }, { opacity:0 }];
+        : [
+          { opacity:1, scale:.06, easing:'ease-out' },
+          { opacity:1, scale:1, offset:.24 },
+          { opacity:1, scale:1, offset:.66, easing:'ease-in' },
+          { opacity:1, scale:.06 }
+        ];
       const animation = photo.animate(frames, { duration:reducedMotion.matches ? 1000 : duration });
       animations.set(photo, animation);
       animation.addEventListener('finish', () => {

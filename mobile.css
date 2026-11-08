@@ -101,7 +101,7 @@
 .clients-title h2{font-size:clamp(38px,10vw,57px)}
 .logo-ribbon{grid-template-columns:44px minmax(0,1fr) 44px}
 .logo-arrow{width:44px;height:48px}
-.logo-track a{flex-basis:96px;height:58px}
+.logo-track a{flex-basis:104px;height:66px}
 .testimonial-carousel{padding-top:24px}
 .testimonial-stage{display:grid;min-height:0;padding:0;gap:12px}
 .testimonial-card,.testimonial-card.is-center{
